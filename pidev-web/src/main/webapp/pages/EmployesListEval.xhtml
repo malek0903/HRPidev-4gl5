@@ -41,6 +41,17 @@
              </div>
 			<!-- END cards box-->
 		</div>
+		
+		<h:dataTable value="#{eval360Beans.getEmployes()}"
+				var="employee" border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="salary" />
+					</f:facet>
+					<h:outputText value="#{employee.salary}" />
+				</h:column>
+
+			</h:dataTable>
 
 		</section>
 	</ui:define>
