@@ -3,14 +3,19 @@ package tn.esprit.userCommun.entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.skill.entities.EmployeeSkill;
+import tn.esprit.skill.entities.Skill;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @Entity
@@ -23,6 +28,12 @@ public class Employee extends User {
 	private String gitLink;
 	private String cvDetails;
 	private float salary;
+	
+	@OneToMany
+	@JoinTable(name="matrix_skill")
+	private Set<EmployeeSkill> employeeSkills;
+	@Transient
+	private Set<Skill> Skills;
 
 	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
@@ -130,6 +141,22 @@ public class Employee extends User {
 	@Override
 	public String toString() {
 		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
+	}
+
+	public Set<EmployeeSkill> getEmployeeSkills() {
+		return employeeSkills;
+	}
+
+	public void setEmployeeSkills(Set<EmployeeSkill> employeeSkills) {
+		this.employeeSkills = employeeSkills;
+	}
+
+	public Set<Skill> getSkills() {
+		return Skills;
+	}
+
+	public void setSkills(Set<Skill> skills) {
+		Skills = skills;
 	}
 
 	@Override
