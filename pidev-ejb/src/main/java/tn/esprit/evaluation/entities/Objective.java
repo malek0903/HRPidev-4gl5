@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import tn.esprit.evaluation.entities.enums.Category;
-
-
-
-
 
 @Entity
 public class Objective implements Serializable {
@@ -31,9 +29,11 @@ public class Objective implements Serializable {
 	private String description;
 	private Date dateBegin;
 	private Date dateEnd;
+
+	@Enumerated(EnumType.STRING)
 	private Category category;
 
-	@OneToMany(mappedBy = "objective", fetch = FetchType.EAGER ,cascade=CascadeType.PERSIST )
+	@OneToMany(mappedBy = "objective", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Evaluation> evaluations = new ArrayList<>();
 
 	public Objective() {
@@ -106,7 +106,7 @@ public class Objective implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 //	public void addEvaluation(Evaluation evaluation) {
 //		evaluation.setObjective(this);
 //		this.evaluations.add(evaluation);

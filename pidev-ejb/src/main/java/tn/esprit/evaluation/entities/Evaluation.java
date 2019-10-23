@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -22,6 +24,8 @@ public class Evaluation implements Serializable {
 	private float mark;
 	private Date date;
 	private String description;
+	
+	@Enumerated(EnumType.STRING)
 	private Status status;
 
 	@ManyToOne
