@@ -1,4 +1,4 @@
-package tn.esprit.services;
+package tn.esprit.evaluation.services;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import tn.esprit.entities.Objective;
-import tn.esprit.servicesInterfaces.IObjectiveServiceRemote;
+import tn.esprit.evaluation.entities.Objective;
+import tn.esprit.evaluation.servicesInterfaces.IObjectiveServiceRemote;
 
 @Stateless
 @LocalBean

@@ -1,14 +1,19 @@
-package tn.esprit.entities;
+package tn.esprit.userCommun.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import tn.esprit.entities.enums.EmployeeRole;
+import tn.esprit.evaluation.entities.Eval360;
+import tn.esprit.evaluation.entities.Evaluation;
+import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
+
+
 
 @Entity
 public class Employee extends User{
@@ -21,15 +26,14 @@ public class Employee extends User{
 	private String cvDetails;
 	private float salary;
 	
-	@OneToMany(mappedBy = "employe")
+	@OneToMany(mappedBy = "employe" , fetch = FetchType.EAGER)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 	
-	
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee" )
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
 	
-	@OneToOne(mappedBy = "concernedEmployee")
-	private Eval360 eval360 ;
+	@OneToMany(mappedBy="concernedEmployee" )
+	private List<Eval360> evals360 = new ArrayList<Eval360>();
 
 	public Employee(String userName, String lastName, String firstName, String email, String password,
 			EmployeeRole role, Date dateOfBirth, String phoneNumber) {
@@ -92,12 +96,13 @@ public class Employee extends User{
 	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
-	public Eval360 getEval360() {
-		return eval360;
+	public List<Eval360> getEvals360() {
+		return evals360;
 	}
-	public void setEval360(Eval360 eval360) {
-		this.eval360 = eval360;
+	public void setEvals360(List<Eval360> evals360) {
+		this.evals360 = evals360;
 	}
+	
 	
 	
 }

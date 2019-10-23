@@ -26,38 +26,51 @@
 							data-toggle="collapse">
 								<div class="float-right badge badge-success">3</div> <i
 								class="fa fa-fw fa-dashboard"></i><span
-								data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
+								data-localize="sidebar.nav.DASHBOARD">Evaluation</span>
 						</a>
 							<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
 								<li class="sidebar-subnav-header">Dashboard</li>
-								<li class=" active"><h:link value="Dashboard v1"
-										outcome="/pages/dashboard-v1.xhtml" /></li>
-								<li class=" "><a title="Dashboard v2"><span>Dashboard
-											v2</span></a></li>
-								<li class=" "><a href="dashboard_v3.html"
-									title="Dashboard v3"><span>Dashboard v3</span></a></li>
-							</ul></li>
+								<li class=" active"><h:link value="Evaluation360"
+										outcome="/pages/EmployesListEval.xhtml" /></li>
 
-						<li class=" "><a href="#dashboard" title="Dashboard"
-							data-toggle="collapse">
-								<div class="float-right badge badge-success">3</div> <i
-								class="fa fa-fw fa-dashboard"></i><span
-								data-localize="sidebar.nav.DASHBOARD">Objective</span>
-						</a>
-							<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
-								<li class="sidebar-subnav-header">Objective List</li>
-								<li class=" active"><h:link value="Objective List"
-										outcome="/pages/ObjectiveList.xhtml" /></li>
+
+
 							</ul></li>
 						<li class="nav-heading "><span
 							data-localize="sidebar.heading.COMPONENTS">Components</span></li>
 						<li class=" "><a href="#extras" title="Extras"
 							data-toggle="collapse"><em class="fa fa-fw fa-info"></em><span
 								data-localize="sidebar.nav.extra.EXTRA">Extras</span></a></li>
+
+
+
+						<li class="nav-heading "><span
+							data-localize="sidebar.heading.COMPONENTS">Objective</span></li>
+
+
+
+
+						<li class=" "><h:link
+								outcome="/pages/evaluation/addObjective.xhtml">
+								<em class="fa fa-fw fa-plus"></em>
+								<span>Add objective</span>
+							</h:link></li>
+
+
+						<li class=" "><h:link
+								outcome="/pages/evaluation/objectives.xhtml">
+								<em class="fa fa-fw fa-list"></em>
+								<span>All objectives</span>
+							</h:link></li>
+
+
+
 					</ul>
 				</nav>
 			</div>
 		</aside>
+
+
 
 	</h:body>
 

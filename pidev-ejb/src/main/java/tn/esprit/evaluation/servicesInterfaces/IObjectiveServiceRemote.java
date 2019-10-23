@@ -1,10 +1,10 @@
-package tn.esprit.servicesInterfaces;
+package tn.esprit.evaluation.servicesInterfaces;
 
 import java.util.List;
 
 import javax.ejb.Remote;
 
-import tn.esprit.entities.Objective;
+import tn.esprit.evaluation.entities.Objective;
 
 @Remote
 public interface IObjectiveServiceRemote {

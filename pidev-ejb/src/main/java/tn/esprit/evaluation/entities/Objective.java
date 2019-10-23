@@ -1,4 +1,4 @@
-package tn.esprit.entities;
+package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,7 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import tn.esprit.entities.enums.Category;
+import tn.esprit.evaluation.entities.enums.Category;
+
+
 
 
 

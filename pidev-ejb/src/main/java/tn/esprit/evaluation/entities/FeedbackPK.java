@@ -1,4 +1,4 @@
-package tn.esprit.entities;
+package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
 
