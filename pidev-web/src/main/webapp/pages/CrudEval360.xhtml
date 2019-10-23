@@ -6,15 +6,13 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	template="/template/default/template.xhtml"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<section class="section-container"> <!-- Page content-->
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Employee List ( Evaluation Start )<small
-						data-localize="dashboard.WELCOME"></small>
+					Eval 360 <small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -33,34 +31,42 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
+
+
+
+
 			<h:form>
+				<p:growl id="growl" showDetail="true" />
+
 				<div class="row">
-					<c:forEach var="employe" items="#{eval360Beans.getEmployes()}">
-						<div class="col-lg-4">
-							<div class="card text-white bg-primary mb-3">
-								<div class="card-header">#{employe.firstName}
-									#{employe.lastName}</div>
-								<div align="right" class="float-right">
-									<h:commandButton style="background-color: #f05050;"
-										class="btn btn-primary btn-sm"
-										action="#{eval360Beans.recupererEmploye(employe)}"
-										value="Start Evaluation" />
+					<div class="col-lg-10">
+						<div class="card card-default">
+							<div class="card-header">
+								Concerned #{eval360Beans.employe.firstName} <br />
+
+								<div class="col-lg-10">
+									<label style="padding-top: 15px;"
+										class="col-md-2 col-form-label">Evaluation details :</label>
+
+									<h:inputTextarea class="form-control form-control-rounded"
+										value="#{eval360Beans.evalDetails}" tabindex="3"></h:inputTextarea>
+
 								</div>
+								<div align="right">
+									<h:commandButton class="btn btn-primary btn-lg"
+										action="#{eval360Beans.addEvaluation()}"
+										value="Confirm Evaluation" />
 
 
-								<div class="card-body">
-									<h5 class="card-title" style="font-weight: bold;">#{employe.role}</h5>
-									<p class="card-text">
-										Birth Day :   #{employe.dateOfBirth} <br /> Phone number :  
-										#{employe.phoneNumber}
-									</p>
 								</div>
 							</div>
 						</div>
-					</c:forEach>
-					<!-- END cards box-->
+					</div>
 				</div>
 			</h:form>
+
+
+			<!-- END cards box-->
 		</div>
 
 		</section>

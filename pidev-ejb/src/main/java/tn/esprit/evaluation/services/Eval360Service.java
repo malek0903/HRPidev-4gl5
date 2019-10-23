@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.evaluation.entities.Eval360;
+import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.evaluation.servicesInterfaces.Eval360InterfaceRemote;
 import tn.esprit.userCommun.entities.Employee;
 
@@ -43,8 +44,15 @@ public class Eval360Service implements Eval360InterfaceRemote {
 		Eval360 e = new Eval360();
 		e.setConcernedEmployee(emp);
 
-		em.merge(e);
-
+		em.persist(e);
 	}
 
+	@Override
+	public List<Eval360> getListEval360Public(){
+		TypedQuery<Eval360> query = em.createQuery("Select e from Eval360 e where e.status=:publicc", Eval360.class).setParameter("publicc", Status.publicc );
+		List<Eval360> result = query.getResultList();
+		return result;
+	}
+	
+	
 }
