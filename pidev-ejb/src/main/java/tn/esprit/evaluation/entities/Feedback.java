@@ -1,4 +1,4 @@
-package tn.esprit.entities;
+package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,6 +7,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import tn.esprit.userCommun.entities.Employee;
 
 @Entity
 public class Feedback implements Serializable {

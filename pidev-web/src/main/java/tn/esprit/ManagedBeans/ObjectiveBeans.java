@@ -4,11 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
-import tn.esprit.entities.Objective;
-import tn.esprit.entities.enums.Category;
-import tn.esprit.services.ObjectiveService;
+import tn.esprit.evaluation.entities.Objective;
+import tn.esprit.evaluation.entities.enums.Category;
+import tn.esprit.evaluation.services.ObjectiveService;
+
+
 
 @ManagedBean
 public class ObjectiveBeans {
@@ -16,7 +19,7 @@ public class ObjectiveBeans {
 	@EJB
 	ObjectiveService OS;
 
-	public List<Objective> objectives;
+	private List<Objective> objectives;
 
 	private Long id;
 	private String name;
@@ -25,6 +28,7 @@ public class ObjectiveBeans {
 	private Date dateEnd;
 	private Category category;
 
+	
 	public ObjectiveService getOS() {
 		return OS;
 	}

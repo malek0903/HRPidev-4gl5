@@ -1,4 +1,4 @@
-package tn.esprit.entities;
+package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import tn.esprit.userCommun.entities.Employee;
 
 @Entity
 public class Eval360 implements Serializable{
@@ -22,10 +24,10 @@ public class Eval360 implements Serializable{
 	private Long id;
 	private String evalDetails;
 	
-	@OneToMany(mappedBy = "eval360")
+	@OneToMany(mappedBy = "eval360" )
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
 	
-	@OneToOne
+	@ManyToOne
 	private Employee concernedEmployee;
 
 	public Eval360(String evalDetails, List<Feedback> feedbacks, Employee concernedEmployee) {
@@ -33,6 +35,10 @@ public class Eval360 implements Serializable{
 		this.evalDetails = evalDetails;
 		this.feedbacks = feedbacks;
 		this.concernedEmployee = concernedEmployee;
+	}
+
+	public Eval360() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {

@@ -1,8 +1,6 @@
-package tn.esprit.entities;
+package tn.esprit.userCommun.entities;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import tn.esprit.entities.enums.EmployeeRole;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 
 

@@ -1,4 +1,4 @@
-package tn.esprit.entities;
+package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import tn.esprit.entities.enums.Status;
+import tn.esprit.evaluation.entities.enums.Status;
+import tn.esprit.userCommun.entities.Employee;
+
+
 
 @Entity
 public class Evaluation implements Serializable {
