@@ -6,11 +6,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.timesheet.entities.Team;
+import tn.esprit.timesheet.entities.Ticket;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @Entity
@@ -32,7 +35,13 @@ public class Employee extends User {
 
 	@OneToMany(mappedBy = "concernedEmployee")
 	private List<Eval360> evals360 = new ArrayList<Eval360>();
-
+	
+	@OneToMany(mappedBy="employesTicket")
+	private List<Ticket> tickets = new ArrayList<Ticket>();
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Team employeesTeam;
+	
 	public Employee(String userName, String lastName, String firstName, String email, String password,
 			EmployeeRole role, LocalDate dateOfBirth, String phoneNumber) {
 		super(userName, lastName, firstName, email, password, role);
