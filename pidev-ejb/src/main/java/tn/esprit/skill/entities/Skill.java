@@ -18,6 +18,7 @@ public class Skill implements Serializable {
 	private Long skillId;
 	private String skillName;
 	private String skillDesc;
+	@Temporal(TemporalType.DATE)
 	private Date skillDate;
 	private static final long serialVersionUID = 1L;
 
