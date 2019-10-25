@@ -10,28 +10,28 @@
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<section class="section-container"> <!-- Page content-->
+		
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
 					Employee List ( Evaluation Start )<small
 						data-localize="dashboard.WELCOME"></small>
 				</div>
+
 				<!-- START Language list-->
 				<div class="ml-auto">
 					<div class="btn-group">
 						<button
 							class="btn btn-secondary dropdown-toggle dropdown-toggle-nocaret"
 							type="button" data-toggle="dropdown">English</button>
-						<div
-							class="dropdown-menu dropdown-menu-right-forced animated fadeInUpShort"
-							role="menu">
-							<a class="dropdown-item" href="#" data-set-lang="en">English</a><a
-								class="dropdown-item" href="#" data-set-lang="es">Spanish</a>
-						</div>
+
 					</div>
 				</div>
+
 				<!-- END Language list-->
 			</div>
+
+			
 			<!-- START cards box-->
 			<h:form>
 				<div class="row">
@@ -51,13 +51,14 @@
 								<div class="card-body">
 									<h5 class="card-title" style="font-weight: bold;">#{employe.role}</h5>
 									<p class="card-text">
-										Birth Day :   #{employe.dateOfBirth} <br /> Phone number :  
+										Birth Day : #{employe.dateOfBirth} <br /> Phone number :
 										#{employe.phoneNumber}
 									</p>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
+
 					<!-- END cards box-->
 				</div>
 			</h:form>

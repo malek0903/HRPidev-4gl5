@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/template/default/template.xhtml">
+
+	<ui:define name="content">
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					Update Objective <small>..</small>
+				</div>
+			</div>
+
+
+			<!-- START card-->
+			<div class="row">
+				<div class="col-lg-10">
+					<div class="card card-default">
+
+						<div class="card-body">
+
+							<h:form styleClass="form-horizontal">
+
+								<fieldset>
+									<legend>Objective details</legend>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Objective name:</label>
+										<div class="col-md-2">
+											<h:inputText styleClass="form-control form-control-rounded"
+												value="#{editObjectiveBean.objective.name}" />
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Begins At:</label>
+										<div class="col-md-2">
+											<input id="beginsAt" name="beginsAt"
+												value="#{editObjectiveBean.objective.dateBegin}"
+												class="form-control form-control-rounded" type="date" />
+
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Ends At:</label>
+										<div class="col-md-2">
+											<input id="endsAt" name="endsAt"
+												value="#{editObjectiveBean.objective.dateEnd}"
+												class="form-control form-control-rounded" type="date" />
+
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Objective
+											category:</label>
+										<div class="col-md-2">
+
+											<select id="categoryId" name="categoryId"
+												class="custom-select custom-select-sm">
+												<option disabled="disabled" selected="">#{editObjectiveBean.objective.category}</option>
+												<option value="status">status</option>
+												<option value="salary">salary</option>
+												<option value="classifications">classifications</option>
+												<option value="level">level</option>
+												<option value="membership">membership</option>
+
+											</select>
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Objective
+											details:</label>
+										<div class="col-md-2">
+											<h:inputTextarea styleClass="form-control"
+												value="#{editObjectiveBean.objective.description}">
+											</h:inputTextarea>
+										</div>
+									</div>
+								</fieldset>
+
+								<h:commandLink styleClass="btn btn-success"
+									action="#{editObjectiveBean.onUpdateObjective()}">
+									<i class="fa fa-fw fa-edit"></i>
+								</h:commandLink>
+								<h:commandLink style="margin-left:20px"
+									styleClass="text text-primary"
+									action="#{editObjectiveBean.cancel()}">  cancel </h:commandLink>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</section>
+	</ui:define>
+</ui:composition>

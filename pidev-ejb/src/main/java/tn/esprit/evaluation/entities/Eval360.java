@@ -1,6 +1,7 @@
 package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,9 @@ public class Eval360 implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String evalDetails;
-	
+	private LocalDate dateBegin;
+	private LocalDate dateEnd;
+
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.privatee;
 
@@ -34,7 +37,6 @@ public class Eval360 implements Serializable {
 
 	@ManyToOne
 	private Employee concernedEmployee;
-
 
 	public Eval360() {
 		// TODO Auto-generated constructor stub
@@ -84,11 +86,36 @@ public class Eval360 implements Serializable {
 		this.status = status;
 	}
 
+	public LocalDate getDateBegin() {
+		return dateBegin;
+	}
+
+	public void setDateBegin(LocalDate dateBegin) {
+		this.dateBegin = dateBegin;
+	}
+
+	public LocalDate getDateEnd() {
+		return dateEnd;
+	}
+
+	public void setDateEnd(LocalDate dateEnd) {
+		this.dateEnd = dateEnd;
+	}
+
+	@Override
+	public String toString() {
+		return "Eval360 [id=" + id + ", evalDetails=" + evalDetails + ", dateBegin=" + dateBegin + ", dateEnd="
+				+ dateEnd + ", status=" + status + ", feedbacks=" + feedbacks + ", concernedEmployee="
+				+ concernedEmployee + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((concernedEmployee == null) ? 0 : concernedEmployee.hashCode());
+		result = prime * result + ((dateBegin == null) ? 0 : dateBegin.hashCode());
+		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
 		result = prime * result + ((evalDetails == null) ? 0 : evalDetails.hashCode());
 		result = prime * result + ((feedbacks == null) ? 0 : feedbacks.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -110,6 +137,16 @@ public class Eval360 implements Serializable {
 				return false;
 		} else if (!concernedEmployee.equals(other.concernedEmployee))
 			return false;
+		if (dateBegin == null) {
+			if (other.dateBegin != null)
+				return false;
+		} else if (!dateBegin.equals(other.dateBegin))
+			return false;
+		if (dateEnd == null) {
+			if (other.dateEnd != null)
+				return false;
+		} else if (!dateEnd.equals(other.dateEnd))
+			return false;
 		if (evalDetails == null) {
 			if (other.evalDetails != null)
 				return false;
@@ -129,9 +166,5 @@ public class Eval360 implements Serializable {
 			return false;
 		return true;
 	}
-
-	
-	
-	
 
 }

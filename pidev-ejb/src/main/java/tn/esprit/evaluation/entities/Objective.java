@@ -1,6 +1,7 @@
 package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,8 +28,8 @@ public class Objective implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
-	private Date dateBegin;
-	private Date dateEnd;
+	private LocalDate dateBegin;
+	private LocalDate dateEnd;
 
 	@Enumerated(EnumType.STRING)
 	private Category category;
@@ -37,14 +38,6 @@ public class Objective implements Serializable {
 	private List<Evaluation> evaluations = new ArrayList<>();
 
 	public Objective() {
-	}
-
-	public Objective(String name, String description, Date dateBegin, Date dateEnd, Category category) {
-		this.name = name;
-		this.description = description;
-		this.dateBegin = dateBegin;
-		this.dateEnd = dateEnd;
-		this.category = category;
 	}
 
 	public Long getId() {
@@ -71,19 +64,19 @@ public class Objective implements Serializable {
 		this.description = description;
 	}
 
-	public Date getDateBegin() {
+	public LocalDate getDateBegin() {
 		return dateBegin;
 	}
 
-	public void setDateBegin(Date dateBegin) {
+	public void setDateBegin(LocalDate dateBegin) {
 		this.dateBegin = dateBegin;
 	}
 
-	public Date getDateEnd() {
+	public LocalDate getDateEnd() {
 		return dateEnd;
 	}
 
-	public void setDateEnd(Date dateEnd) {
+	public void setDateEnd(LocalDate dateEnd) {
 		this.dateEnd = dateEnd;
 	}
 
@@ -107,15 +100,73 @@ public class Objective implements Serializable {
 		return serialVersionUID;
 	}
 
-//	public void addEvaluation(Evaluation evaluation) {
-//		evaluation.setObjective(this);
-//		this.evaluations.add(evaluation);
-//	}
-
 	@Override
 	public String toString() {
 		return "Objective [id=" + id + ", name=" + name + ", description=" + description + ", dateBegin=" + dateBegin
 				+ ", dateEnd=" + dateEnd + ", category=" + category + ", evaluations=" + evaluations + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((dateBegin == null) ? 0 : dateBegin.hashCode());
+		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((evaluations == null) ? 0 : evaluations.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Objective other = (Objective) obj;
+		if (category != other.category)
+			return false;
+		if (dateBegin == null) {
+			if (other.dateBegin != null)
+				return false;
+		} else if (!dateBegin.equals(other.dateBegin))
+			return false;
+		if (dateEnd == null) {
+			if (other.dateEnd != null)
+				return false;
+		} else if (!dateEnd.equals(other.dateEnd))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (evaluations == null) {
+			if (other.evaluations != null)
+				return false;
+		} else if (!evaluations.equals(other.evaluations))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+//	public void addEvaluation(Evaluation evaluation) {
+//		evaluation.setObjective(this);
+//		this.evaluations.add(evaluation);
+//	}
 
 }

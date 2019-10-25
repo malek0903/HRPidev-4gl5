@@ -1,5 +1,6 @@
 package tn.esprit.evaluation.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -49,7 +50,8 @@ public class Eval360Service implements Eval360InterfaceRemote {
 
 	@Override
 	public List<Eval360> getListEval360Public(){
-		TypedQuery<Eval360> query = em.createQuery("Select e from Eval360 e where e.status=:publicc", Eval360.class).setParameter("publicc", Status.publicc );
+		LocalDate now = LocalDate.now() ;
+		TypedQuery<Eval360> query = em.createQuery("Select e from Eval360 e where e.status=:publicc and e.dateEnd > CURRENT_DATE()", Eval360.class).setParameter("publicc", Status.publicc );
 		List<Eval360> result = query.getResultList();
 		return result;
 	}

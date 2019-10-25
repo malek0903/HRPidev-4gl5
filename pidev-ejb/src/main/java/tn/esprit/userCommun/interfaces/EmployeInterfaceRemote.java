@@ -16,4 +16,8 @@ public interface EmployeInterfaceRemote {
 
 	Employee findEmployebyId(Long idEmp);
 
+	List<Employee> getAllEmployesPublicEval360();
+
+	void updateEmploye(Employee e);
+
 }

@@ -5,9 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>#{page_name}</title>
+	
+	
+	
 	<h:outputStylesheet library="default"
 		name="vendor/@fortawesome/fontawesome-free/css/brands.css" />
 	<h:outputStylesheet library="default"
@@ -58,6 +62,7 @@
    <h:outputStylesheet library="default" name="vendor/bootstrap-wysiwyg/css/style.css" /><!-- =============== BOOTSTRAP STYLES ===============-->
    <h:outputStylesheet library="default" name="css/bootstrap.css" id="bscss" /><!-- =============== APP STYLES ===============-->
    <h:outputStylesheet library="default" name="css/app.css" id="maincss" />
+   <h:outputStylesheet library="default" name="vendor/loaders.css/loaders.css"/><!-- Spinkit-->
 	
 	<!-- End 23 oct 19-->
 	
@@ -135,6 +140,8 @@
    <h:outputScript library="default" name="vendor/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></h:outputScript><!-- SELECT2-->
    <h:outputScript library="default" name="vendor/select2/dist/js/select2.full.js"></h:outputScript><!-- =============== APP SCRIPTS ===============-->
    <h:outputScript library="default" name="js/app.js"></h:outputScript>
+   
+   <h:outputScript library="default" name="vendor/sweetalert/dist/sweetalert.min.js"></h:outputScript>
 	
 	
 	<!-- End 23 oct 19-->

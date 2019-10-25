@@ -20,12 +20,7 @@
 						<button
 							class="btn btn-secondary dropdown-toggle dropdown-toggle-nocaret"
 							type="button" data-toggle="dropdown">English</button>
-						<div
-							class="dropdown-menu dropdown-menu-right-forced animated fadeInUpShort"
-							role="menu">
-							<a class="dropdown-item" href="#" data-set-lang="en">English</a><a
-								class="dropdown-item" href="#" data-set-lang="es">Spanish</a>
-						</div>
+
 					</div>
 				</div>
 				<!-- END Language list-->
@@ -44,14 +39,29 @@
 							<div class="card-header">
 								Concerned #{eval360Beans.employe.firstName} <br />
 
-								<div class="col-lg-10">
-									<label style="padding-top: 15px;"
-										class="col-md-2 col-form-label">Evaluation details :</label>
 
-									<h:inputTextarea class="form-control form-control-rounded"
-										value="#{eval360Beans.evalDetails}" tabindex="3"></h:inputTextarea>
 
-								</div>
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Evaluation details :</label>
+										<div class="col-md-5">
+											<h:inputTextarea styleClass="form-control"
+												value="#{eval360Beans.evalDetails}">
+											</h:inputTextarea>
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Ends At:</label>
+										<div class="col-md-3">
+											<input id="dateEnd" name="dateEnd"
+												value="#{editObjectiveBean.objective.dateEnd}"
+												class="form-control form-control-rounded" type="date" />
+
+										</div>
+									</div>
+								</fieldset>
 								<div align="right">
 									<h:commandButton class="btn btn-primary btn-lg"
 										action="#{eval360Beans.addEvaluation()}"

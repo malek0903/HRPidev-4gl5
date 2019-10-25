@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.interfaces.EmployeInterfaceRemote;
 
@@ -34,5 +35,20 @@ public class EmployeService implements EmployeInterfaceRemote {
 	@Override
 	public Employee findEmployebyId(Long idEmp) {
 		return em.find(Employee.class, idEmp);
+	}
+
+	@Override
+	public List<Employee> getAllEmployesPublicEval360() {
+		TypedQuery<Employee> query = em
+				.createQuery("Select e from Employee e where e.statusEval360=:privatee ", Employee.class)
+				.setParameter("privatee", Status.privatee);
+		List<Employee> result = query.getResultList();
+		return result;
+	}
+	
+	@Override
+	public void updateEmploye(Employee e)
+	{
+		em.merge(e);
 	}
 }
