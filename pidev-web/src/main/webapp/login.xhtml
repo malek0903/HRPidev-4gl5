@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/default/visitor/templateVisitor.xhtml">
+	<ui:param name="page_name" value="Connexion" />
+	<ui:define name="menu">
+		<h:head>
+			<meta charset="utf-8" name="viewport"
+				content="width=device-width, initial-scale=1"
+				http-equiv="X-UA-Conpatible" />
+			<link rel="stylesheet"
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+			<title>JSF Bootstrap Example</title>
+		</h:head>
+
+		<h:panelGroup layout="block">
+			<div class="container" style="margin-left: 40%">
+				<div class="row">
+					<div class="col-xl-4">
+						<h:form id="form">
+							<h1 style="margin-left: 30%">Connexion</h1>
+						
+								<h:panelGroup layout="block">
+									<div class="form-group">
+										<h:outputText value="Email" />
+										<h:inputText a:placeholder="Saisir votre mail" class="form-control" value="#{loginBean.login}" />
+										<small id="emailHelp" class="form-text text-muted">Votre email ne sera pas partager</small>
+									</div>
+								</h:panelGroup>
+								<h:panelGroup layout="block">
+									<div class="form-group">
+										<h:outputText value="Mot de passe" />
+										<h:inputSecret a:placeholder="Saisir votre mot de passe" class="form-control"
+											value="#{loginBean.password}" />
+									</div>
+								</h:panelGroup>
+								<h:commandButton id="btn" value="Connexion"
+									styleClass="btn btn-success" action="#{loginBean.doLogin()}" />
+								<h:message for="btn" />
+						</h:form>
+					</div>
+
+				</div>
+			</div>
+
+		</h:panelGroup>
+
+	</ui:define>
+</ui:composition>

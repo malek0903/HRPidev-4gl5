@@ -1,41 +1,42 @@
 package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.userCommun.entities.Employee;
 
 @Entity
-public class Eval360 implements Serializable{
+public class Eval360 implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String evalDetails;
-	
-	@OneToMany(mappedBy = "eval360" )
+	private LocalDate dateBegin;
+	private LocalDate dateEnd;
+
+	@Enumerated(EnumType.STRING)
+	private Status status = Status.privatee;
+
+	@OneToMany(mappedBy = "eval360")
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
-	
+
 	@ManyToOne
 	private Employee concernedEmployee;
-
-	public Eval360(String evalDetails, List<Feedback> feedbacks, Employee concernedEmployee) {
-		super();
-		this.evalDetails = evalDetails;
-		this.feedbacks = feedbacks;
-		this.concernedEmployee = concernedEmployee;
-	}
 
 	public Eval360() {
 		// TODO Auto-generated constructor stub
@@ -76,6 +77,94 @@ public class Eval360 implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public LocalDate getDateBegin() {
+		return dateBegin;
+	}
+
+	public void setDateBegin(LocalDate dateBegin) {
+		this.dateBegin = dateBegin;
+	}
+
+	public LocalDate getDateEnd() {
+		return dateEnd;
+	}
+
+	public void setDateEnd(LocalDate dateEnd) {
+		this.dateEnd = dateEnd;
+	}
+
+	@Override
+	public String toString() {
+		return "Eval360 [id=" + id + ", evalDetails=" + evalDetails + ", dateBegin=" + dateBegin + ", dateEnd="
+				+ dateEnd + ", status=" + status + ", feedbacks=" + feedbacks + ", concernedEmployee="
+				+ concernedEmployee + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((concernedEmployee == null) ? 0 : concernedEmployee.hashCode());
+		result = prime * result + ((dateBegin == null) ? 0 : dateBegin.hashCode());
+		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
+		result = prime * result + ((evalDetails == null) ? 0 : evalDetails.hashCode());
+		result = prime * result + ((feedbacks == null) ? 0 : feedbacks.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Eval360 other = (Eval360) obj;
+		if (concernedEmployee == null) {
+			if (other.concernedEmployee != null)
+				return false;
+		} else if (!concernedEmployee.equals(other.concernedEmployee))
+			return false;
+		if (dateBegin == null) {
+			if (other.dateBegin != null)
+				return false;
+		} else if (!dateBegin.equals(other.dateBegin))
+			return false;
+		if (dateEnd == null) {
+			if (other.dateEnd != null)
+				return false;
+		} else if (!dateEnd.equals(other.dateEnd))
+			return false;
+		if (evalDetails == null) {
+			if (other.evalDetails != null)
+				return false;
+		} else if (!evalDetails.equals(other.evalDetails))
+			return false;
+		if (feedbacks == null) {
+			if (other.feedbacks != null)
+				return false;
+		} else if (!feedbacks.equals(other.feedbacks))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (status != other.status)
+			return false;
+		return true;
+	}
+
 }

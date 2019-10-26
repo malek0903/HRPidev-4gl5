@@ -6,54 +6,68 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	template="/template/default/template.xhtml"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<section class="section-container"> <!-- Page content-->
+
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Objective List<small data-localize="dashboard.WELCOME"></small>
+					Employee List ( Evaluation Start )<small
+						data-localize="dashboard.WELCOME"></small>
 				</div>
+
 				<!-- START Language list-->
 				<div class="ml-auto">
 					<div class="btn-group">
 						<button
 							class="btn btn-secondary dropdown-toggle dropdown-toggle-nocaret"
 							type="button" data-toggle="dropdown">English</button>
-						<div
-							class="dropdown-menu dropdown-menu-right-forced animated fadeInUpShort"
-							role="menu">
-							<a class="dropdown-item" href="#" data-set-lang="en">English</a><a
-								class="dropdown-item" href="#" data-set-lang="es">Spanish</a>
-						</div>
+
 					</div>
 				</div>
+
 				<!-- END Language list-->
 			</div>
+
+
 			<!-- START cards box-->
-			<c:forEach var="prod" items="#{commandeBean.prodParCat}">
-			<div class="col-lg-4">
-                  <div class="card text-white bg-primary mb-3">
-                     <div class="card-header">Header</div>
-                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card&apos;s content.</p>
-                     </div>
-                  </div>
-             </div>
-			<!-- END cards box-->
+			<h:form>
+				<div class="row">
+					<c:forEach var="employe" items="#{eval360Beans.getEmployes()}">
+						<div class="col-lg-4">
+							<div class="card text-white bg-primary mb-3">
+								<div class="card-header">#{employe.firstName}
+									#{employe.lastName}</div>
+								<div align="right" class="float-right">
+									<h:commandButton style="background-color: #f05050;"
+										class="btn btn-primary btn-sm"
+										action="#{eval360Beans.recupererEmploye(employe)}"
+										value="Start Evaluation" />
+								</div>
+
+
+								<div class="card-body">
+									<h5 class="card-title" style="font-weight: bold;">#{employe.role}</h5>
+									<p class="card-text">
+										Birth Day : #{employe.dateOfBirth} <br /> Phone number :
+										#{employe.phoneNumber}
+									</p>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+
+					<!-- END cards box-->
+				</div>
+
+				
+
+			</h:form>
 		</div>
 		
-		<h:dataTable value="#{eval360Beans.getEmployes()}"
-				var="employee" border="1">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="salary" />
-					</f:facet>
-					<h:outputText value="#{employee.salary}" />
-				</h:column>
-
-			</h:dataTable>
+		
 
 		</section>
 	</ui:define>

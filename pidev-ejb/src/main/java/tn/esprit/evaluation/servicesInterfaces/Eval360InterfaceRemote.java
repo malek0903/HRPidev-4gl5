@@ -17,4 +17,6 @@ public interface Eval360InterfaceRemote {
 
 	void AssignEval360ToEmploye(Eval360 eval, Long idEmp);
 
+	List<Eval360> getListEval360Public();
+
 }
