@@ -7,14 +7,13 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
-import tn.esprit.skill.entities.EmployeeSkill;
+import tn.esprit.skill.entities.MatrixSkill;
 import tn.esprit.skill.entities.Skill;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
@@ -28,10 +27,9 @@ public class Employee extends User {
 	private String gitLink;
 	private String cvDetails;
 	private float salary;
-	
-	@OneToMany
-	@JoinTable(name="matrix_skill")
-	private Set<EmployeeSkill> employeeSkills;
+
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	private Set<MatrixSkill> matrixSkills;
 	@Transient
 	private Set<Skill> Skills;
 
@@ -143,12 +141,12 @@ public class Employee extends User {
 		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
 	}
 
-	public Set<EmployeeSkill> getEmployeeSkills() {
-		return employeeSkills;
+	public Set<MatrixSkill> getMatrixSkills() {
+		return matrixSkills;
 	}
 
-	public void setEmployeeSkills(Set<EmployeeSkill> employeeSkills) {
-		this.employeeSkills = employeeSkills;
+	public void setMatrixSkills(Set<MatrixSkill> matrixSkills) {
+		this.matrixSkills = matrixSkills;
 	}
 
 	public Set<Skill> getSkills() {

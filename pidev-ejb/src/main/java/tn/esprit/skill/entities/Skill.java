@@ -3,6 +3,7 @@ package tn.esprit.skill.entities;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -20,6 +21,8 @@ public class Skill implements Serializable {
 	private String skillDesc;
 	@Temporal(TemporalType.DATE)
 	private Date skillDate;
+	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
+	private Set<MatrixSkill> matrixSkills;
 	private static final long serialVersionUID = 1L;
 
 	public Skill() {
