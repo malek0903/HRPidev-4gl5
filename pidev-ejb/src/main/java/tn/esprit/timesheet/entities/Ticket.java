@@ -43,6 +43,8 @@ public class Ticket  implements Serializable {
 	private Employee employesTicket;
 	@ManyToOne
 	private Team team;
+	@ManyToOne
+	private Projet projet;
 	public int getIdTicket() {
 		return idTicket;
 	}
@@ -193,6 +195,17 @@ public class Ticket  implements Serializable {
 		this.estimatedHours = estimatedHours;
 		this.difficulty = difficulty;
 		this.team = team;
+	}
+	
+	
+	public Ticket(int idTicket,String title, String description, double estimatedHours, Difficulty difficulty) {
+		super();
+		this.idTicket=idTicket;
+		this.title = title;
+		this.description = description;
+		this.estimatedHours = estimatedHours;
+		this.difficulty = difficulty;
+	
 	}
 	@Override
 	public String toString() {

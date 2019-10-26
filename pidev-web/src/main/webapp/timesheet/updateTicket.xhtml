@@ -5,15 +5,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
 	template="/template/default/template.xhtml">
-	<ui:param name="page_name" value="Index" />
+
 	<ui:define name="content">
 
 		<section class="section-container"> <!-- Page content-->
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Add Ticket<small>..</small>
+					Update Ticket<small>..</small>
 				</div>
 			</div>
 
@@ -21,24 +23,28 @@
 			<div class="card card-default">
 
 				<div class="card-body">
+
+
+
 					<h:form styleClass="form-horizontal">
 
 						<fieldset>
-							<legend>Ticket name</legend>
+							<legend>Ticket details</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Ticket name:</label>
+								<label class="col-md-2 col-form-label">ticket title::</label>
 								<div class="col-md-2">
 									<h:inputText styleClass="form-control form-control-rounded"
 										value="#{ticketBean.title}" />
 								</div>
 							</div>
-
 						</fieldset>
-						<fieldset></fieldset>
+
+
+
+
 						<fieldset>
-							<legend>Ticket description</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Ticket
+								<label class="col-md-2 col-form-label">Objective
 									description:</label>
 								<div class="col-md-2">
 									<h:inputText styleClass="form-control form-control-rounded"
@@ -46,7 +52,7 @@
 								</div>
 							</div>
 						</fieldset>
-						<fieldset></fieldset>
+						
 						<fieldset>
 
 							<legend>Ticket difficulty</legend>
@@ -74,13 +80,13 @@
 							<legend>Team</legend>
 
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Team 
+								<label class="col-md-2 col-form-label">Team
 									:</label>
 
 								<div class="col-md-2">
 									<h:outputText value="Team" />
 									<h:selectOneMenu value="#{ticketBean.selectedTeamId}">
-										<f:selectItem itemLabel="Selectionner l'equipe"
+										<f:selectItem itemLabel="Selectionner l'equipe "
 											itemValue="" />
 										<f:selectItems value="#{ticketBean.team}" var="team"
 											itemValue="#{team.id}" itemLabel="#{team}" />
@@ -91,17 +97,13 @@
 								</div>
 							</div>
 						</fieldset>
-						<fieldset></fieldset>
-
 
 						<h:commandLink styleClass="btn btn-success"
-							action="#{ticketBean.addTicket()}">
-							<i class="fa fa-fw fa-plus"></i>
+							action="#{ticketBean.onUpdateTeam()}">
+							<i class="fa fa-fw fa-plus">update</i>
 						</h:commandLink>
 						<h:commandLink styleClass="text text-primary"
 							action="#{ticketBean.cancel()}">  cancel </h:commandLink>
-
-
 					</h:form>
 				</div>
 			</div>
@@ -116,4 +118,3 @@
 
 	</ui:define>
 </ui:composition>
-

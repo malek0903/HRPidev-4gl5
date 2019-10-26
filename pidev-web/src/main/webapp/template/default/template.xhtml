@@ -35,8 +35,14 @@
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 		crossorigin="anonymous" />
 
-
-
+  <!-- FULLCALENDAR-->
+  <h:outputStylesheet library="default" name="vendor/fullcalendar/dist/fullcalendar.css" /><!-- =============== BOOTSTRAP STYLES ===============-->
+  <h:outputStylesheet library="default" name="css/bootstrap.css" id="bscss"/><!-- =============== APP STYLES ===============-->
+  <h:outputStylesheet library="default" name="css/app.css" id="maincss"/>
+  
+  
+ <h:outputStylesheet library="default" name="vendor/select2/dist/css/select2.css"/>
+   <h:outputStylesheet library="default" name="vendor/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.css"/>
 
 
 	<!-- MODERNIZR-->
@@ -85,9 +91,30 @@
 		name="vendor/moment/min/moment-with-locales.js"></h:outputScript>
 	<!-- =============== APP SCRIPTS ===============-->
 	<h:outputScript library="default" name="js/app.js"></h:outputScript>
-
-
-
+	<h:outputScript library="default"
+		name="vendor/sweetalert/dist/sweetalert.min.js"></h:outputScript>
+	<h:outputScript library="default" name="vendor/chart.js/dist/Chart.js"></h:outputScript>
+	<!-- =============== APP SCRIPTS ===============-->
+	<h:outputScript library="default"
+		src="vendor/moment/min/moment-with-locales.js"></h:outputScript>
+<!-- 24/10 -->
+	 <h:outputScript library="default" name="vendor/modernizr/modernizr.custom.js"></h:outputScript><!-- STORAGE API-->
+   <h:outputScript library="default" name="vendor/js-storage/js.storage.js"></h:outputScript><!-- SCREENFULL-->
+   <h:outputScript library="default" name="vendor/screenfull/dist/screenfull.js"></h:outputScript><!-- i18next-->
+   <h:outputScript library="default" name="vendor/i18next/i18next.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/i18next-xhr-backend/i18nextXHRBackend.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/jquery/dist/jquery.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/popper.js/dist/umd/popper.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/bootstrap/dist/js/bootstrap.js"></h:outputScript><!-- =============== PAGE VENDOR SCRIPTS ===============-->
+   <!-- JQUERY UI-->
+   <h:outputScript library="default" name="vendor/components-jqueryui/jquery-ui.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></h:outputScript><!-- MOMENT JS-->
+   <h:outputScript library="default" name="vendor/moment/min/moment-with-locales.js"></h:outputScript><!-- FULLCALENDAR-->
+   <h:outputScript library="default" name="vendor/fullcalendar/dist/fullcalendar.js"></h:outputScript>
+   <h:outputScript library="default" name="vendor/fullcalendar/dist/gcal.js"></h:outputScript><!-- =============== APP SCRIPTS ===============-->
+   <h:outputScript library="default" name="js/app.js"></h:outputScript>
+	
+ <h:outputScript library="default" name="vendor/select2/dist/js/select2.full.js"></h:outputScript>
 </h:head>
 <body>
 	<div class="wrapper">

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/default/template.xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	>
+	<ui:param name="page_name" value="Index" />
+	<ui:define name="content">
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					Add Team<small>..</small>
+				</div>
+			</div>
+
+
+
+			<fieldset>
+				<legend>Ticket name</legend>
+				<div class="form-group row">
+					<label class="col-md-2 col-form-label">Ticket name:</label>
+					<div class="col-md-2">
+						<h:inputText styleClass="form-control form-control-rounded"
+							value="#{teamBean.nameTeam}" />
+					</div>
+				</div>
+
+			</fieldset>
+			
+			
+						
+						
+			<fieldset>
+				<div class="form-group row mb-2">
+					<label class="col-md-2 col-form-label mb-2">Employes</label>
+					<div class="col-md-10">
+						<!-- SELECT2-->
+						<p class="my-2">Multiple Pills</p>
+						<select class="form-control" id="select2-3" multiple="multiple">
+							<optgroup label="Employes">
+							<c:forEach var="employe" items="#{teamBean.employees}">
+								<option value="AK" >#{employe.firstName}</option>
+							</c:forEach>
+							</optgroup>
+						</select>
+
+						<!-- END SELECT2-->
+					</div>
+				</div>
+			</fieldset>
+			
+							
+			<fieldset>
+				<div class="form-group row mb-2">
+					<label class="col-md-2 col-form-label mb-2">Employes</label>
+					<div class="col-md-10">
+						<!-- SELECT2-->
+						<p class="my-2">Multiple Pills</p>
+						<select class="form-control" id="select2-3" multiple="multiple">
+							<optgroup label="Employes">
+							<c:forEach var="employe" items="#{teamBean.employees}">
+								<option value="AK" >#{employe.firstName}</option>
+							</c:forEach>
+							</optgroup>
+						</select>
+
+						<!-- END SELECT2-->
+					</div>
+				</div>
+			</fieldset>
+
+		</div>
+
+
+
+		</section>
+
+	</ui:define>
+</ui:composition>
+

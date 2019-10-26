@@ -38,4 +38,10 @@ public class TicketService implements ITicketService {
 		return result;
 	}
 
+	@Override
+	public void updateTicket(Ticket ticket) {
+		em.merge(ticket);
+		
+	}
+
 }

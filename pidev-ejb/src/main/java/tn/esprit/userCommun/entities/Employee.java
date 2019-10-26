@@ -26,6 +26,7 @@ public class Employee extends User {
 	private String gitLink;
 	private String cvDetails;
 	private float salary;
+	private Boolean chefEquipe ;
 
 	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
@@ -110,6 +111,32 @@ public class Employee extends User {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+
+	public Boolean getChefEquipe() {
+		return chefEquipe;
+	}
+
+	public void setChefEquipe(Boolean chefEquipe) {
+		this.chefEquipe = chefEquipe;
+	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
+	public Team getEmployeesTeam() {
+		return employeesTeam;
+	}
+
+	public void setEmployeesTeam(Team employeesTeam) {
+		this.employeesTeam = employeesTeam;
 	}
 
 	public List<Evaluation> getEvaluations() {
@@ -204,5 +231,7 @@ public class Employee extends User {
 			return false;
 		return true;
 	}
+	
+	
 
 }

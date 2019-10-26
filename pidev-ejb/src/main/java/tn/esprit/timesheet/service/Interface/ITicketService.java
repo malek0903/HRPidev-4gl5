@@ -15,5 +15,7 @@ public interface ITicketService {
 	
 	public List<Ticket> getAllTicket();
 	
+	public void updateTicket(Ticket ticket);
+	
 
 }

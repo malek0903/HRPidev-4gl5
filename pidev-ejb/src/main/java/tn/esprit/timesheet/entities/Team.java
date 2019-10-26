@@ -27,7 +27,7 @@ public class Team implements Serializable{
 
 	private String nameTeam;
 	private Date dateCreation;
-	private String Departement;
+	private String departement;
 	
 	@OneToMany(mappedBy="employeesTeam",cascade=CascadeType.ALL)
 	private List<Employee> employeesTeam = new ArrayList<Employee>();
@@ -53,10 +53,10 @@ public class Team implements Serializable{
 		this.dateCreation = dateCreation;
 	}
 	public String getDepartement() {
-		return Departement;
+		return departement;
 	}
 	public void setDepartement(String departement) {
-		Departement = departement;
+		this.departement = departement;
 	}
 	public List<Employee> getEmployeesTeam() {
 		return employeesTeam;
@@ -78,7 +78,7 @@ public class Team implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Departement == null) ? 0 : Departement.hashCode());
+		result = prime * result + ((departement == null) ? 0 : departement.hashCode());
 		result = prime * result + ((dateCreation == null) ? 0 : dateCreation.hashCode());
 		result = prime * result + ((employeesTeam == null) ? 0 : employeesTeam.hashCode());
 		result = prime * result + id;
@@ -95,10 +95,10 @@ public class Team implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Team other = (Team) obj;
-		if (Departement == null) {
-			if (other.Departement != null)
+		if (departement == null) {
+			if (other.departement != null)
 				return false;
-		} else if (!Departement.equals(other.Departement))
+		} else if (!departement.equals(other.departement))
 			return false;
 		if (dateCreation == null) {
 			if (other.dateCreation != null)
@@ -128,6 +128,20 @@ public class Team implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Team(String nameTeam, Date dateCreation, List<Employee> employeesTeam, List<Ticket> tickets) {
+		super();
+		this.nameTeam = nameTeam;
+		this.dateCreation = dateCreation;
+		this.employeesTeam = employeesTeam;
+		this.tickets = tickets;
+	}
+	public Team(String nameTeam, Date dateCreation) {
+		super();
+		this.nameTeam = nameTeam;
+		this.dateCreation = dateCreation;
+	}
+	
+	
 	
 	
 	

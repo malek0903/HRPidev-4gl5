@@ -5,11 +5,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	template="/template/default/template.xhtml">
+	template="/template/default/template.xhtml"
+	xmlns:p="http://primefaces.org/ui">
 	<ui:param name="page_name" value="Index" />
-
 	<ui:define name="content">
-
 		<section class="section-container"> <!-- Page content-->
 		<div class="content-wrapper">
 			<div class="content-heading">
@@ -17,17 +16,21 @@
 					List ticket<small data-localize="dashboard.WELCOME"></small>
 				</div>
 			</div>
+
+
+
 			<div class="row">
-				<div class="col-xl-8 col-md-8">
-					<div class="card">
+				<div class="col-xl-12 col-md-12">
+					<div class="card" style="">
 						<div class="card-header">list tickets</div>
-						<h:form>
 
-							<h:commandLink styleClass="btn btn-sm btn-danger command-ajouter"
-								action="#{ticketBean.goTo}">  ajouter </h:commandLink>
-
-						</h:form>
-
+						<div class="ml-auto">
+							<h:form>
+								<h:commandLink
+									styleClass="btn btn-sm btn-danger command-ajouter"
+									action="#{ticketBean.goTo}">  ajouter </h:commandLink>
+							</h:form>
+						</div>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive bootgrid">
@@ -61,9 +64,22 @@
 								</h:column>
 
 								<h:column>
-							
 
+									<h:form>
+										<h:commandLink styleClass="btn btn-success"
+											action="#{ticketBean.modifier(tickets)}">
+											update
+										</h:commandLink>
+								
+					
+										<h:commandLink styleClass="btn btn-danger"
+											action="#{ticketBean.delete(tickets.idTicket)}">
+											delete
+										</h:commandLink>
+
+									</h:form>
 								</h:column>
+
 							</h:dataTable>
 						</div>
 					</div>

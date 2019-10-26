@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/default/template.xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:param name="page_name" value="Index" />
+	<ui:define name="content">
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				Team viewer
+				<div class="ml-auto">
+
+					<h:form>
+						<h:commandLink styleClass="btn btn-primary" type="button"
+							data-toggle="button" aria-pressed="false"
+							action="#{teamBean.goToAjouter}">  Ajouter Team </h:commandLink>
+					</h:form>
+					
+				</div>
+			</div>
+			<div class="row">
+				<c:forEach var="teams" items="#{teamBean.team}">
+					<div class="col-xl-4 col-lg-6">
+						<!-- Team Card-->
+						<div class="card card-default">
+							<div class="card-header">
+								<div class="float-right">
+									<div class="badge badge-success">free</div>
+								</div>
+								<div class="card-title">#{teams.nameTeam}</div>
+							</div>
+							<div class="card-body bt">
+								<h4>Employees</h4>
+								<c:forEach var="employe" items="#{teamBean.employees}">
+									<c:if test="">
+									<a class="inline" href="#">#{employe.firstName}</a>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="card-body bb text-center">
+								<div data-toggle="tooltip"
+									data-title="Progress of asigned tasks">
+									<div class="progress progress-xs m-0">
+										<div class="progress-bar bg-info" style="width: 50%"></div>
+									</div>
+								</div>
+							</div>
+							<div class="card-body bb">
+								<div class="row text-center">
+									<div class="col-4">
+										<p class="text-bold">BUDGET</p>
+										<div class="inline mr-2" data-sparkline="" data-values="60,40"
+											data-type="pie" data-height="24"
+											data-slice-colors="[&quot;#edf1f2&quot;, &quot;#ff902b&quot;]"></div>
+									</div>
+									<div class="col-4">
+										<p class="text-bold">TASKS</p>
+										<div class="h3 m-0">26</div>
+									</div>
+									<div class="col-4">
+										<p class="text-bold">AVAILABITY</p>
+										<div class="inline mr-2" data-sparkline="" data-values="70,30"
+											data-type="pie" data-height="24"
+											data-slice-colors="[&quot;#edf1f2&quot;, &quot;#ff902b&quot;]"></div>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<ul class="list-inline m-0">
+
+									<c:forEach var="projet" items="#{teamBean.projets}">
+
+										<li class="list-inline-item">
+											<div class="badge bg-gray">#{projet.name}</div>
+										</li>
+
+									</c:forEach>
+
+								</ul>
+							</div>
+							<div class="card-footer text-center">
+								<a class="btn btn-secondary btn-oval" href="#">Manage Team</a>
+							</div>
+						</div>
+						<!-- end Team Card-->
+					</div>
+
+				</c:forEach>
+			</div>
+		</div>
+		</section>
+		<!-- Page footer-->
+
+	</ui:define>
+</ui:composition>
+
