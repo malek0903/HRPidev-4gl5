@@ -20,4 +20,6 @@ public interface EmployeInterfaceRemote {
 
 	void updateEmploye(Employee e);
 
+	Employee getEmployeeByEmailPassword(String email, String password);
+
 }

@@ -28,9 +28,10 @@
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">FeedBack
-											details:</label>
+											comment:</label>
 										<div class="col-md-2">
-											<h:inputTextarea styleClass="form-control" value="">
+											<h:inputTextarea styleClass="form-control"
+												value="#{feedBackBeans.comment}">
 											</h:inputTextarea>
 										</div>
 									</div>
@@ -40,14 +41,16 @@
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">FeedBack Mark:</label>
 										<div class="col-md-2">
-											<input styleClass="form-control" value=""> </input>
+											<h:inputText styleClass="form-control"
+												value="#{feedBackBeans.mark}">
+											</h:inputText>
 										</div>
 									</div>
 								</fieldset>
 
 
 								<h:commandLink styleClass="btn btn-success"
-									action="#{editObjectiveBean.onUpdateObjective()}">
+									action="#{feedBackBeans.ajouterFeedBack(loginBean.current_employe , eval360Beans.eval360)}">
 									<i class="fa fa-fw fa-edit"></i>
 								</h:commandLink>
 								<h:commandLink style="margin-left:20px"

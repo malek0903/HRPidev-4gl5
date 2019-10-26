@@ -1,6 +1,7 @@
 package tn.esprit.evaluation.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.EmbeddedId;
@@ -19,7 +20,7 @@ public class Feedback implements Serializable {
 	private FeedbackPK feedbackPK;
 
 	private String comment;
-	private Date feedbackDate;
+	private LocalDate feedbackDate;
 	private int mark;
 
 	@ManyToOne
@@ -41,11 +42,11 @@ public class Feedback implements Serializable {
 		this.comment = comment;
 	}
 
-	public Date getFeedbackDate() {
+	public LocalDate getFeedbackDate() {
 		return feedbackDate;
 	}
 
-	public void setFeedbackDate(Date feedbackDate) {
+	public void setFeedbackDate(LocalDate feedbackDate) {
 		this.feedbackDate = feedbackDate;
 	}
 
@@ -150,7 +151,5 @@ public class Feedback implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }
