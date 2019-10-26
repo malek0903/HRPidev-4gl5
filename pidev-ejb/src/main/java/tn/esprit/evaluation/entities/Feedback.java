@@ -30,6 +30,8 @@ public class Feedback implements Serializable {
 	@JoinColumn(name = "idEval360", updatable = false, insertable = false, referencedColumnName = "id")
 	private Eval360 eval360;
 
+	public Feedback() {
+	}
 	public Feedback(String comment, Employee employee, Eval360 eval360) {
 
 		this.feedbackDate = new Date();
