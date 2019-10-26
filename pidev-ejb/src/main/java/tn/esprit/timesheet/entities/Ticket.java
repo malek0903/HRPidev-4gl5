@@ -33,7 +33,11 @@ public class Ticket  implements Serializable {
 	private Date dateBegin;
 	private Date dateEnd;
 	private double duration;
-
+	
+	private Boolean toDoList;
+	private Boolean toDo;
+	private Boolean doing;
+	private Boolean Done;
 	
 	@Enumerated(EnumType.STRING)
 	private Difficulty difficulty;
@@ -220,6 +224,51 @@ public class Ticket  implements Serializable {
 		this.description = description;
 		this.estimatedHours = estimatedHours;
 		this.difficulty = difficulty;
+	}
+	
+	
+	public Ticket(int idTicket, String title, String description
+			, Difficulty difficulty,Status status,Boolean toDoList,Boolean toDo,Boolean doing ,Boolean Done) {
+		super();
+		this.idTicket = idTicket;
+		this.title = title;
+		this.description = description;
+		this.difficulty = difficulty;
+		this.status = status;
+		this.toDoList=toDoList;
+		this.toDo=toDo;
+		this.doing=doing;
+		this.Done= Done;
+	}
+	public Boolean getToDoList() {
+		return toDoList;
+	}
+	public void setToDoList(Boolean toDoList) {
+		this.toDoList = toDoList;
+	}
+	public Boolean getToDo() {
+		return toDo;
+	}
+	public void setToDo(Boolean toDo) {
+		this.toDo = toDo;
+	}
+	public Boolean getDoing() {
+		return doing;
+	}
+	public void setDoing(Boolean doing) {
+		this.doing = doing;
+	}
+	public Boolean getDone() {
+		return Done;
+	}
+	public void setDone(Boolean done) {
+		Done = done;
+	}
+	public Projet getProjet() {
+		return projet;
+	}
+	public void setProjet(Projet projet) {
+		this.projet = projet;
 	}
 
 	

@@ -14,11 +14,83 @@
 		<div class="content-wrapper">
 			<div class="content-heading">Scrum Board</div>
 
-			<p:panel id="hpnl" header="Horizontal Only">
-				<h:outputText value="I can only be dragged horizontally." />
-			</p:panel>
-			<p:draggable for="hpnl" axis="x" />
+			<div class="row">
+				<c:forEach var="ticket" items="#{ticketBean.tickets}">
+					<div class="col-xl-4 col-lg-6">
+						<!-- Team Card-->
+						<div class="card card-default">
+							<div class="card-header">
+								<div class="float-right">
+									<div class="badge badge-success">free</div>
+								</div>
+								<div class="card-title">#{ticket.title}</div>
+							</div>
+							<div class="card-body bt">
+								<h4>Description</h4>
+								#{ticket.title}
 
+							</div>
+
+
+							<div class="card-body">
+								<ul class="list-inline m-0">
+									<li class="list-inline-item">
+										<div class="badge bg-gray">#{ticket.difficulty}</div>
+									</li>
+
+								</ul>
+							</div>
+							<div class="card-footer text-center">
+								<h:form>
+									<h:commandButton class="btn btn-primary"
+										action="#{ticketBean.affecter(ticket)}">Affecter a moi</h:commandButton>
+								</h:form>
+							</div>
+						</div>
+						<!-- end Team Card-->
+					</div>
+
+				</c:forEach>
+			</div>
+			<!-- ToDo list  -->
+
+			<c:if test="#{ticketBean.toDoList==true}">
+				<div class="row">
+					<c:forEach var="ticket" items="#{ticketBean.tickets}">
+						<div class="col-xl-4 col-lg-6">
+							<!-- Team Card-->
+							<div class="card card-default">
+								<div class="card-header">
+									<div class="float-right">
+										<div class="badge badge-success">free</div>
+									</div>
+									<div class="card-title">#{ticket.title}</div>
+								</div>
+								<div class="card-body bt">
+									<h4>Description</h4>
+									#{ticket.title}
+
+								</div>
+
+
+								<div class="card-body">
+									<ul class="list-inline m-0">
+										<li class="list-inline-item">
+											<div class="badge bg-gray">#{ticket.difficulty}</div>
+										</li>
+
+									</ul>
+								</div>
+								<div class="card-footer text-center"></div>
+
+							</div>
+							<!-- end Team Card-->
+						</div>
+
+					</c:forEach>
+				</div>
+			</c:if>
+			<!-- end toDo List -->
 		</div>
 		</section>
 		<!-- Page footer-->

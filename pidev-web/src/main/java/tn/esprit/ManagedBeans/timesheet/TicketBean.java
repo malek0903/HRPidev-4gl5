@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import tn.esprit.timesheet.entities.Team;
 import tn.esprit.timesheet.entities.Ticket;
 import tn.esprit.timesheet.entities.enumration.Difficulty;
+import tn.esprit.timesheet.entities.enumration.Status;
 import tn.esprit.timesheet.service.TeamsService;
 import tn.esprit.timesheet.service.TicketService;
 import tn.esprit.userCommun.entities.Employee;
@@ -27,8 +28,14 @@ public class TicketBean {
 	private String title;
 	private String description;
 	private Difficulty difficulty;
+	private Status status;
 	private double estimatedHours;
 	private int ticketToBeUpdated;
+	
+	private Boolean toDoList = false;
+	private Boolean toDo;
+	private Boolean doing;
+	private Boolean Done;
 	private List<Team> team = new ArrayList<Team>();
 
 	private List<Employee> employees = new ArrayList<Employee>();
@@ -51,15 +58,20 @@ public class TicketBean {
 		team = teamsService.getAllTeams();
 	}
 
-	public void destroyWorld() {
-		addMessage("System Error", "Please try again later.");
-	}
+	public void affecter(Ticket ticket) {
+		this.toDoList= true;
+		this.status = Status.ToDoList;
+		this.doing=false;
+		this.toDo=false;
+		this.Done=false;
+		this.setTicketToBeUpdated(ticket.getIdTicket());
+		this.setTitle(ticket.getTitle());
+		this.setDescription(ticket.getDescription());
+		this.setDifficulty(ticket.getDifficulty());
+		Ticket tickets = new Ticket(ticketToBeUpdated, title, description, difficulty, status, toDoList, toDo, doing, Done);
 
-	public void addMessage(String summary, String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		ticketService.updateTicket(tickets);
 	}
-	
 	
 
 	public void addTicket() throws ParseException {
@@ -197,6 +209,46 @@ public class TicketBean {
 
 	public void setTicketToBeUpdated(int ticketToBeUpdated) {
 		this.ticketToBeUpdated = ticketToBeUpdated;
+	}
+
+	public Boolean getToDoList() {
+		return toDoList;
+	}
+
+	public void setToDoList(Boolean toDoList) {
+		this.toDoList = toDoList;
+	}
+
+	public Boolean getToDo() {
+		return toDo;
+	}
+
+	public void setToDo(Boolean toDo) {
+		this.toDo = toDo;
+	}
+
+	public Boolean getDoing() {
+		return doing;
+	}
+
+	public void setDoing(Boolean doing) {
+		this.doing = doing;
+	}
+
+	public Boolean getDone() {
+		return Done;
+	}
+
+	public void setDone(Boolean done) {
+		Done = done;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 }
