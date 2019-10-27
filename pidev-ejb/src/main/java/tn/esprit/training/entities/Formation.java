@@ -1,50 +1,32 @@
 package tn.esprit.training.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+//import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-
-
 
 @Entity
 public class Formation implements Serializable {
-
+	
+	private static final long serialVersionUID = 1L;
+ 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(unique=true)
 	private String nomFormation;
-	
-	private String Location;
-	
-	private String type;
-	private   Date DateDebut;
-	
-	private   Date DateFin;	
-	
-	
-	
-	@ManyToOne
-	private Formateur formateur;
-	
-	
-	
-
-
-	public Formateur getFormateur() {
-		return formateur;
-	}
-	
-	
-	public void setFormateur(Formateur formateur) {
-		formateur = formateur;
-	}
+	private String description;
+	private String duration;
+	private int nbPlaceDispo ;	
+	@Enumerated(EnumType.STRING)
+	private Type Type;
 	public int getId() {
 		return id;
 	}
@@ -57,34 +39,44 @@ public class Formation implements Serializable {
 	public void setNomFormation(String nomFormation) {
 		this.nomFormation = nomFormation;
 	}
-	public String getLocation() {
-		return Location;
+	public String getDescription() {
+		return description;
 	}
-	public void setLocation(String location) {
-		Location = location;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getType() {
-		return type;
+	public String getDuration() {
+		return duration;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setDuration(String duration) {
+		this.duration = duration;
 	}
-	public Date getDateDebut() {
-		return DateDebut;
+	public int getNbPlaceDispo() {
+		return nbPlaceDispo;
 	}
-	public void setDateDebut(Date dateDebut) {
-		DateDebut = dateDebut;
+	public void setNbPlaceDispo(int nbPlaceDispo) {
+		this.nbPlaceDispo = nbPlaceDispo;
 	}
-	public Date getDateFin() {
-		return DateFin;
-	}
-	public void setDateFin(Date dateFin) {
-		DateFin = dateFin;
+	public Type getType() {
+		return Type;
 	}
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
 	
+
+	
+	
+
+
+	
+		
+	}
 	
 	
 	
 
-}
