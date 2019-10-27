@@ -16,19 +16,23 @@ public class Skill implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long skillId;
+	private long skillId;
 	private String skillName;
 	private String skillDesc;
+
 	@Temporal(TemporalType.DATE)
 	private Date skillDate;
+
 	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
 	private Set<SkillMatrix> skillsMatrix;
+
+	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
+	private Set<SkillJob> skillsJob;
 	private static final long serialVersionUID = 1L;
 
 	public Skill() {
 		super();
 	}
-
 	public Long getSkillId() {
 		return skillId;
 	}

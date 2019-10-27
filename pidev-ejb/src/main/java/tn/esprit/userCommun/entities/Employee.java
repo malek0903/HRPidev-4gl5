@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -14,6 +15,7 @@ import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.skill.entities.SkillMatrix;
+import tn.esprit.skill.entities.Job;
 import tn.esprit.skill.entities.Skill;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
@@ -32,6 +34,9 @@ public class Employee extends User {
 	private Set<SkillMatrix> skillsMatrix;
 	@Transient
 	private Set<Skill> Skills;
+
+	@ManyToOne
+	private Job job;
 
 	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
