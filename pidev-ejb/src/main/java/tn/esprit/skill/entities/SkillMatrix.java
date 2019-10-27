@@ -10,21 +10,23 @@ import tn.esprit.userCommun.entities.Employee;
  *
  */
 @Entity
-public class MatrixSkill implements Serializable {
+public class SkillMatrix implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+
 	@ManyToOne
-    @JoinColumn
+	@JoinColumn
 	private Skill skill;
-    @ManyToOne
-    @JoinColumn
-    private Employee employee;
+
+	@ManyToOne
+	@JoinColumn
+	private Employee employee;
 	private byte skillScore;
 	private static final long serialVersionUID = 1L;
 
-	public MatrixSkill() {
+	public SkillMatrix() {
 		super();
 	}
 	public Long getId() {

@@ -22,7 +22,7 @@ public class Skill implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date skillDate;
 	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
-	private Set<MatrixSkill> matrixSkills;
+	private Set<SkillMatrix> skillsMatrix;
 	private static final long serialVersionUID = 1L;
 
 	public Skill() {
@@ -52,6 +52,12 @@ public class Skill implements Serializable {
 	}
 	public void setSkillDate(Date skillDate) {
 		this.skillDate = skillDate;
+	}
+	public Set<SkillMatrix> getSkillsMatrix() {
+		return skillsMatrix;
+	}
+	public void setSkillsMatrix(Set<SkillMatrix> skillsMatrix) {
+		this.skillsMatrix = skillsMatrix;
 	}
 
 }

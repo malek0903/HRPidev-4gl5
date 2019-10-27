@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
-import tn.esprit.skill.entities.MatrixSkill;
+import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.skill.entities.Skill;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
@@ -29,7 +29,7 @@ public class Employee extends User {
 	private float salary;
 
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-	private Set<MatrixSkill> matrixSkills;
+	private Set<SkillMatrix> skillsMatrix;
 	@Transient
 	private Set<Skill> Skills;
 
@@ -141,12 +141,12 @@ public class Employee extends User {
 		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
 	}
 
-	public Set<MatrixSkill> getMatrixSkills() {
-		return matrixSkills;
+	public Set<SkillMatrix> getSkillsMatrix() {
+		return skillsMatrix;
 	}
 
-	public void setMatrixSkills(Set<MatrixSkill> matrixSkills) {
-		this.matrixSkills = matrixSkills;
+	public void setSkillsMatrix(Set<SkillMatrix> skillsMatrix) {
+		this.skillsMatrix = skillsMatrix;
 	}
 
 	public Set<Skill> getSkills() {
