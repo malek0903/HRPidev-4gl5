@@ -60,8 +60,8 @@ public class LoginBean implements Serializable {
 	}
 
 	public String doLogout() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/login?faces-redirect=true";
+		
+		return "../login.xhtml";
 	}
 
 	public String getLogin() {

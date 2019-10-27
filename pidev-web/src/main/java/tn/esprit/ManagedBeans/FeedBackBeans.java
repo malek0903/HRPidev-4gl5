@@ -3,10 +3,12 @@ package tn.esprit.ManagedBeans;
 import java.time.LocalDate;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Feedback;
@@ -21,17 +23,26 @@ public class FeedBackBeans {
 	@EJB
 	FeedBackService feedBackService;
 
-	 @ManagedProperty(value="#{LoginBean}") 
-	 LoginBean loginBean;
-	 
+	@ManagedProperty(value = "#{LoginBean}")
+	LoginBean loginBean;
+
 	public String comment;
 	public LocalDate feedbackDate;
 	public int mark;
+	public String erreur = "";
 
 	public void initialisation() {
 		comment = null;
 		feedbackDate = null;
 		mark = 0;
+	}
+
+	public String getErreur() {
+		return erreur;
+	}
+
+	public void setErreur(String erreur) {
+		this.erreur = erreur;
 	}
 
 	public FeedBackService getFeedBackService() {
@@ -65,7 +76,6 @@ public class FeedBackBeans {
 	public void setMark(int mark) {
 		this.mark = mark;
 	}
-	
 
 	public LoginBean getLoginBean() {
 		return loginBean;
@@ -75,29 +85,40 @@ public class FeedBackBeans {
 		this.loginBean = loginBean;
 	}
 
-	public void ajouterFeedBack(Employee emp , Eval360 eval) {
-//		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-//				.getRequest();
-//		String markId = req.getParameter("markId");
+	public String ajouterFeedBack(Employee emp, Eval360 eval) {
 
-		Feedback f = new Feedback();
-		f.setComment(this.getComment());
-		f.setFeedbackDate(LocalDate.now());
-		FeedbackPK idFeedback = new FeedbackPK(eval.getId(), emp.getId());
-		f.setFeedbackPK(idFeedback);
-		f.setEmployee(emp);
-		f.setEval360(eval);
-		f.setMark(this.getMark());
-		
-		//System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser().toString() +  "5raaaaaaaaaaaaa");
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		String markId = req.getParameter("markId");
 
-		// f.setMark(Integer.valueOf(markId));
+		String navigateTo = null;
+		try {
 
-//		feedBackService.addFeedback(f);
-//
-//		initialisation();
-//		return "/pages/ListEval360.xhtml?faces-redirect=true";
+			Feedback f = new Feedback();
+			f.setComment(this.getComment());
+			f.setFeedbackDate(LocalDate.now());
+			FeedbackPK idFeedback = new FeedbackPK(eval.getId(), emp.getId());
+			f.setFeedbackPK(idFeedback);
+			f.setEmployee(emp);
+			f.setEval360(eval);
 
+			f.setMark(Integer.valueOf(markId));
+
+			feedBackService.addFeedback(f);
+			initialisation();
+			navigateTo = "/pages/ListEval360.xhtml?faces-redirect=true";
+		} catch (Exception e) {
+			this.erreur = "true";
+			System.out.println(this.erreur + "5raaa");
+		}
+
+		return navigateTo;
+
+	}
+	
+	public String cancelFeedback()
+	{
+		return "/pages/ListEval360.xhtml?faces-redirect=true";
 	}
 
 }

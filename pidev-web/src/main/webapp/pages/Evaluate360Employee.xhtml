@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	template="/template/default/template.xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<section class="section-container"> <!-- Page content-->
@@ -24,7 +25,9 @@
 
 						<div class="card-body">
 
-							<h:form styleClass="form-horizontal">
+							<h:form styleClass="form-horizontal" id="form">
+
+
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">FeedBack
@@ -41,21 +44,33 @@
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">FeedBack Mark:</label>
 										<div class="col-md-2">
-											<h:inputText styleClass="form-control"
-												value="#{feedBackBeans.mark}">
-											</h:inputText>
+											<input id="markId" name="markId"
+												class="slider slider-horizontal" data-ui-slider=""
+												type="text" value="" data-slider-min="0"
+												data-slider-max="10" data-slider-step="1"
+												data-slider-value="5" data-slider-orientation="horizontal" />
 										</div>
 									</div>
 								</fieldset>
 
+								<c:if test='#{feedBackBeans.erreur.equals("true")}'>
+									<div class="alert alert-danger" role="alert">
+										<strong>Oh Sorry!</strong> you has already evaluate this employe
+									</div>
+								</c:if>
 
-								<h:commandLink styleClass="btn btn-success"
+								<h:commandLink id="btn" styleClass="btn btn-success"
 									action="#{feedBackBeans.ajouterFeedBack(loginBean.current_employe , eval360Beans.eval360)}">
 									<i class="fa fa-fw fa-edit"></i>
 								</h:commandLink>
+
+
 								<h:commandLink style="margin-left:20px"
 									styleClass="text text-primary"
-									action="#{editObjectiveBean.cancel()}">  cancel </h:commandLink>
+									action="#{feedBackBeans.cancelFeedback()}">  cancel </h:commandLink>
+
+
+
 							</h:form>
 						</div>
 					</div>
