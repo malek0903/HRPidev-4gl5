@@ -2,6 +2,7 @@ package tn.esprit.training.entities;
 
 import java.io.Serializable;
 //import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Formation implements Serializable {
@@ -27,8 +29,20 @@ public class Formation implements Serializable {
 	private int nbPlaceDispo ;	
 	@Enumerated(EnumType.STRING)
 	private Type Type;
+	
+	@OneToMany(mappedBy="formateur")
+	private List<Planification> planification;
 	public int getId() {
 		return id;
+	}
+	public List<Planification> getPlanification() {
+		return planification;
+	}
+	public void setPlanification(List<Planification> planification) {
+		this.planification = planification;
+	}
+	public void setType(Type type) {
+		Type = type;
 	}
 	public void setId(int id) {
 		this.id = id;

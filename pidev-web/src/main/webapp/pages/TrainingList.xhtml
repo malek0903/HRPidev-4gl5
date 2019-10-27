@@ -11,7 +11,7 @@
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Skill List<small data-localize="dashboard.WELCOME"></small>
+					Training List<small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -30,27 +30,41 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
-			<h:dataTable value="#{skillBeans.getAllSkills()}" var="skill"
+			<h:dataTable value="#{formationBean.getAllFormation()}" var="formation"
 				border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{formation.description}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Duration" />
+					</f:facet>
+					<h:outputText value="#{formation.duration}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Required" />
+					</f:facet>
+					<h:outputText value="#{formation.nbPlaceDispo}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
 					</f:facet>
-					<h:outputText value="#{skill.skillName}" />
+					<h:outputText value="#{formation.nomFormation}" />
 				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Description" />
-					</f:facet> 
-					<h:outputText value="#{skill.skillDesc}" />
-				</h:column>
+				
+			
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="" />
 					</f:facet>
 					<h:form>
-						<h:commandButton action="#{skillBeans.removeSkill(skill)}" value="Delete" />
-						<h:commandLink action="#{skillBeans.editSkill(skill)}" value="Update" />
+						<h:commandButton action="#{formationBean.removeFormation(formation)}" value="Delete"  />
+						<h:commandLink action="#{formationBean.editFormation(formation)}" value="Update" />
 					</h:form>
 				</h:column>
 			</h:dataTable>

@@ -11,7 +11,7 @@
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Skill List<small data-localize="dashboard.WELCOME"></small>
+					Update Training<small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -30,30 +30,20 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
-			<h:dataTable value="#{skillBeans.getAllSkills()}" var="skill"
-				border="1">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Name" />
-					</f:facet>
-					<h:outputText value="#{skill.skillName}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Description" />
-					</f:facet> 
-					<h:outputText value="#{skill.skillDesc}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="" />
-					</f:facet>
-					<h:form>
-						<h:commandButton action="#{skillBeans.removeSkill(skill)}" value="Delete" />
-						<h:commandLink action="#{skillBeans.editSkill(skill)}" value="Update" />
-					</h:form>
-				</h:column>
-			</h:dataTable>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Description: " />
+					<h:inputText value="#{formationBean.formationToUpadate.description}" />	
+					<h:outputLabel value="Duration: " />
+					<h:inputText value="#{formationBean.formationToUpadate.duration}" />
+					<h:outputLabel value="nb places: " />
+					<h:inputText value="#{formationBean.formationToUpadate.nbPlaceDispo}" />	
+					<h:outputLabel value="Name: " />
+					<h:inputText value="#{formationBean.formationToUpadate.nomFormation}" />	
+					<h:commandButton value="Update" action="#{formationBean.updateFormation()}" />
+						<h:commandButton action="#{formationBean.removeFormation(formation)}" value="Delete" />
+				</h:panelGrid>
+			</h:form>
 			<!-- END cards box-->
 		</div>
 		</section>

@@ -1,63 +1,96 @@
 package tn.esprit.training.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Formateur implements Serializable {
-
+	
+	private static final long serialVersionUID = 1L;
+ 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	
-	private String specialite;
+	private String name;
 	
-	private Boolean disponiblilite;
-	private int numero;
-	//@Enumerated(EnumType.STRING)
-//	private Type status;
+	//@Column(unique=true)
+	private String specialite;
+	private int number;
+	
+	private Boolean disponibilte;
+	
+	@OneToMany(mappedBy="formateur")
+	private List<Planification> planification;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getSpecialite() {
 		return specialite;
 	}
+
 	public void setSpecialite(String specialite) {
 		this.specialite = specialite;
 	}
-	public Boolean getDisponiblilite() {
-		return disponiblilite;
+
+	public int getNumber() {
+		return number;
 	}
-	public void setDisponiblilite(Boolean disponiblilite) {
-		this.disponiblilite = disponiblilite;
+
+	public void setNumber(int number) {
+		this.number = number;
 	}
-	public int getNumero() {
-		return numero;
+
+	public Boolean getDisponibilte() {
+		return disponibilte;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
+
+	public void setDisponibilte(Boolean disponibilte) {
+		this.disponibilte = disponibilte;
+	}
+
+	public List<Planification> getPlanification() {
+		return planification;
+	}
+
+	public void setPlanification(List<Planification> planification) {
+		this.planification = planification;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
-	////@OneToMany(mappedBy="formateur", cascade = {CascadeType.ALL}, 
-		//	fetch=FetchType.EAGER)
-	//private List<Formation> formations = new ArrayList<>();
 	
 	
-	
-	//public List<Formation> getFormations() {
-	//	return formations;
-	///}
-	
+		
 	}
+	
+	
 	
 
