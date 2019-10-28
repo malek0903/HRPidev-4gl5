@@ -40,7 +40,7 @@ public class editObjectiveBean {
 
 	}
 
-	public String onUpdateObjective() {
+	public void onUpdateObjective() {
 
 		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
@@ -64,7 +64,7 @@ public class editObjectiveBean {
 
 		initialisation();
 
-		return "/pages/objectives?faces-redirect=false";
+
 
 	}
 
@@ -72,7 +72,7 @@ public class editObjectiveBean {
 
 		this.setObjective(old);
 
-		return "/pages/updateObjective?faces-redirect=false";
+		return "/pages/updateObjective?faces-redirect=true";
 	}
 
 	public String cancel() {

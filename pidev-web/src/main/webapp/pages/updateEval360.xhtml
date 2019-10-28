@@ -28,7 +28,7 @@
 						<div class="card-body">
 
 							<h:form styleClass="form-horizontal">
-							<legend>Eval details</legend>
+								<legend>Eval details</legend>
 
 								<fieldset>
 									<div class="form-group row">
@@ -47,20 +47,23 @@
 								</fieldset>
 
 								<fieldset>
-									
-									
+
+
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Eval Details:</label>
 										<div class="col-md-2">
-											<h:inputText styleClass="form-control form-control-rounded"
-												value="#{editEval360Beans.eval360.evalDetails}" />
+											<h:inputTextarea styleClass="form-control"
+												value="#{editEval360Beans.eval360.evalDetails}">
+											</h:inputTextarea>
+
+
 										</div>
 									</div>
 								</fieldset>
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Begins At:</label>
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<input name="dateBeginId"
 												value="#{editEval360Beans.eval360.dateBegin}"
 												class="form-control form-control-rounded" type="date" />
@@ -72,7 +75,7 @@
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Ends At:</label>
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<input name="dateEndId"
 												value="#{editEval360Beans.eval360.dateEnd}"
 												class="form-control form-control-rounded" type="date" />

@@ -23,4 +23,6 @@ public interface Eval360InterfaceRemote {
 
 	void updateEval360(Eval360 eval);
 
+	List<Eval360> getListEval360PublicAndDate();
+
 }

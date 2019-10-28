@@ -49,7 +49,7 @@ public class Eval360Service implements Eval360InterfaceRemote {
 	}
 
 	@Override
-	public List<Eval360> getListEval360Public(){
+	public List<Eval360> getListEval360PublicAndDate(){
 		LocalDate now = LocalDate.now() ;
 		TypedQuery<Eval360> query = em.createQuery("Select e from Eval360 e where e.status=:publicc and e.dateEnd > CURRENT_DATE()", Eval360.class).setParameter("publicc", Status.publicc );
 		List<Eval360> result = query.getResultList();
@@ -67,6 +67,15 @@ public class Eval360Service implements Eval360InterfaceRemote {
 	{
 		em.merge(eval);
 	}
+
+	@Override
+	public List<Eval360> getListEval360Public() {
+		TypedQuery<Eval360> query = em.createQuery("Select e from Eval360 e where e.status=:publicc", Eval360.class).setParameter("publicc", Status.publicc );
+		List<Eval360> result = query.getResultList();
+		return result;
+	}
+	
+	
 	
 	
 }

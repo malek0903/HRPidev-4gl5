@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.evaluation.services.Eval360Service;
+import tn.esprit.userCommun.entities.Employee;
+import tn.esprit.userCommun.services.EmployeService;
 
 @ManagedBean
 @SessionScoped
@@ -18,6 +20,9 @@ public class editEval360Beans {
 
 	@EJB
 	Eval360Service evalService;
+	
+	@EJB
+	EmployeService employeService;
 	
 	private Eval360 eval360 ;
 
@@ -54,7 +59,8 @@ public class editEval360Beans {
 		LocalDate de = LocalDate.parse(endsAtId);
 		
 		
-
+		Employee e = ev.getConcernedEmployee();
+		
 		Eval360 evall = new Eval360() ;
 		evall.setId(ev.getId());
 		evall.setDateBegin(db);
@@ -64,8 +70,11 @@ public class editEval360Beans {
 		evall.setConcernedEmployee(ev.getConcernedEmployee());
 		evall.setFeedbacks(ev.getFeedbacks());
 		
+		e.setStatusEval360(Status.valueOf(statusId));
+		
 		System.out.println(evall.toString() + "5raaaa");
 		evalService.updateEval360(evall);
+		employeService.updateEmploye(e);
 		
 		return "/pages/ListEval360Started.xhtml?faces-redirect=true";
 		

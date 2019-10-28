@@ -95,10 +95,15 @@
 									</div>
 								</fieldset>
 
-								<h:commandLink styleClass="btn btn-success"
-									action="#{editObjectiveBean.onUpdateObjective()}">
+								<a class="text text-white btn btn-warning"
+									onclick="editObjective()" href="javascript:timedRefresh(5000)">
 									<i class="fa fa-fw fa-edit"></i>
-								</h:commandLink>
+								</a>
+
+								<p:remoteCommand name="editObjectiveMethod"
+									actionListener="#{editObjectiveBean.onUpdateObjective()}"
+									style="display: none;" />
+
 								<h:commandLink style="margin-left:20px"
 									styleClass="text text-primary"
 									action="#{editObjectiveBean.cancel()}">  cancel </h:commandLink>
@@ -110,5 +115,45 @@
 		</div>
 
 		</section>
+
+
+		<script type="application/javascript">
+			
+			
+			
+		 function editObjective(){
+			
+			 var e = jQuery.Event("click");
+			
+			 e.preventDefault();
+
+			 swal({
+				  title: "Are you sure?",
+				  text: "Do you confirm updating this objective!",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("Objective successfully updated!", {
+				      icon: "success",
+				    });
+				    editObjectiveMethod();
+				    
+				  } else {
+				    
+				  }
+				});
+			return false;
+	    }
+		 
+		 function timedRefresh(timeoutPeriod) {
+				setTimeout('location.replace("/pidev-web/pages/objectives.xhtml")',timeoutPeriod);
+			}
+		 
+
+		
+		</script>
 	</ui:define>
 </ui:composition>

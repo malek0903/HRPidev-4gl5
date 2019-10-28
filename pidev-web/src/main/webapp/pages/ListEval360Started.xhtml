@@ -27,7 +27,7 @@
 							<div class="table-responsive bootgrid">
 								<h:dataTable style="border:none"
 									styleClass="table table-striped" id="bootgrid-command"
-									value="#{eval360Beans.getEvalsPublic()}" var="eval" border="1">
+									value="#{eval360Beans.getEvals()}" var="eval" border="1">
 									<h:column>
 
 										<f:facet name="header">
@@ -72,7 +72,7 @@
 											<h:commandButton
 												styleClass="btn btn-sm btn-danger command-delete"
 												value="delete"
-												action="#{eval360Beans.deleteEval360(eval.id)}">
+												action="#{eval360Beans.deleteEval360(eval)}">
 											</h:commandButton>
 										</h:form>
 									</h:column>

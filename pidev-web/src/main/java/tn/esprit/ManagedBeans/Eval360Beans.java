@@ -34,17 +34,32 @@ public class Eval360Beans {
 	private LocalDate dateBegin;
 	private LocalDate dateEnd;
 
-	private List<Eval360> evalsPublic;
+	private List<Eval360> evalsPublicDate;
+
+	private List<Eval360> evals;
 
 	private List<Employee> employes;
 
 	private Employee Employe;
-	
-	private Eval360 eval360 ;
-	
-	public List<Eval360> getEvalsPublic() {
-		evalsPublic = evalService.getListEval360Public();
-		return evalsPublic;
+
+	private Eval360 eval360;
+
+	public List<Eval360> getEvals() {
+		evals = evalService.getAllEval360();
+		return evals;
+	}
+
+	public void setEvals(List<Eval360> evals) {
+		this.evals = evals;
+	}
+
+	public List<Eval360> getEvalsPublicDate() {
+		evalsPublicDate = evalService.getListEval360PublicAndDate();
+		return evalsPublicDate;
+	}
+
+	public void setEvalsPublicDate(List<Eval360> evalsPublicDate) {
+		this.evalsPublicDate = evalsPublicDate;
 	}
 
 	public LocalDate getDateBegin() {
@@ -61,10 +76,6 @@ public class Eval360Beans {
 
 	public void setDateEnd(LocalDate dateEnd) {
 		this.dateEnd = dateEnd;
-	}
-
-	public void setEvalsPublic(List<Eval360> evalsPublic) {
-		this.evalsPublic = evalsPublic;
 	}
 
 	public EmployeService getEmployeService() {
@@ -139,7 +150,6 @@ public class Eval360Beans {
 	public void setMark360(int mark360) {
 		this.mark360 = mark360;
 	}
-	
 
 	public Eval360 getEval360() {
 		return eval360;
@@ -188,27 +198,25 @@ public class Eval360Beans {
 		return "/pages/EmployesListEval.xhtml?faces-redirect=true";
 
 	}
-	
-	public String recupererEmployeAndEval(Employee emp , Eval360 eval)
-	{
+
+	public String recupererEmployeAndEval(Employee emp, Eval360 eval) {
 		this.setEmploye(emp);
 		this.setEval360(eval);
-		
+
 		return "/pages/Evaluate360Employee.xhtml?faces-redirect=true";
 	}
-	
-	
-	
-	public void deleteEval360(Eval360 eval)
-	{
+
+	public void deleteEval360(Eval360 eval) {
+		Employee e = eval.getConcernedEmployee();
+		
+		e.setStatusEval360(Status.privatee);
+		
+		employeService.updateEmploye(e);
 		evalService.deleteEval360ById(eval.getId());
 	}
-	
-	public String cancelEval360()
-	{
+
+	public String cancelEval360() {
 		return "/pages/ListEval360Started.xhtml?faces-redirect=true";
 	}
-	
-	
 
 }
