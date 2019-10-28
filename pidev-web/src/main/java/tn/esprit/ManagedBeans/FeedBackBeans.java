@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.evaluation.entities.FeedbackPK;
+import tn.esprit.evaluation.entities.Notification;
+import tn.esprit.evaluation.entities.enums.NotificationType;
 import tn.esprit.evaluation.services.FeedBackService;
+import tn.esprit.evaluation.services.NotificationService;
 import tn.esprit.userCommun.entities.Employee;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @ManagedBean
 @SessionScoped
@@ -22,6 +26,9 @@ public class FeedBackBeans {
 
 	@EJB
 	FeedBackService feedBackService;
+	
+	@EJB
+	NotificationService notificationService ;
 
 	@ManagedProperty(value = "#{LoginBean}")
 	LoginBean loginBean;
@@ -147,6 +154,10 @@ public class FeedBackBeans {
 			f.setMark(Integer.valueOf(markId));
 
 			feedBackService.addFeedback(f);
+			
+			this.notificationService.addNotification(new Notification("New FeedBack", "FeedBack For "+eval.getConcernedEmployee().getFirstName()+" has been added.",
+					NotificationType.GIVE_FEEDBACK_ON360EVAL, EmployeeRole.Employee));
+			
 			initialisation();
 			navigateTo = "/pages/ListEval360.xhtml?faces-redirect=true";
 		} catch (Exception e) {

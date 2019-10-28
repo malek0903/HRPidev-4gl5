@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.evaluation.entities.Notification;
+import tn.esprit.evaluation.entities.enums.NotificationType;
 import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.evaluation.services.Eval360Service;
+import tn.esprit.evaluation.services.NotificationService;
 import tn.esprit.userCommun.entities.Employee;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 import tn.esprit.userCommun.services.EmployeService;
 
 @ManagedBean
@@ -25,6 +29,9 @@ public class Eval360Beans {
 
 	@EJB
 	EmployeService employeService;
+	
+	@EJB
+	NotificationService notificationService ;
 
 	private Long id;
 	private String evalDetails;
@@ -193,6 +200,9 @@ public class Eval360Beans {
 
 		employeService.updateEmploye(emp);
 		evalService.addEval360(e);
+		
+		this.notificationService.addNotification(new Notification("New Evaluation360", "Eval360 For "+emp.getFirstName()+" has been started.",
+				NotificationType.STARTED_EVALUATION360_FROM_MANAGER, EmployeeRole.Employee));
 
 		initialisation();
 		return "/pages/EmployesListEval.xhtml?faces-redirect=true";
