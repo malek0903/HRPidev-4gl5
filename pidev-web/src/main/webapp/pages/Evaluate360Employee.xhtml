@@ -18,32 +18,76 @@
 			</div>
 
 
-			<!-- START card-->
-			<div class="row">
-				<div class="col-lg-10">
-					<div class="card card-default">
+			<c:if test='#{feedBackBeans.erreur.equals("true")}'>
+				<div class="alert alert-danger alert-dismissible fade show"
+					role="alert">
+					<button class="close" type="button" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Oh Sorry!</strong> you has already evaluate this employe
+				</div>
+			</c:if>
+			<div class="card card-default">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th class="h4" colspan="2">Evaluate
+								#{eval360Beans.employe.firstName} <span class="mx-1">-</span><small>
+									Begins At <em>#{eval360Beans.eval360.dateBegin}</em> <br />
+							</small><small style="margin-left: 10.3%"> Ends At <em>#{eval360Beans.eval360.dateEnd}</em></small>
+							</th>
+						</tr>
+					</thead>
 
-						<div class="card-body">
-
-							<h:form styleClass="form-horizontal" id="form">
-
-
-								<fieldset>
-									<div class="form-group row">
-										<label class="col-md-2 col-form-label">FeedBack
-											comment:</label>
-										<div class="col-md-2">
-											<h:inputTextarea styleClass="form-control"
-												value="#{feedBackBeans.comment}">
-											</h:inputTextarea>
-										</div>
+					<tbody>
+						<c:forEach var="feedBack"
+							items="#{feedBackBeans.getFeedBacksByEval(eval360Beans.eval360.id)}">
+							<tr>
+								<td class="text-center"><a href=""><strong>Anonymous</strong></a></td>
+								<td class="text-right">mark : #{feedBack.mark} / 10<a
+									href=""><strong></strong></a></td>
+							</tr>
+							<tr>
+								<td class="text-center" style="width: 15%;">
+									<div class="mt-2">
+										<a href=""><h:graphicImage class="rounded-circle thumb64"
+											value="/images/anonymous.png"/></a>
 									</div>
-								</fieldset>
+									<small></small><br/><small></small>
+								</td>
 
+								<td>
+									<p>#{feedBack.comment}</p>
+									<div class="text-right">
+										comment at : <em>#{feedBack.feedbackDate}</em>
+										<hr />
+
+									</div>
+								</td>
+
+							</tr>
+
+						</c:forEach>
+					</tbody>
+
+				</table>
+			</div>
+			<div class="text-center mb-3">
+				<button class="btn btn-primary" data-toggle="collapse"
+					data-target="#topic-reply">Give Your FeedBack</button>
+			</div>
+			<div class="collapse" id="topic-reply">
+				<div class="d-flex justify-content-center">
+					<div class="col-xl-6">
+						<h:form class="form-horizontal" action="/" method="post">
+							<div class="form-group">
+								<textarea id="commentId" name="commentId" class="form-control"
+									rows="5" placeholder="Type your Feedback..."></textarea>
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">FeedBack Mark:</label>
-										<div class="col-md-2">
+										<div class="col-md-2" style="padding-top: 3%">
 											<input id="markId" name="markId"
 												class="slider slider-horizontal" data-ui-slider=""
 												type="text" value="" data-slider-min="0"
@@ -52,30 +96,28 @@
 										</div>
 									</div>
 								</fieldset>
+							</div>
 
-								<c:if test='#{feedBackBeans.erreur.equals("true")}'>
-									<div class="alert alert-danger" role="alert">
-										<strong>Oh Sorry!</strong> you has already evaluate this employe
-									</div>
-								</c:if>
 
-								<h:commandLink id="btn" styleClass="btn btn-success"
+							<div class="form-group text-center">
+								<h:commandLink id="btn" styleClass="btn btn-sm btn-primary"
+									value="Post my Feedback"
 									action="#{feedBackBeans.ajouterFeedBack(loginBean.current_employe , eval360Beans.eval360)}">
-									<i class="fa fa-fw fa-edit"></i>
+								</h:commandLink>
+								<h:commandLink style=" margin-left: 3%"
+									styleClass="btn btn-sm btn-primary" value="Cancel"
+									action="#{feedBackBeans.cancelFeedback()}">
 								</h:commandLink>
 
-
-								<h:commandLink style="margin-left:20px"
-									styleClass="text text-primary"
-									action="#{feedBackBeans.cancelFeedback()}">  cancel </h:commandLink>
-
-
-
-							</h:form>
-						</div>
+							</div>
+						</h:form>
 					</div>
 				</div>
 			</div>
+
+
+			<!-- START card-->
+
 		</div>
 
 

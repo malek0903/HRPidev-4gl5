@@ -1,9 +1,9 @@
 package tn.esprit.ManagedBeans;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -31,10 +31,51 @@ public class FeedBackBeans {
 	public int mark;
 	public String erreur = "";
 
+	public List<Feedback> feedBacksByEval;
+	public List<Feedback> feedBacksByGiven;
+	
+	public Feedback feedBack ;
+
 	public void initialisation() {
 		comment = null;
 		feedbackDate = null;
 		mark = 0;
+		this.erreur = "";
+	}
+
+	public List<Feedback> getFeedBacksByEval(Long idEval360) {
+		feedBacksByEval = 	feedBackService.getAllFeedBackByidEval(idEval360);
+		return feedBacksByEval;
+	}
+
+	public void setFeedBacksByEval(List<Feedback> feedBacksByEval) {
+		this.feedBacksByEval = feedBacksByEval;
+	}
+
+	public List<Feedback> getFeedBacksByGiven(Long idEval360) {
+		feedBacksByEval = 	feedBackService.getAllFeedBackByEmployeeGiven(idEval360);
+		return feedBacksByGiven;
+	}
+
+	public void setFeedBacksByGiven(List<Feedback> feedBacksByGiven) {
+		this.feedBacksByGiven = feedBacksByGiven;
+	}
+
+	
+	public Feedback getFeedBack() {
+		return feedBack;
+	}
+
+	public void setFeedBack(Feedback feedBack) {
+		this.feedBack = feedBack;
+	}
+
+	public List<Feedback> getFeedBacksByEval() {
+		return feedBacksByEval;
+	}
+
+	public List<Feedback> getFeedBacksByGiven() {
+		return feedBacksByGiven;
 	}
 
 	public String getErreur() {
@@ -90,12 +131,13 @@ public class FeedBackBeans {
 		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
 		String markId = req.getParameter("markId");
+		String commentId = req.getParameter("commentId");
 
 		String navigateTo = null;
 		try {
 
 			Feedback f = new Feedback();
-			f.setComment(this.getComment());
+			f.setComment(commentId);
 			f.setFeedbackDate(LocalDate.now());
 			FeedbackPK idFeedback = new FeedbackPK(eval.getId(), emp.getId());
 			f.setFeedbackPK(idFeedback);
@@ -115,9 +157,8 @@ public class FeedBackBeans {
 		return navigateTo;
 
 	}
-	
-	public String cancelFeedback()
-	{
+
+	public String cancelFeedback() {
 		return "/pages/ListEval360.xhtml?faces-redirect=true";
 	}
 

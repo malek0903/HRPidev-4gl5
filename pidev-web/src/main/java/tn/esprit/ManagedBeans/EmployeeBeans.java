@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.services.EmployeService;
 
 @ManagedBean
@@ -97,6 +98,11 @@ public class EmployeeBeans {
 
 	public void setEvals360(List<Eval360> evals360) {
 		this.evals360 = evals360;
+	}
+	
+	public Employee getEmployeByid(Long idEmp)
+	{
+		return employeService.findEmployebyId(idEmp);
 	}
 	
 	

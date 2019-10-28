@@ -41,7 +41,7 @@ public class Eval360Beans {
 	private Employee Employe;
 	
 	private Eval360 eval360 ;
-
+	
 	public List<Eval360> getEvalsPublic() {
 		evalsPublic = evalService.getListEval360Public();
 		return evalsPublic;
@@ -196,5 +196,19 @@ public class Eval360Beans {
 		
 		return "/pages/Evaluate360Employee.xhtml?faces-redirect=true";
 	}
+	
+	
+	
+	public void deleteEval360(Eval360 eval)
+	{
+		evalService.deleteEval360ById(eval.getId());
+	}
+	
+	public String cancelEval360()
+	{
+		return "/pages/ListEval360Started.xhtml?faces-redirect=true";
+	}
+	
+	
 
 }

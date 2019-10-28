@@ -56,5 +56,17 @@ public class Eval360Service implements Eval360InterfaceRemote {
 		return result;
 	}
 	
+	@Override
+	public void deleteEval360(Eval360 eval)
+	{
+		em.remove(eval);
+	}
+	
+	@Override
+	public void updateEval360(Eval360 eval)
+	{
+		em.merge(eval);
+	}
+	
 	
 }

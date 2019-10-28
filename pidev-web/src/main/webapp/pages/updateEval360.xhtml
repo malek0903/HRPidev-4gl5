@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/template/default/template.xhtml">
+
+	<ui:define name="content">
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					Update Eval360 <small>..</small>
+				</div>
+			</div>
+
+
+			<!-- START card-->
+			<div class="row">
+				<div class="col-lg-10">
+					<div class="card card-default">
+
+						<div class="card-body">
+
+							<h:form styleClass="form-horizontal">
+							<legend>Eval details</legend>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Eval Status:</label>
+										<div class="col-md-2">
+
+											<select name="statusId"
+												class="custom-select custom-select-sm">
+												<option disabled="disabled" selected="">#{editEval360Beans.eval360.status}</option>
+												<option value="publicc">publicc</option>
+												<option value="privatee">privatee</option>
+
+											</select>
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									
+									
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Eval Details:</label>
+										<div class="col-md-2">
+											<h:inputText styleClass="form-control form-control-rounded"
+												value="#{editEval360Beans.eval360.evalDetails}" />
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Begins At:</label>
+										<div class="col-md-2">
+											<input name="dateBeginId"
+												value="#{editEval360Beans.eval360.dateBegin}"
+												class="form-control form-control-rounded" type="date" />
+
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Ends At:</label>
+										<div class="col-md-2">
+											<input name="dateEndId"
+												value="#{editEval360Beans.eval360.dateEnd}"
+												class="form-control form-control-rounded" type="date" />
+
+										</div>
+									</div>
+								</fieldset>
+
+
+								<h:commandLink styleClass="btn btn-success"
+									action="#{editEval360Beans.updateEval360(editEval360Beans.eval360)}">
+									<i class="fa fa-fw fa-edit"></i>
+								</h:commandLink>
+								<h:commandLink style="margin-left:20px"
+									styleClass="text text-primary"
+									action="#{editEval360Beans.cancelEval360()}">  cancel </h:commandLink>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</section>
+	</ui:define>
+</ui:composition>

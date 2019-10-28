@@ -26,20 +26,22 @@ public class LoginBean implements Serializable {
 	private User current_user;
 	private Boolean loggedIn;
 	private Employee current_employe;
+	private String erreur = "";
 
 	@EJB
 	userService userService;
-	
+
 	@EJB
-	EmployeService employeService ;
+	EmployeService employeService;
 
 	public String doLogin() {
 		String navigateTo = "null";
 		this.current_user = userService.getUserByEmailPassword(login, password);
 		this.current_employe = employeService.getEmployeeByEmailPassword(login, password);
-		//System.out.println(current_user.getId() + "5raaaaaaaaaa");
-		EmployeeRole currentUserRole = this.current_user.getRole();
-		if (currentUserRole != null) {
+		// System.out.println(current_user.getId() + "5raaaaaaaaaa");
+
+		if (current_user != null) {
+			EmployeeRole currentUserRole = this.current_user.getRole();
 			if (currentUserRole == EmployeeRole.Manager)
 				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";
 			loggedIn = true;
@@ -49,18 +51,17 @@ public class LoginBean implements Serializable {
 			if (currentUserRole == EmployeeRole.Admin)
 				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";
 			loggedIn = true;
-
-		}
-
-		else {
-			System.out.println("dafagq" + currentUserRole);
+			this.erreur = "";
+		} else {
+			this.erreur = "true";
 			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
 		}
+		System.out.println(this.erreur + "5raaaaa");
 		return navigateTo;
 	}
 
 	public String doLogout() {
-		
+
 		return "../login.xhtml";
 	}
 
@@ -123,7 +124,13 @@ public class LoginBean implements Serializable {
 	public void setEmployeService(EmployeService employeService) {
 		this.employeService = employeService;
 	}
-	
-	
+
+	public String getErreur() {
+		return erreur;
+	}
+
+	public void setErreur(String erreur) {
+		this.erreur = erreur;
+	}
 
 }
