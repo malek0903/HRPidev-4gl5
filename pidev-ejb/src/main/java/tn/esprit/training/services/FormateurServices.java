@@ -11,8 +11,6 @@ import javax.persistence.TypedQuery;
 import tn.esprit.training.entities.Formateur;
 import tn.esprit.training.interfaces.FormateurInterface;
 
-
-
 @Stateless
 @LocalBean
 public class FormateurServices implements FormateurInterface{
@@ -42,7 +40,11 @@ public class FormateurServices implements FormateurInterface{
 	@Override
 	public void deleteFormateur(Formateur formateur) {
 		entityManager.remove(entityManager.find(Formateur.class, formateur.getId()));
-		
 	}
-
+	
+	
+	
+	
+	
+	
 }

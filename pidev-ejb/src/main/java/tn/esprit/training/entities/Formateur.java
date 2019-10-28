@@ -29,7 +29,7 @@ public class Formateur implements Serializable {
 	private String specialite;
 	private int number;
 	
-	private Boolean disponibilte;
+	private Boolean disponibilite;
 	
 	@OneToMany(mappedBy="formateur")
 	private List<Planification> planification;
@@ -66,12 +66,12 @@ public class Formateur implements Serializable {
 		this.number = number;
 	}
 
-	public Boolean getDisponibilte() {
-		return disponibilte;
+	public Boolean getDisponibilite() {
+		return disponibilite;
 	}
 
-	public void setDisponibilte(Boolean disponibilte) {
-		this.disponibilte = disponibilte;
+	public void setDisponibilite(Boolean disponibilite) {
+		this.disponibilite = disponibilite;
 	}
 
 	public List<Planification> getPlanification() {
