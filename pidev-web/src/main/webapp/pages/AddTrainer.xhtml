@@ -32,7 +32,7 @@
 			<!-- START cards box-->
 			<h:form>
 				<h:panelGrid columns="2">
-				<h:outputLabel value="Name: " />
+				<h:outputLabel value="Name:" />
 					<h:inputText value="#{formateurBeans.name}" />
 					
 					<h:outputLabel value="Specialite: " />
@@ -40,8 +40,10 @@
 					
 					<h:outputLabel value="Number: " />
 					<h:inputText value="#{formateurBeans.number}" />
-					<h:outputLabel value="disponibilite: " />
-					<h:inputText value="#{formateurBeans.disponibilite}" />
+					
+						<h:outputLabel value="disponibilite" />
+				<h:selectBooleanCheckbox value="#{formateurBeans.disponibilite}" />
+					
 					<h:commandButton value="ADD" action="#{formateurBeans.addFormateur()}"/>
 				</h:panelGrid>
 			</h:form>

@@ -30,7 +30,7 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
-			<h:dataTable value="#{formationBean.getAllFormation()}" var="formation"
+			<h:dataTable value="#{formationBeans.getAllFormation()}" var="formation"
 				border="1">
 				<h:column>
 					<f:facet name="header">
@@ -63,8 +63,8 @@
 						<h:outputText value="" />
 					</f:facet>
 					<h:form>
-						<h:commandButton action="#{formationBean.removeFormation(formation)}" value="Delete"  />
-						<h:commandLink action="#{formationBean.editFormation(formation)}" value="Update" />
+						<h:commandButton action="#{formationBeans.removeFormation(formation)}" value="Delete"  />
+						<h:commandLink action="#{formationBeans.editFormation(formation)}" value="Update" />
 					</h:form>
 				</h:column>
 			</h:dataTable>

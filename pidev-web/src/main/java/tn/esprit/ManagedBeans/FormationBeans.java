@@ -15,7 +15,7 @@ import tn.esprit.training.services.FormationServices;
 
 @ManagedBean
 @SessionScoped
-public class FormationBean {
+public class FormationBeans {
 	@EJB
 	FormationServices formationservices;
 

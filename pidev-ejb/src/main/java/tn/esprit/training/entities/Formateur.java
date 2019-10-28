@@ -21,16 +21,11 @@ public class Formateur implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
-	
 	private String name;
-	
 	//@Column(unique=true)
 	private String specialite;
 	private int number;
-	
 	private Boolean disponibilite;
-	
 	@OneToMany(mappedBy="formateur")
 	private List<Planification> planification;
 

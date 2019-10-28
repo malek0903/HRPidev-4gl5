@@ -11,7 +11,7 @@
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Add Training<small data-localize="dashboard.WELCOME"></small>
+					Trainer List<small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -30,21 +30,42 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
-			<h:form>
-				<h:panelGrid columns="2">
-				<h:outputLabel value="Description: " />
-					<h:inputText value="#{formationBeans.description}" />
-					
-					<h:outputLabel value="duration: " />
-					<h:inputText value="#{formationBeans.duration}" />
-					
-					<h:outputLabel value="Places: " />
-					<h:inputText value="#{formationBeans.nbPlaceDispo}" />
-					<h:outputLabel value="Name: " />
-					<h:inputText value="#{formationBeans.nomFormation}" />
-					<h:commandButton value="ADD" action="#{formationBeans.addFormation()}"/>
-				</h:panelGrid>
-			</h:form>
+			<h:dataTable value="#{formateurBeans.getAllFormateur()}" var="formateur"
+				border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="name" />
+					</f:facet>
+					<h:outputText value="#{formateur.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Domain" />
+					</f:facet>
+					<h:outputText value="#{formateur.specialite}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Telephone-Number" />
+					</f:facet>
+					<h:outputText value="#{formateur.number}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Availability" />
+					</f:facet>
+					<h:outputText value="#{formateur.disponibilite}" />
+				</h:column>
+					<h:column>
+					<f:facet name="header">
+						<h:outputText value="" />
+					</f:facet>
+					<h:form>
+						<h:commandButton action="#{formateurBeans.removeFormateur(formateur)}" value="Delete"  />
+						<h:commandLink action="#{formateurBeans.editFormateur(formateur)}" value="Update" />
+					</h:form>
+				</h:column>
+			</h:dataTable>
 			<!-- END cards box-->
 		</div>
 		</section>
