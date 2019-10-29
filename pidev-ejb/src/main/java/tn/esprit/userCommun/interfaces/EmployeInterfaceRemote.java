@@ -16,4 +16,8 @@ public interface EmployeInterfaceRemote {
 
 	Employee findEmployebyId(Long idEmp);
 
+	void updateEmploye(Employee e);
+
+	Employee getEmployeeByEmailPassword(String email, String password);
+
 }

@@ -154,6 +154,14 @@ public class Employee extends User {
 		this.skillsMatrix = skillsMatrix;
 	}
 
+	public Job getJob() {
+		return job;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
+	}
+
 	public Set<Skill> getSkills() {
 		return Skills;
 	}
@@ -225,5 +233,4 @@ public class Employee extends User {
 			return false;
 		return true;
 	}
-
 }

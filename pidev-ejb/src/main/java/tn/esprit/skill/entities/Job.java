@@ -17,9 +17,12 @@ import tn.esprit.userCommun.entities.Employee;
 public class Job implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long jobId;
 	private String jobName;
 	private String jobDesc;
+
+	@Temporal(TemporalType.DATE)
 	private Date jobDate;
 
 	@OneToMany(mappedBy = "job", cascade = CascadeType.ALL)
