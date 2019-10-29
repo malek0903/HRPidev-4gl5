@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+		xmlns:p="http://primefaces.org/ui"
+	template="/template/default/admin/template.xhtml">
+
+	<ui:param name="page_name" value="Index" />
+	<ui:define name="content">
+
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					ADD PARTENAIRE<small>..</small>
+				</div>
+			</div>
+
+			<!-- START card-->
+			<div class="card card-default">
+
+				<div class="card-body">
+					<h:form styleClass="form-horizontal">
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Nom partenaire</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Nom partenaire:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanpartenaire.nompartenaire}" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+						
+						<fieldset></fieldset>
+						<legend>Domaine partenaire</legend>
+							<select id="dompart" name="dompart"
+										class="custom-select custom-select-sm">
+										<option disabled="disabled" selected="">#{managedBeanpartenaire.domainepartenaire}</option>
+										<option value="Hotelerie">Hotelerie</option>
+										<option value="Voyage">Voyage</option>
+										<option value="Restauration">Restauration</option>
+										<option value="Kisoque">Kiosque</option>
+										<option value="Autre">Autre</option>
+										
+										
+
+									</select>
+						<fieldset></fieldset>
+						
+						
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Adresse partenaire</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Adresse partenaire:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanpartenaire.adressepartenaire}" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+						
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Num tel partenaire</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Num tel partenaire:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanpartenaire.numtelpartenaire}" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+						
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Email partenaire</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Email partenaire:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanpartenaire.emailpartenaire}" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+						
+						
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Pourcentage de reduction</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Pourcentage de reduction:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanpartenaire.pourcentagereduction}" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+
+						
+
+
+						<h:commandLink styleClass="btn btn-success"
+							action="#{managedBeanpartenaire.ajout()}">
+							<i class="fa fa-fw fa-plus"></i>
+						</h:commandLink>
+						<h:commandLink styleClass="text text-primary"
+							action="#{ticketBean.cancel()}">  cancel </h:commandLink>
+
+
+					</h:form>
+				</div>
+			</div>
+
+
+
+		</div>
+		
+
+
+		</section>
+
+	</ui:define>
+</ui:composition>
+
+	

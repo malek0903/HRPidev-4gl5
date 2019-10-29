@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/default/admin/template.xhtml">
+	<head>
+	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"></link>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	</head>
+	<body>
+		<ui:define name="content">
+			<center>
+				<div class="col-md-12">
+					<div class="col-md-6"></div>
+					<div class="col-md-6">
+
+						<h:form>
+							<p:dataTable style="border:none" styleClass="table table-striped"
+								id="table" value="#{managedBeanpartenaire.partenaires}" var="partenariat"
+								border="1" emptyMessage="Oartenaire non trouvé" rows="10"
+								paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15">
+
+								<p:column headerText="Partenaire ID">
+									<h:outputText value="#{partenariat.idpartenaire}" />
+								</p:column>
+								<p:column headerText="Nom">
+									<h:outputText value="#{partenariat.nompartenaire}" />
+								</p:column>
+								<p:column headerText="Adresse">
+									<h:outputText value="#{partenariat.adressepartenaire}" />
+								</p:column>
+								<p:column headerText="Domaine ">
+									<h:outputText value="#{partenariat.domainepartenaire}" />
+								</p:column>
+								<p:column headerText="Num tel">
+									<h:outputText value="#{partenariat.numtelpartenaire}" />
+								</p:column>
+								<p:column  headerText="Email">
+									<h:outputText value="#{partenariat.emailpartenaire}" />
+								</p:column>
+								<p:column headerText="Pourcentage de reduction">
+									<h:outputText value="#{partenariat.pourcentagereduction}" />
+								</p:column>
+								<p:column headerText="Nombre d'operation">
+									<h:outputText value="#{partenariat.nbreop}" />
+								</p:column>
+								<p:column>
+									<h:commandButton
+										styleClass="btn btn-sm btn-warning mr-2 command-edit "
+										value="edit" action="#{managedBeanpartenaire.modifier(partenariat)}">
+									</h:commandButton>
+
+									<h:commandButton
+										styleClass="btn btn-sm btn-danger command-delete"
+										value="delete"
+										action="#{managedBeanpartenaire.supprimer(partenariat.idpartenaire)}">
+									</h:commandButton>
+								</p:column>
+							</p:dataTable>
+						
+						</h:form>
+						
+						
+						<div class="card-body">
+							<h:form styleClass="form-horizontal">
+								
+								
+									
+									<fieldset>
+									<h:outputText value="Nom partenaire" />
+									<h:inputText value="#{managedBeanpartenaire.nompartenaire}" />
+									</fieldset>
+									<fieldset>
+									<h:outputText value="Adresse partenaire" />
+									<h:inputText value="#{managedBeanpartenaire.adressepartenaire}" />
+									</fieldset>
+									<fieldset>
+									<h:outputText value="Domaine partenaire" />
+									<h:inputText value="#{managedBeanpartenaire.domainepartenaire}" />
+									</fieldset>
+									<fieldset>
+
+									<h:outputText value="Email partenaire" />
+									<h:inputText value="#{managedBeanpartenaire.emailpartenaire}" />
+									</fieldset>
+									<fieldset>
+
+									<h:outputText value="Num tel" />
+									<h:inputText value="#{managedBeanpartenaire.numtelpartenaire}" />
+									</fieldset>
+									<fieldset>
+
+									<h:outputText value="Pourcentage de reduction" />
+									<h:inputText value="#{managedBeanpartenaire.pourcentagereduction}" />
+									</fieldset>
+
+
+
+									<h:commandButton action="#{managedBeanpartenaire.updatedep()}"
+										value="modifier" />
+							</h:form>
+
+						</div>
+
+
+					</div>
+				</div>
+			</center>
+		</ui:define>
+	</body>
+</ui:composition>

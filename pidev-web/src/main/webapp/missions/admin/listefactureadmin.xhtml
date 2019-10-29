@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/default/admin/template.xhtml">
+	<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"></link>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	</head>
+	<body>
+		<ui:define name="content">
+		<center>
+		<div class="col-md-12">
+			<div class="col-md-6"></div>
+			<div class="col-md-6">
+					
+					<h:form>
+						<p:dataTable style="border:none" styleClass="table table-striped"
+							id="table" value="#{managedBeanfacture.factures}" var="facture"
+							border="1" emptyMessage="Facture non trouvé" rows="10"
+							paginator="true"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15">
+
+							<p:column headerText="Facture ID">
+								<h:outputText value="#{facture.idfacture}" />
+							</p:column>
+							<p:column headerText="Image">
+								<img src="#{facture.image}"  width="100" height="100"/>
+							</p:column>
+							<p:column headerText="Somme depenser">
+								<h:outputText value="#{facture.somme}" />
+							</p:column>
+							<p:column headerText="Type de depense">
+								<h:outputText value="#{facture.type}" />
+							</p:column>
+						
+							<p:column headerText="Mission ID">
+								<h:outputText value="#{facture.mission.idmission}" />
+							</p:column>
+							<p:column headerText="Nom du partenaire">
+								<h:outputText value="#{facture.partenariat.nompartenaire}" />
+							</p:column>
+							
+							
+							<p:column>
+								<h:commandButton
+									styleClass="btn btn-sm btn-warning mr-2 command-edit "
+									value="Calcul" action="#{managedBeanfacture.calculfacture(facture.partenariat,facture)}">
+								</h:commandButton>
+
+							
+							</p:column>
+							
+							
+							
+						</p:dataTable>
+						<h:column>
+				<f:facet name="header">
+
+					<h:outputText value="Action" />
+
+				</f:facet>
+
+			</h:column>
+					</h:form>
+					
+				</div>
+			</div>
+			
+		</center>
+		
+		
+						
+		
+		
+		</ui:define>
+	</body>
+</ui:composition>

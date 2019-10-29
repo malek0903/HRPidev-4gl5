@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/default/template.xhtml">
+
+
+
+	<ui:param name="page_name" value="Index" />
+	<ui:define name="content">
+
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					Demande Facture<small>..</small>
+				</div>
+			</div>
+
+			<!-- START card-->
+			<div class="card card-default">
+
+				<div class="card-body">
+					<h:form styleClass="form-horizontal" enctype="multipart/form-data">
+
+
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>ID MISSION</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">ID MISSION:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanfacture.mission.idmission}" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+
+
+
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Type de depense</legend>
+							<select id="type" name="type"
+								class="custom-select custom-select-sm">
+								<option disabled="disabled" selected="">#{managedBeanfacture.type}</option>
+								<option value="Hotelerie">Hotelerie</option>
+								<option value="Restauration">Restauration</option>
+								<option value="Voyage">Voyage</option>
+								<option value="AUTRE">AUTRE</option>
+
+
+							</select>
+
+
+
+						</fieldset>
+
+						<fieldset></fieldset>
+
+
+
+
+						<fieldset></fieldset>
+						<legend>Partenaire</legend>
+						<select id="partenariat" name="partenariat"
+							class="custom-select custom-select-sm">
+							<option disabled="disabled" selected="">#{managedBeanfacture.partenariat}</option>
+							<option value="1">Travel to do</option>
+
+							<option value="2">Eden tours</option>
+							<option value="3">Pasta Cosi</option>
+
+							<option value="4">El Mouradi</option>
+							<option value="5">Total</option>
+							<option value="AUCUN">AUCUN</option>
+
+
+
+
+
+						</select>
+						<fieldset></fieldset>
+
+
+
+
+
+						<tr>
+							<td>
+								<h4>Image</h4>
+							</td>
+							<td><h:inputFile value="#{managedBeanfacture.file}">
+
+
+									<f:ajax listener="#{managedBeanfacture.uploadFile()}" />
+								</h:inputFile></td>
+						</tr>
+
+
+
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Depense</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Depense:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanfacture.somme}" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+
+
+
+
+						<h:commandLink styleClass="btn btn-success"
+							action="#{managedBeanfacture.ajout(managedBeanfacture.mission)}">
+							<i class="fa fa-fw fa-plus"></i>
+						</h:commandLink>
+						<h:commandLink styleClass="text text-primary"
+							action="#{ticketBean.cancel()}">  cancel </h:commandLink>
+
+
+					</h:form>
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+
+		</section>
+
+	</ui:define>
+</ui:composition>
+
