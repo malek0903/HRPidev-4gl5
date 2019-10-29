@@ -59,5 +59,17 @@ public class Job implements Serializable {
 	public void setJobDate(Date jobDate) {
 		this.jobDate = jobDate;
 	}
+	public Set<SkillJob> getSkillsMatrix() {
+		return skillsMatrix;
+	}
+	public void setSkillsMatrix(Set<SkillJob> skillsMatrix) {
+		this.skillsMatrix = skillsMatrix;
+	}
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
 
 }

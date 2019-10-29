@@ -18,7 +18,7 @@ public class SkillServiceImpl implements SkillServiceRemote {
 	EntityManager entityManager;
 
 	@Override
-	public Skill findBySkillById(Long skillId) {
+	public Skill findBySkillById(long skillId) {
 		return entityManager.find(Skill.class, skillId);
 	}
 

@@ -35,10 +35,10 @@ public class Skill implements Serializable {
 	public Skill() {
 		super();
 	}
-	public Long getSkillId() {
+	public long getSkillId() {
 		return skillId;
 	}
-	public void setSkillId(Long skillId) {
+	public void setSkillId(long skillId) {
 		this.skillId = skillId;
 	}
 	public String getSkillName() {
@@ -64,6 +64,12 @@ public class Skill implements Serializable {
 	}
 	public void setSkillsMatrix(Set<SkillMatrix> skillsMatrix) {
 		this.skillsMatrix = skillsMatrix;
+	}
+	public Set<SkillJob> getSkillsJob() {
+		return skillsJob;
+	}
+	public void setSkillsJob(Set<SkillJob> skillsJob) {
+		this.skillsJob = skillsJob;
 	}
 
 }

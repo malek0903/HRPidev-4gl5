@@ -16,7 +16,7 @@ public class SkillBeans {
 	@EJB
 	SkillServiceImpl skillService;
 
-	private Long skillId;
+	private long skillId;
 	private String skillName;
 	private String skillDesc;
 	private Date skillDate;
@@ -55,10 +55,10 @@ public class SkillBeans {
 	public void setSkillService(SkillServiceImpl skillService) {
 		this.skillService = skillService;
 	}
-	public Long getSkillId() {
+	public long getSkillId() {
 		return skillId;
 	}
-	public void setSkillId(Long skillId) {
+	public void setSkillId(long skillId) {
 		this.skillId = skillId;
 	}
 	public String getSkillName() {

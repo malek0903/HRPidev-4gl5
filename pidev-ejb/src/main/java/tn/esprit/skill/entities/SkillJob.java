@@ -28,13 +28,32 @@ public class SkillJob implements Serializable {
 
 	public SkillJob() {
 		super();
-	}   
+	}
+
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public Skill getSkill() {
+		return skill;
+	}
+	public void setSkill(Skill skill) {
+		this.skill = skill;
+	}
+
+	public Job getJob() {
+		return job;
+	}
+	public void setJob(Job job) {
+		this.job = job;
+	}
 	public byte getSkillJobScore() {
 		return this.skillJobScore;
 	}
-
 	public void setSkillJobScore(byte skillJobScore) {
 		this.skillJobScore = skillJobScore;
 	}
-   
+  
 }

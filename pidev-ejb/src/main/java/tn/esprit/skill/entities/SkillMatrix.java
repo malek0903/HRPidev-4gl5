@@ -29,10 +29,10 @@ public class SkillMatrix implements Serializable {
 	public SkillMatrix() {
 		super();
 	}
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public Employee getEmployee() {
@@ -53,5 +53,5 @@ public class SkillMatrix implements Serializable {
 	public void setSkillScore(byte skillScore) {
 		this.skillScore = skillScore;
 	}
-   
+
 }

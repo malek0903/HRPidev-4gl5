@@ -5,7 +5,7 @@ import java.util.List;
 import tn.esprit.skill.entities.Skill;
 
 public interface SkillServiceRemote {
-	Skill findBySkillById(Long Id);
+	Skill findBySkillById(long Id);
 	List<Skill> findAllSkills();
 	void addSkill(Skill skill);
 	void updateSkill(Skill skill);
