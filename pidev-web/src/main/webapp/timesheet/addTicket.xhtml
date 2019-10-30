@@ -104,7 +104,7 @@
 								<div class="col-md-2">
 									<h:outputText value="Estimated hours" />
 									
-										<input type="number" step="0.1" min="5" max="10"
+										<input type="number" step="0.1" min="2" max="5"
 											value="0" id="estimation" name="estimatedHour" />
 
 							
@@ -149,16 +149,16 @@
 
 					var est = document.getElementById("estimation");
 					est.min=0;
-					est.max=5;	
+					est.max=2;	
 				}
 				else if(dif=="difficile"){
 					var est = document.getElementById("estimation");
-					est.min=5;
-					est.max=10;	
+					est.min=2;
+					est.max=5;	
 				}else{
 					var est = document.getElementById("estimation");
-					est.min=10;
-					est.max=20;	
+					est.min=5;
+					est.max=8;	
 				}
 			}
 			 function addTicket(){

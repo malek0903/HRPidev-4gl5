@@ -155,54 +155,79 @@ public class TicketBean {
 
 	}
 
+	public Boolean disabled(Ticket ticket) {
+		if (ticket.getEstimatedHours() + (new Date().getHours()) >= 18) {
+
+			System.out.println("heelooooooooo   " + ticket.getEstimatedHours() + "temps " + new Date().getHours());
+
+			return true;
+
+		} else
+			return false;
+
+	}
+
 	public int compareDate(Ticket ticket) {
+
 		System.out.println("temp estime " + ticket.getEstimatedHours());
 		System.out.println("temp reel " + ((new Date().getHours() + ((double) new Date().getMinutes() / 60.0))
 				- (((double) ticket.getDateBegin().getMinutes() / 60.0) + ticket.getDateBegin().getHours())));
-		double test = ticket.getEstimatedHours() - ((new Date().getHours() + ((double) new Date().getMinutes() / 60.0))
+
+		double test = ticket.getEstimatedHours() -  ((new Date().getHours() + ((double) new Date().getMinutes() / 60.0))
 				- (((double) ticket.getDateBegin().getMinutes() / 60.0) + ticket.getDateBegin().getHours()));
 		System.out.println("helloooo world   " + test);
-		double widthTest = (((100 / ticket.getEstimatedHours()) * (ticket.getEstimatedHours() - test)));
-		System.out.println("test widht  ******  :" + (int) widthTest);
-		System.out.println("ticket name /" + ticket.getTitle() + " calculer :: " + (50 / test)
-				+ " test-ticket.getEstimatedHours()  :: " + (test - ticket.getEstimatedHours()));
+		
+		
+		//System.out.println("date bch ina7iiii   "+((new Date().getHours())+((new Date().getMinutes()/60)) ));
+//		if (((new Date().getHours())+((new Date().getMinutes()/60)) )== 14.00 && (ticket.getDateEnd() == null) && (ticket.getDateBegin().getHours() < 12)) {
+//			test = test - 2;
+//		}
 
-		System.out.println("widthTest world   " + widthTest);
-
+		double widthTest = ((100/ ticket.getEstimatedHours()) * (ticket.getEstimatedHours() - test));
+		System.out.println("widthTest" +widthTest);
 		if (widthTest <= 50) {
+		
 			return (int) widthTest;
 		} else
 			return 50;
-
 
 	}
 
 	public int compareDate1(Ticket ticket) {
 		double test = ticket.getEstimatedHours() - ((new Date().getHours() + ((double) new Date().getMinutes() / 60.0))
 				- (((double) ticket.getDateBegin().getMinutes() / 60.0) + ticket.getDateBegin().getHours()));
+//		if (((new Date().getHours())+((new Date().getMinutes()/60)) )== 14.00 && (ticket.getDateEnd() == null) && (ticket.getDateBegin().getHours() < 12)) {
+//			test = test - 2;
+//		}
+
 		double widthTest = (((100 / ticket.getEstimatedHours()) * (ticket.getEstimatedHours() - test)));
 
 		if (widthTest > 50 && widthTest <= 90) {
 			return (int) widthTest - 50;
-		} else if(widthTest > 90) {
+		} else if (widthTest > 90) {
 			return 40;
-			
-		}
-			else return 0;
+
+		} else
+			return 0;
 
 	}
 
 	public int compareDate2(Ticket ticket) {
-		
+
 		double test = ticket.getEstimatedHours() - ((new Date().getHours() + ((double) new Date().getMinutes() / 60.0))
 				- (((double) ticket.getDateBegin().getMinutes() / 60.0) + ticket.getDateBegin().getHours()));
+//		if (((new Date().getHours())+((new Date().getMinutes()/60)) )== 14.00 && (ticket.getDateEnd() == null) && (ticket.getDateBegin().getHours() < 12)) {
+//			test = test - 2;
+//		}
+
 		double widthTest = (((100 / ticket.getEstimatedHours()) * (ticket.getEstimatedHours() - test)));
 
 		if (widthTest > 90 && widthTest <= 100) {
 			return (int) widthTest - 90;
-		} else if (widthTest > 100 )
+		} else if (widthTest > 100)
 			return 10;
-		else return 0;
+		else
+			return 0;
 
 	}
 

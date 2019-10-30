@@ -88,10 +88,17 @@
 										</ul>
 									</div>
 									<div class="card-footer text-center">
-										<h:form>
-											<h:commandLink class="btn btn-primary"
-												action="#{ticketBean.DoIt(ticket,loginBean.current_employe)}">DO IT</h:commandLink>
-										</h:form>
+										<c:if test="#{ticketBean.disabled(ticket) == true}">
+											<h:form>
+												<h:commandButton class="btn btn-primary" disabled="true">DO IT</h:commandButton>
+											</h:form>
+										</c:if>
+										<c:if test="#{ticketBean.disabled(ticket) == false}">
+											<h:form>
+												<h:commandLink class="btn btn-primary"
+													action="#{ticketBean.DoIt(ticket,loginBean.current_employe)}">DO IT</h:commandLink>
+											</h:form>
+										</c:if>
 									</div>
 
 								</div>
@@ -103,12 +110,14 @@
 							<div class="col-xl-4 col-lg-4"></div>
 						</c:if>
 					</c:if>
+				</c:forEach>
 
 				<!-- end toDo List -->
 
 				<!-- doing List -->
+				<c:forEach var="ticket" items="#{ticketBean.tickets}">
 
-			
+
 					<c:if test="#{ticket.doing==true}">
 						<c:if
 							test="#{ticket.employesTicket.id == loginBean.current_employe.id}">
@@ -136,17 +145,19 @@
 
 										</ul>
 										<div class="progress">
-													<div class="progress-bar bg-success" style="width: #{ticketBean.compareDate(ticket)}%">
-													<span class="sr-only">35% Complete (success)</span>
-												</div>
-														<div class="progress-bar bg-warning progress-bar-striped"
-													style="width:#{ticketBean.compareDate1(ticket)}%">
-													<span class="sr-only">20% Complete (warning)</span>
-												</div>
+											<div class="progress-bar bg-success"
+												style="width: #{ticketBean.compareDate(ticket)}%">
+												<span class="sr-only">35% Complete (success)</span>
+											</div>
+											<div class="progress-bar bg-warning progress-bar-striped"
+												style="width: #{ticketBean.compareDate1(ticket)}%">
+												<span class="sr-only">20% Complete (warning)</span>
+											</div>
 
-													<div class="progress-bar bg-danger" style="width: #{ticketBean.compareDate2(ticket)}%">
-													<span class="sr-only">10% Complete (danger)</span>
-												</div>
+											<div class="progress-bar bg-danger"
+												style="width: #{ticketBean.compareDate2(ticket)}%">
+												<span class="sr-only">10% Complete (danger)</span>
+											</div>
 										</div>
 									</div>
 									<div class="card-footer text-center">
@@ -163,10 +174,11 @@
 							<div class="col-xl-4 col-lg-4"></div>
 						</c:if>
 					</c:if>
-
+				</c:forEach>
 
 				<!-- end doing List -->
 				<!-- doing List -->
+				<c:forEach var="ticket" items="#{ticketBean.tickets}">
 
 					<c:if test="#{ticket.done==true}">
 						<c:if

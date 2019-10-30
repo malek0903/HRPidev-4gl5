@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
-	xmlns:t="http://myfaces.apache.org/tomahawk">
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<h:head>
 		<link rel="icon" type="image/x-icon" href="favicon.ico"></link>
 		<title>Angle - Bootstrap Admin Template</title>
@@ -82,33 +83,33 @@
 												<p class="m-0">New followers</p>
 												<p class="m-0 text-muted text-sm">1 new follower</p>
 											</div>
-										</div>
-									</div>
-									<!-- list item-->
-									<div class="list-group-item list-group-item-action">
-										<div class="media">
-											<div class="align-self-start mr-2">
-												<i class="fa fa-fw fa-envelope fa-2x text-warning"></i>
-											</div>
 											<div class="media-body">
-												<p class="m-0">New e-mails</p>
-												<p class="m-0 text-muted text-sm">You have 10 new emails</p>
+												<p class="m-0">New followers</p>
+												<p class="m-0 text-muted text-sm">1 new follower</p>
 											</div>
 										</div>
 									</div>
 									<!-- list item-->
-									<div class="list-group-item list-group-item-action">
-										<div class="media">
-											<div class="align-self-start mr-2">
-												<i class="fa fa-fw fa-tasks fa-2x text-success"></i>
+									<c:forEach var="ticket" items="#{ticketBean.tickets}">
+										<c:if test="#{ticket.employesTicket == null}">
+											<!-- list item-->
+											<div class="list-group-item list-group-item-action">
+												<div class="media">
+													<div class="align-self-start mr-2">
+														<i class="fa fa-fw fa-tasks fa-2x text-success"></i>
+													</div>
+													<div class="media-body">
+														<h:link outcome="/timesheet/ScrumBoard.xhtml">
+															<p class="m-0">#{ticket.title}</p>
+															<p class="m-0 text-muted text-sm">New Ticket</p>
+														</h:link>
+													</div>
+												</div>
 											</div>
-											<div class="media-body">
-												<p class="m-0">Pending Tasks</p>
-												<p class="m-0 text-muted text-sm">11 pending task</p>
-											</div>
-										</div>
-									</div>
+										</c:if>
+									</c:forEach>
 									<!-- last list item-->
+
 									<div class="list-group-item list-group-item-action">
 										<span class="d-flex align-items-center"><span
 											class="text-sm">More notifications</span><span
