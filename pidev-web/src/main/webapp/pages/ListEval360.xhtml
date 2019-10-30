@@ -35,12 +35,165 @@
 
 							</thead>
 							<tbody>
-								<c:forEach var="eval" items="#{eval360Beans.evalsPublicDate}">
+							<!-- first one -->
+							<tr>
+
+										<td style="border-right : none ;">
+											<div class="media">
+											
+												<a class="float-left" href="#"><h:graphicImage
+														class="img-thumbnail circle img-fluid thumb96"
+														value="/images/#{eval360Beans.firstOne.concernedEmployee.firstName}.jpg"
+														alt="" /></a>
+												<div class="media-body">
+													<div class="float-right badge badge-info">#{eval360Beans.firstOne.concernedEmployee.role}</div>
+													<h4>#{eval360Beans.firstOne.concernedEmployee.firstName}</h4>
+													<p>
+														Username: #{eval360Beans.firstOne.concernedEmployee.userName}<br /> Email
+														: #{eval360Beans.firstOne.concernedEmployee.email}<br /> Phone Number :
+														#{eval360Beans.firstOne.concernedEmployee.phoneNumber}
+													</p>
+
+													#{firstOne.evalDetails}
+													
+											
+												<p style="margin-top: 3%" class="text-muted">the percentage of feedback by the number of employees</p>
+													<div class="progress progress-xs mb-3">
+													<div style="width: #{feedBackBeans.getWidthFeedBacks(eval360Beans.firstOne.id)}%" class="progress-bar progress-bar-striped bg-green"
+														role="progressbar" aria-valuemin="0"
+														aria-valuemax="100" >
+														<span class="sr-only">20% Complete</span>
+													</div>
+												</div>
+													
+													<hr />
+												</div>
+											</div>
+										</td>
+										
+										<td style="border-left : none ;" class="text-center">
+										<div>
+										<h:graphicImage style="margin-bottom:12%;"
+														class="img-thumbnail circle img-fluid thumb96"
+														value="/images/gold.jpg"
+														alt="" />
+														</div>
+														<div><h:commandButton
+												styleClass="btn btn-pill-right btn-info" value="Evaluate →"
+												action="#{eval360Beans.recupererEmployeAndEval(eval360Beans.firstOne.concernedEmployee , eval360Beans.firstOne)}" /></div>
+										</td>
+									</tr>
+									
+									<!-- Second one -->
+									
 									<tr>
 
-										<td>
+										<td style="border-right : none ;">
 											<div class="media">
+											
+												<a class="float-left" href="#"><h:graphicImage
+														class="img-thumbnail circle img-fluid thumb96"
+														value="/images/#{eval360Beans.secondOne.concernedEmployee.firstName}.jpg"
+														alt="" /></a>
+												<div class="media-body">
+													<div class="float-right badge badge-info">#{eval360Beans.secondOne.concernedEmployee.role}</div>
+													<h4>#{eval360Beans.secondOne.concernedEmployee.firstName}</h4>
+													<p>
+														Username: #{eval360Beans.secondOne.concernedEmployee.userName}<br /> Email
+														: #{eval360Beans.secondOne.concernedEmployee.email}<br /> Phone Number :
+														#{eval360Beans.secondOne.concernedEmployee.phoneNumber}
+													</p>
 
+													#{secondOne.evalDetails}
+													
+											
+												<p style="margin-top: 3%" class="text-muted">the percentage of feedback by the number of employees</p>
+													<div class="progress progress-xs mb-3">
+													<div style="width: #{feedBackBeans.getWidthFeedBacks(eval360Beans.secondOne.id)}%" class="progress-bar progress-bar-striped bg-green"
+														role="progressbar" aria-valuemin="0"
+														aria-valuemax="100" >
+														<span class="sr-only">20% Complete</span>
+													</div>
+												</div>
+													
+													<hr />
+												</div>
+											</div>
+										</td>
+										
+										<td style="border-left : none ;" class="text-center">
+										<div>
+										<h:graphicImage style="margin-bottom:12%;"
+														class="img-thumbnail circle img-fluid thumb96"
+														value="/images/silver.jpg"
+														alt="" />
+														</div>
+														<div><h:commandButton
+												styleClass="btn btn-pill-right btn-info" value="Evaluate →"
+												action="#{eval360Beans.recupererEmployeAndEval(eval360Beans.secondOne.concernedEmployee , eval360Beans.secondOne)}" /></div>
+										</td>
+									</tr>
+									
+									<!-- third one -->
+									
+									
+									<tr>
+
+										<td style="border-right : none ;">
+											<div class="media">
+											
+												<a class="float-left" href="#"><h:graphicImage
+														class="img-thumbnail circle img-fluid thumb96"
+														value="/images/#{eval360Beans.thirdOne.concernedEmployee.firstName}.jpg"
+														alt="" /></a>
+												<div class="media-body">
+													<div class="float-right badge badge-info">#{eval360Beans.thirdOne.concernedEmployee.role}</div>
+													<h4>#{eval360Beans.thirdOne.concernedEmployee.firstName}</h4>
+													<p>
+														Username: #{eval360Beans.thirdOne.concernedEmployee.userName}<br /> Email
+														: #{eval360Beans.thirdOne.concernedEmployee.email}<br /> Phone Number :
+														#{eval360Beans.thirdOne.concernedEmployee.phoneNumber}
+													</p>
+
+													#{thirdOne.evalDetails}
+													
+											
+												<p style="margin-top: 3%" class="text-muted">the percentage of feedback by the number of employees</p>
+													<div class="progress progress-xs mb-3">
+													<div style="width: #{feedBackBeans.getWidthFeedBacks(eval360Beans.thirdOne.id)}%" class="progress-bar progress-bar-striped bg-green"
+														role="progressbar" aria-valuemin="0"
+														aria-valuemax="100" >
+														<span class="sr-only">20% Complete</span>
+													</div>
+												</div>
+													
+													<hr />
+												</div>
+											</div>
+										</td>
+										
+										<td style="border-left : none ;" class="text-center">
+										<div>
+										<h:graphicImage style="margin-bottom:12%;"
+														class="img-thumbnail circle img-fluid thumb96"
+														value="/images/bronze.jpg"
+														alt="" />
+														</div>
+														<div><h:commandButton
+												styleClass="btn btn-pill-right btn-info" value="Evaluate →"
+												action="#{eval360Beans.recupererEmployeAndEval(eval360Beans.thirdOne.concernedEmployee , eval360Beans.thirdOne)}" /></div>
+										</td>
+									</tr>
+									
+									<!-- end third one -->
+									
+									
+								<c:forEach var="eval" items="#{eval360Beans.getEvalsSkipthree()}">
+									<tr>
+
+										<td style="border-right : none ;">
+											<div class="media">
+											
 												<a class="float-left" href="#"><h:graphicImage
 														class="img-thumbnail circle img-fluid thumb96"
 														value="/images/#{eval.concernedEmployee.firstName}.jpg"
@@ -56,6 +209,8 @@
 
 													#{eval.evalDetails}
 													
+											
+												<p style="margin-top: 3%" class="text-muted">the percentage of feedback by the number of employees</p>
 													<div class="progress progress-xs mb-3">
 													<div style="width: #{feedBackBeans.getWidthFeedBacks(eval.id)}%" class="progress-bar progress-bar-striped bg-green"
 														role="progressbar" aria-valuemin="0"
@@ -63,13 +218,17 @@
 														<span class="sr-only">20% Complete</span>
 													</div>
 												</div>
+													
 													<hr />
 												</div>
 											</div>
 										</td>
-										<td class="text-center"><h:commandButton
+										
+										<td style="border-left : none ;" class="text-center">
+										
+														<div><h:commandButton
 												styleClass="btn btn-pill-right btn-info" value="Evaluate →"
-												action="#{eval360Beans.recupererEmployeAndEval(eval.concernedEmployee , eval)}" />
+												action="#{eval360Beans.recupererEmployeAndEval(eval.concernedEmployee , eval)}" /></div>
 										</td>
 									</tr>
 								</c:forEach>

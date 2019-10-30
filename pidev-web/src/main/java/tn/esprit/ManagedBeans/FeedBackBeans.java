@@ -15,6 +15,7 @@ import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.evaluation.entities.FeedbackPK;
 import tn.esprit.evaluation.entities.Notification;
 import tn.esprit.evaluation.entities.enums.NotificationType;
+import tn.esprit.evaluation.services.Eval360Service;
 import tn.esprit.evaluation.services.FeedBackService;
 import tn.esprit.evaluation.services.NotificationService;
 import tn.esprit.userCommun.entities.Employee;
@@ -25,6 +26,9 @@ import tn.esprit.userCommun.services.EmployeService;
 @SessionScoped
 public class FeedBackBeans {
 
+	@EJB
+	Eval360Service eval360Service ;
+	
 	@EJB
 	FeedBackService feedBackService;
 
@@ -197,10 +201,14 @@ public class FeedBackBeans {
 				f.setFeedbackPK(idFeedback);
 				f.setEmployee(emp);
 				f.setEval360(eval);
-
 				f.setMark(Integer.valueOf(markId));
+				
+				Eval360 e = eval ;
+				e.setSommeMark(e.getSommeMark() + Integer.valueOf(markId));
 
+				
 				feedBackService.addFeedback(f);
+				eval360Service.updateEval360(e);
 
 				this.notificationService.addNotification(new Notification("New FeedBack",
 						"FeedBack For " + eval.getConcernedEmployee().getFirstName() + " has been added.",
