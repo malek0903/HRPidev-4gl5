@@ -30,6 +30,9 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
+			<h:form>
+				Add a skill <h:commandLink action="AddSkill" value="here" />
+			</h:form>
 			<h:dataTable value="#{skillBeans.getAllSkills()}" var="skill"
 				border="1">
 				<h:column>
@@ -49,8 +52,10 @@
 						<h:outputText value="" />
 					</f:facet>
 					<h:form>
-						<h:commandButton action="#{skillBeans.removeSkill(skill)}" value="Delete" />
-						<h:commandLink action="#{skillBeans.editSkill(skill)}" value="Update" />
+						<h:commandButton action="#{skillBeans.removeSkill(skill)}"
+							value="Delete" />
+						<h:commandLink action="#{skillBeans.editSkill(skill)}"
+							value="Update" />
 					</h:form>
 				</h:column>
 			</h:dataTable>

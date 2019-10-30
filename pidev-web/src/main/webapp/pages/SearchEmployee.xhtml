@@ -11,7 +11,7 @@
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Job List<small data-localize="dashboard.WELCOME"></small>
+					Skill matrix<small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -31,32 +31,12 @@
 			</div>
 			<!-- START cards box-->
 			<h:form>
-				Add a job <h:commandLink action="AddJob" value="here" />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Enter CIN: " />
+					<h:inputText value="#{skillMatrixBeans.cin}" />
+					<h:commandButton value="Search" action="#{skillMatrixBeans.getUserByCIN()}" />
+				</h:panelGrid>
 			</h:form>
-			<h:dataTable value="#{jobBeans.getAllJobs()}" var="job"
-				border="1">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Name" />
-					</f:facet>
-					<h:outputText value="#{job.jobName}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Description" />
-					</f:facet>
-					<h:outputText value="#{job.jobDesc}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="" />
-					</f:facet>
-					<h:form>
-						<h:commandButton action="#{jobBeans.removeJob(job)}" value="Delete" />
-						<h:commandLink action="#{jobBeans.editJob(job)}" value="Update" />
-					</h:form>
-				</h:column>
-			</h:dataTable>
 			<!-- END cards box-->
 		</div>
 		</section>

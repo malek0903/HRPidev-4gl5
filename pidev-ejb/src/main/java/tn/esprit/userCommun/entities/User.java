@@ -32,6 +32,8 @@ public class User implements Serializable {
 	private String firstName;
 	private String email;
 	private String password;
+	@Column(length=8)
+	private String cin;
 	private LocalDateTime creationDate;
 	
 	@Column(name = "user_role", insertable = false, updatable = false)
@@ -127,6 +129,22 @@ public class User implements Serializable {
 
 	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getCin() {
+		return cin;
+	}
+
+	public void setCin(String cin) {
+		this.cin = cin;
 	}
 
 	@Override

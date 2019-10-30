@@ -5,13 +5,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	template="/template/default/template.xhtml">
 	<ui:define name="content">
 		<section class="section-container"> <!-- Page content-->
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Skill List<small data-localize="dashboard.WELCOME"></small>
+					Employee:
+					<h:outputText
+						value="#{skillMatrixBeans.employeeToUpdate.firstName}" />
+					&nbsp;
+					<h:outputText value="#{skillMatrixBeans.employeeToUpdate.lastName}" />
+					<br /> <small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -31,7 +37,7 @@
 			</div>
 			<!-- START cards box-->
 			<h:form>
-				<h:dataTable value="#{skillMatrixBeans.getAllSkillsMatrix(1)}"
+				<h:dataTable value="#{skillMatrixBeans.getAllSkillsMatrix(skillMatrixBeans.employeeToUpdate.id)}"
 					var="skillMatrix" border="1">
 					<h:column>
 						<f:facet name="header">
@@ -61,6 +67,35 @@
 					</h:column>
 				</h:dataTable>
 			</h:form>
+			<br/>
+			<h:panelGrid columns="2">
+				<h:form>
+					<h:outputLabel value="Choose the skill to add: " />&nbsp;
+					<h:selectOneMenu value="#{skillMatrixBeans.skillIdToAdd}"
+						valueChangeListener="#{skillMatrixBeans.addSkillMatrixx}"
+						onchange="submit()" immediate="true">
+						<f:selectItem itemvalue="0" itemLabel="Select a skill"/>
+						<f:selectItems
+							value="#{skillMatrixBeans.getSkillsToAdd(skillMatrixBeans.employeeToUpdate.id)}"
+							var="skill" itemLabel="#{skill.skillName}"
+							itemValue="#{skill.skillId}" />
+					</h:selectOneMenu>
+				</h:form>
+			</h:panelGrid>or<br />
+			<h:panelGrid columns="2">
+				<h:form>
+					<h:outputLabel value="Choose the skill to edit: " />&nbsp;
+					<h:selectOneMenu value="#{skillMatrixBeans.skillIdToEdit}"
+						valueChangeListener="#{skillMatrixBeans.editSkillMatrixx}"
+						onchange="submit()" immediate="true">
+						<f:selectItem itemvalue="0" itemLabel="Select a skill"/>
+						<f:selectItems
+							value="#{skillMatrixBeans.getSkillsToEdit(skillMatrixBeans.employeeToUpdate.id)}"
+							var="skill" itemLabel="#{skill.skillName}"
+							itemValue="#{skill.skillId}" />
+					</h:selectOneMenu>
+				</h:form>
+			</h:panelGrid>
 			<!-- END cards box-->
 		</div>
 		</section>

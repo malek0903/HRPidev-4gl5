@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.evaluation.entities.enums.Status;
+import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.entities.User;
 import tn.esprit.userCommun.interfaces.EmployeInterfaceRemote;
@@ -56,6 +57,10 @@ public class EmployeService implements EmployeInterfaceRemote {
 				try{ Employee = query.getSingleResult(); }
 				catch(Exception e) { System.out.println("Erreur : "+ e); }
 				return Employee ;
-	
+	}
+	@Override
+	public Employee findEmployebyCIN(String cin) {
+		TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e WHERE e.cin = :cin", Employee.class);
+		return query.setParameter("cin", cin).getSingleResult();
 	}
 }

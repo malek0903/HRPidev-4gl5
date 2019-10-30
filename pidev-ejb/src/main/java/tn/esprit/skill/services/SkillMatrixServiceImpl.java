@@ -8,8 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import tn.esprit.skill.entities.Skill;
 import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.skill.servicesInterfaces.SkillMatrixServiceRemote;
+import tn.esprit.userCommun.entities.Employee;
 
 @Stateless
 @LocalBean
@@ -19,18 +21,31 @@ public class SkillMatrixServiceImpl implements SkillMatrixServiceRemote {
 
 	@Override
 	public List<SkillMatrix> findSkillMatrixByEmployeeId(long employeeId) {
-		TypedQuery<SkillMatrix> query = entityManager.createQuery("SELECT s FROM SkillMatrix s WHERE s.employee_id = 1", SkillMatrix.class);
-		return query.setParameter("id", employeeId).getResultList();
+		Employee emp = new Employee();
+		emp.setId(employeeId);
+		TypedQuery<SkillMatrix> query = entityManager.createQuery("SELECT s FROM SkillMatrix s WHERE s.employee = :emp", SkillMatrix.class);
+		return query.setParameter("emp", emp).getResultList();
 	}
 
 	@Override
 	public List<SkillMatrix> findAllSkillsMatrixs() {
-		System.out.println("step 1");
 		TypedQuery<SkillMatrix> query = entityManager.createQuery("SELECT s FROM SkillMatrix s", SkillMatrix.class);
-		System.out.println("step 2");
 		List<SkillMatrix> result = query.getResultList();
-		System.out.println("step 3");
 		return result;
+	}
+
+	@Override
+	public SkillMatrix findSkillMatrixByEmployeeIdBySkillId(long employeeId, long skillId) {
+		Employee emp = new Employee();
+		emp.setId(employeeId);
+		System.out.println("emp id = "+employeeId);
+		Skill sk = new Skill();
+		sk.setSkillId(skillId);
+		System.out.println("sk id = "+skillId);
+		System.out.println("1111");
+		TypedQuery<SkillMatrix> query = entityManager.createQuery("SELECT s FROM SkillMatrix s WHERE s.employee = :emp AND s.skill = :sk", SkillMatrix.class);
+		System.out.println("2222");
+		return query.setParameter("emp", emp).setParameter("sk", sk).getSingleResult();
 	}
 
 	@Override
@@ -39,12 +54,12 @@ public class SkillMatrixServiceImpl implements SkillMatrixServiceRemote {
 	}
 
 	@Override
-	public void updateSkill(SkillMatrix skillMatrix) {
+	public void updateSkillMatrix(SkillMatrix skillMatrix) {
 		entityManager.merge(skillMatrix);
 	}
 
 	@Override
-	public void deleteSkill(SkillMatrix skillMatrix) {
+	public void deleteSkillMatrix(SkillMatrix skillMatrix) {
 		entityManager.remove(entityManager.find(SkillMatrix.class, skillMatrix.getId()));
 	}
 
