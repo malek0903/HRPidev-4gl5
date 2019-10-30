@@ -26,7 +26,7 @@
 
 						<h:form>
 							<p:dataTable style="border:none" styleClass="table table-striped"
-								id="table" value="#{managedBeanmission.missions}" var="mission"
+								id="datatable1" value="#{managedBeanmission.missions}" var="mission"
 								border="1" emptyMessage="Mission non trouvé" rows="10"
 								paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -36,7 +36,7 @@
 									<h:outputText value="#{mission.idmission}" />
 								</p:column>
 								<p:column headerText="Employe ID">
-									<h:outputText value="#{mission.employe.id}" />
+									<h:outputText value="#{mission.emp.id}" />
 								</p:column>
 								<p:column headerText="Date debut">
 									<h:outputText value="#{mission.datedebut}" />
@@ -71,7 +71,7 @@
 									<h:commandButton
 										styleClass="btn btn-sm btn-danger command-delete"
 										value="Envoyer mail"
-										action="#{managedBeanmission.envoyer(mission.employe,mission)}">
+										action="#{managedBeanmission.envoyer(mission.emp,mission)}">
 									</h:commandButton>
 								</p:column>
 							</p:dataTable>
@@ -79,29 +79,39 @@
 						<div class="card-body">
 							<h:form styleClass="form-horizontal">
 
-	
-								<div class="form-group">
-									<label>Destination:* </label>
-									<h:inputText value="#{managedBeanmission.destination}" />
-									<label>Objectif:* </label>
-									<h:inputText value="#{managedBeanmission.objectif}" />
-									<label>Territoire:* </label>
-									<h:inputText value="#{managedBeanmission.territoire}" />
-									<label>Destination:* </label>
-									<h:inputText value="#{managedBeanmission.destination}" />
 
-								</div>
 
+								<fieldset>
+									<h:outputText value="Destination" />
+									<h:inputText value="#{managedBeanmission.destination}" />
+								</fieldset>
+								<fieldset></fieldset>
 								<legend>Etat</legend>
 								<select id="etatm" name="etatm"
 									class="custom-select custom-select-sm">
 									<option disabled="disabled" selected="">#{managedBeanmission.etat}</option>
 									<option value="1">Confirme</option>
 									<option value="0">Decliner</option>
+									
+
+
+
+
 								</select>
-								
-									<h:commandButton action="#{managedBeanmission.updatedep()}"
-										value="modifier" />
+								<fieldset>
+									<h:outputText value="O" />
+									<h:inputText value="#{managedBeanmission.objectif}" />
+								</fieldset>
+								<fieldset>
+
+									<h:outputText value="Territoire" />
+									<h:inputText value="#{managedBeanmission.territoire}" />
+								</fieldset>
+
+
+
+								<h:commandButton action="#{managedBeanmission.updatedep()}"
+									value="modifier" />
 							</h:form>
 
 						</div>
@@ -110,8 +120,12 @@
 					</div>
 				</div>
 			</center>
-
-
+			<div align="center">
+            	 <p:chart type="pie" model="#{chartJsView.pieModel1}"
+				style="width:400px;height:300px"></p:chart>
+            
+            </div>
 		</ui:define>
+		
 	</body>
 </ui:composition>

@@ -242,6 +242,7 @@ public class ManagedBeanfacture {
 
 		ser.updatedep(new Partenariat(nompartenaire, domainepartenaire, adressepartenaire, numtelpartenaire,
 				emailpartenaire, pourcentagereduction, idtoset, nbreop));
+	
 
 	}
 

@@ -6,11 +6,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @Entity
@@ -23,6 +27,12 @@ public class Employee extends User {
 	private String gitLink;
 	private String cvDetails;
 	private float salary;
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Team team;
+	
+	@Enumerated(EnumType.STRING)
+	private Status statusEval360;
 
 	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
@@ -127,6 +137,14 @@ public class Employee extends User {
 		this.evals360 = evals360;
 	}
 
+	public Status getStatusEval360() {
+		return statusEval360;
+	}
+
+	public void setStatusEval360(Status statusEval360) {
+		this.statusEval360 = statusEval360;
+	}
+
 	@Override
 	public String toString() {
 		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
@@ -144,6 +162,7 @@ public class Employee extends User {
 		result = prime * result + ((gitLink == null) ? 0 : gitLink.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + Float.floatToIntBits(salary);
+		result = prime * result + ((statusEval360 == null) ? 0 : statusEval360.hashCode());
 		return result;
 	}
 
@@ -192,6 +211,8 @@ public class Employee extends User {
 		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
 		if (Float.floatToIntBits(salary) != Float.floatToIntBits(other.salary))
+			return false;
+		if (statusEval360 != other.statusEval360)
 			return false;
 		return true;
 	}

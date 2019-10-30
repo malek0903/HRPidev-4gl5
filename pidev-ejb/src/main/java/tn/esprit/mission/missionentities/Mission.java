@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.entities.User;
 
 @Entity
@@ -25,22 +26,20 @@ public class Mission implements Serializable {
 
 	private String territoire;
 
-	@ManyToOne
-	private Employe employe;
 	
 	@ManyToOne
-	private User user;
+	private Employee emp;
 
 	private LocalDate datedebut;
 
-	public Mission(String destination, String objectif, String etat, String territoire, Employe employe,
+	public Mission(String destination, String objectif, String etat, String territoire, User user,
 			LocalDate datedebut, LocalDate datefin) {
 		super();
 		this.destination = destination;
 		this.objectif = objectif;
 		this.etat = etat;
 		this.territoire = territoire;
-		this.employe = employe;
+		this.emp = emp;
 		this.datedebut = datedebut;
 		this.datefin = datefin;
 	}
@@ -103,20 +102,17 @@ public class Mission implements Serializable {
 		this.datefin = datefin;
 	}
 
-	public Employe getEmploye() {
-		return employe;
-	}
 
-	public void setEmploye(Employe employe) {
-		this.employe = employe;
-	}
 	
-	public User getUser() {
-		return user;
+
+	
+
+	public Employee getEmp() {
+		return emp;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setEmp(Employee emp) {
+		this.emp = emp;
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -124,9 +120,9 @@ public class Mission implements Serializable {
 	public Mission() {
 	}
 
-	public Mission(Employe employe,String etat, String objectif, LocalDate datedebut, LocalDate datefin, String territoire,
+	public Mission(Employee emp,String etat, String objectif, LocalDate datedebut, LocalDate datefin, String territoire,
 			String destination, Integer idmission) {
-		this.employe=employe;
+		this.emp=emp;
 		this.etat = etat;
 		this.objectif = objectif;
 		this.datedebut = datedebut;
@@ -136,78 +132,8 @@ public class Mission implements Serializable {
 		this.idmission = idmission;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((datedebut == null) ? 0 : datedebut.hashCode());
-		result = prime * result + ((datefin == null) ? 0 : datefin.hashCode());
-		result = prime * result + ((destination == null) ? 0 : destination.hashCode());
-		result = prime * result + ((employe == null) ? 0 : employe.hashCode());
-		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
-		result = prime * result + idmission;
-		result = prime * result + ((objectif == null) ? 0 : objectif.hashCode());
-		result = prime * result + ((territoire == null) ? 0 : territoire.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Mission other = (Mission) obj;
-		if (datedebut == null) {
-			if (other.datedebut != null)
-				return false;
-		} else if (!datedebut.equals(other.datedebut))
-			return false;
-		if (datefin == null) {
-			if (other.datefin != null)
-				return false;
-		} else if (!datefin.equals(other.datefin))
-			return false;
-		if (destination == null) {
-			if (other.destination != null)
-				return false;
-		} else if (!destination.equals(other.destination))
-			return false;
-		if (employe == null) {
-			if (other.employe != null)
-				return false;
-		} else if (!employe.equals(other.employe))
-			return false;
-		if (etat == null) {
-			if (other.etat != null)
-				return false;
-		} else if (!etat.equals(other.etat))
-			return false;
-		if (idmission != other.idmission)
-			return false;
-		if (objectif == null) {
-			if (other.objectif != null)
-				return false;
-		} else if (!objectif.equals(other.objectif))
-			return false;
-		if (territoire == null) {
-			if (other.territoire != null)
-				return false;
-		} else if (!territoire.equals(other.territoire))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Mission [idmission=" + idmission + ", destination=" + destination + ", objectif=" + objectif + ", etat="
-				+ etat + ", territoire=" + territoire + ", employe=" + employe + ", datedebut=" + datedebut
-				+ ", datefin=" + datefin + "]";
-	}
-
 	
+
 	
 	
 

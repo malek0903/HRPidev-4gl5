@@ -10,9 +10,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import tn.esprit.mission.missionentities.Employe;
 import tn.esprit.mission.missionentities.Mission;
 import tn.esprit.mission.missionservices.ServicemissionRemote;
+import tn.esprit.userCommun.entities.Employee;
+
 
 @ManagedBean
 @ViewScoped
@@ -25,7 +26,7 @@ public class ManagedBeanmission {
 	private String etat;
 	private String territoire;
 
-	private Employe employe;
+	private Employee emp;
 
 	private LocalDate datedebut;
 
@@ -34,17 +35,18 @@ public class ManagedBeanmission {
 
 	@PostConstruct
 	public void init() {
-		employe = new Employe();
+		emp = new Employee();
 
 	}
 
-	public Employe getEmploye() {
-		return employe;
-	}
 
-	public void setEmploye(Employe employe) {
-		this.employe = employe;
-	}
+
+	
+
+
+
+
+
 
 	public int getIdMission() {
 		return idMission;
@@ -135,7 +137,7 @@ public class ManagedBeanmission {
 		m.setTerritoire(territoire);
 		m.setDatefin(datefin);
 
-		m.setEmploye(employe);
+		m.setEmp(emp);
 		m.setTerritoire(territoire);
 		m.setDestination(destination);
 
@@ -145,6 +147,11 @@ public class ManagedBeanmission {
 
 		
 		ser.ajouterMission(m);
+		
+		
+		
+		
+		
 		
 		return  "/missions/front/templatefront.xhtml ?faces-redirect=true";
 	}
@@ -160,7 +167,7 @@ public class ManagedBeanmission {
 	}
 
 	public void modifier(Mission mission) {
-		this.setEmploye(mission.getEmploye());
+		this.setEmp(mission.getEmp());
 		this.setObjectif(mission.getObjectif());
 		this.setDatedebut(mission.getDatedebut());
 		this.setDatefin(mission.getDatefin());
@@ -170,26 +177,54 @@ public class ManagedBeanmission {
 
 	}
 
+	public Employee getEmp() {
+		return emp;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+
+
+
+
+
+
+
+
+
+
 	public void updatedep() {
 		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
 		String etat= req.getParameter("etatm");
 		this.setEtat(etat);
-		ser.updatedep(new Mission(employe, etat, objectif, datedebut, datefin, territoire, destination, idtoset));
+		ser.updatedep(new Mission(emp, etat, objectif, datedebut, datefin, territoire, destination, idtoset));
 
 	}
 	
-	public void envoyer(Employe e ,Mission m)
+	public void envoyer(Employee emp ,Mission m)
 	{
 	if(1==Integer.parseInt(m.getEtat())) {
+		
+		System.out.println(emp.getEmail());
 			
-			 sendMail.sendEMail(e.getEmail(), "accepté", e.getNom(),
-						e.getPrenom(),m.getIdmission());}
+			 sendMail.sendEMail(emp.getEmail(), "accepté", emp.getLastName(),
+						emp.getFirstName(),m.getIdmission());}
 		
 	else if(0==Integer.parseInt(m.getEtat()))
 	{
-		 sendMail.sendEMail(e.getEmail(), "decliner", e.getNom(),
-					e.getPrenom(),m.getIdmission());
+		 sendMail.sendEMail(emp.getEmail(), "decliner", emp.getLastName(),
+					emp.getFirstName(),m.getIdmission());
 	}
 	
 	}

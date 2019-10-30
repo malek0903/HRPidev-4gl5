@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-		xmlns:p="http://primefaces.org/ui"
+	xmlns:p="http://primefaces.org/ui"
 	template="/template/default/admin/template.xhtml">
 
 	<ui:param name="page_name" value="Index" />
@@ -32,83 +32,94 @@
 								<label class="col-md-2 col-form-label">Nom partenaire:</label>
 								<div class="col-md-2">
 									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.nompartenaire}" />
+										value="#{managedBeanpartenaire.nompartenaire}" required="true" />
 								</div>
 							</div>
 						</fieldset>
 						<fieldset></fieldset>
-						
+
 						<fieldset></fieldset>
 						<legend>Domaine partenaire</legend>
-							<select id="dompart" name="dompart"
-										class="custom-select custom-select-sm">
-										<option disabled="disabled" selected="">#{managedBeanpartenaire.domainepartenaire}</option>
-										<option value="Hotelerie">Hotelerie</option>
-										<option value="Voyage">Voyage</option>
-										<option value="Restauration">Restauration</option>
-										<option value="Kisoque">Kiosque</option>
-										<option value="Autre">Autre</option>
-										
-										
+						<select id="dompart" name="dompart"
+							class="custom-select custom-select-sm">
+							<option disabled="disabled" selected="">#{managedBeanpartenaire.domainepartenaire}</option>
+							<option value="Hotelerie">Hotelerie</option>
+							<option value="Voyage">Voyage</option>
+							<option value="Restauration">Restauration</option>
+							<option value="Kisoque">Kiosque</option>
+							<option value="Autre">Autre</option>
 
-									</select>
+
+
+						</select>
 						<fieldset></fieldset>
-						
-						
+
+
 						<fieldset></fieldset>
 						<fieldset>
 							<legend>Adresse partenaire</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Adresse partenaire:</label>
+								<label class="col-md-2 col-form-label">Adresse
+									partenaire:</label>
 								<div class="col-md-2">
 									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.adressepartenaire}" />
-								</div>
-							</div>
-						</fieldset>
-						<fieldset></fieldset>
-						
-						<fieldset></fieldset>
-						<fieldset>
-							<legend>Num tel partenaire</legend>
-							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Num tel partenaire:</label>
-								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.numtelpartenaire}" />
-								</div>
-							</div>
-						</fieldset>
-						<fieldset></fieldset>
-						
-						<fieldset></fieldset>
-						<fieldset>
-							<legend>Email partenaire</legend>
-							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Email partenaire:</label>
-								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.emailpartenaire}" />
-								</div>
-							</div>
-						</fieldset>
-						<fieldset></fieldset>
-						
-						
-						<fieldset></fieldset>
-						<fieldset>
-							<legend>Pourcentage de reduction</legend>
-							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Pourcentage de reduction:</label>
-								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.pourcentagereduction}" />
+										value="#{managedBeanpartenaire.adressepartenaire} " required="true" />
 								</div>
 							</div>
 						</fieldset>
 						<fieldset></fieldset>
 
-						
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Num tel partenaire</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Num tel
+									partenaire:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanpartenaire.numtelpartenaire} " required="true"/>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Email partenaire</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Email
+									:</label>
+							<p:inputText id="email" required="true" label="email" size="40"
+								requiredMessage="Please enter your email address."
+								validatorMessage="Invalid email format"
+								value="#{managedBeanpartenaire.emailpartenaire}" required="true">
+
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+							</p:inputText>
+							<p:watermark for="email" value="Email Address *" />
+							<p:message for="email" />
+</div>
+						</fieldset>
+						<fieldset></fieldset>
+
+
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Pourcentage de reduction</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Pourcentage de
+									reduction:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanpartenaire.pourcentagereduction}" required="true" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+
+
 
 
 						<h:commandLink styleClass="btn btn-success"
@@ -126,7 +137,6 @@
 
 
 		</div>
-		
 
 
 		</section>
@@ -134,4 +144,4 @@
 	</ui:define>
 </ui:composition>
 
-	
+

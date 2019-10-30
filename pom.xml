@@ -48,6 +48,7 @@
 			tested stacks. -->
 		<version.jboss.bom>8.2.1.Final</version.jboss.bom>
 		<version.wildfly>11.0.0.Final</version.wildfly>
+<primefaces.version>5.3</primefaces.version>
 
 
 		<!-- other plugin versions -->
@@ -114,6 +115,11 @@
 				<version>1.6.1</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>${primefaces.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
