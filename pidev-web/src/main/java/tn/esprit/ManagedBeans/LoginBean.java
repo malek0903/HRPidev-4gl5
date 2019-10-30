@@ -42,10 +42,6 @@ public class LoginBean implements Serializable {
 		this.current_user = userService.getUserByEmailPassword(login, password);
 		this.current_employe = employeService.getEmployeeByEmailPassword(login, password);
 		System.out.println(current_user.getId() + "5raaaaaaaaaa");
-		EmployeeRole currentUserRole = this.current_user.getRole();
-		if (currentUserRole != null) {
-		// this.current_employe = employeService.getEmployeeByEmailPassword(login,
-		// password);
 
 		if (current_user != null) {
 			EmployeeRole currentUserRole = this.current_user.getRole();
