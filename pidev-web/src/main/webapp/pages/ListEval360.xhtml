@@ -40,25 +40,37 @@
 
 										<td>
 											<div class="media">
-												<a class="float-left" href="#"><h:graphicImage class="img-thumbnail circle img-fluid thumb96"
-											value="/images/#{eval.concernedEmployee.firstName}.jpg" alt="" /></a>
+
+												<a class="float-left" href="#"><h:graphicImage
+														class="img-thumbnail circle img-fluid thumb96"
+														value="/images/#{eval.concernedEmployee.firstName}.jpg"
+														alt="" /></a>
 												<div class="media-body">
 													<div class="float-right badge badge-info">#{eval.concernedEmployee.role}</div>
 													<h4>#{eval.concernedEmployee.firstName}</h4>
-													<p>Username: #{eval.concernedEmployee.userName}<br/>
-													Email : #{eval.concernedEmployee.email}<br/>
-													Phone Number : #{eval.concernedEmployee.phoneNumber}
+													<p>
+														Username: #{eval.concernedEmployee.userName}<br /> Email
+														: #{eval.concernedEmployee.email}<br /> Phone Number :
+														#{eval.concernedEmployee.phoneNumber}
 													</p>
-													
+
 													#{eval.evalDetails}
-													<hr/>
+													
+													<div class="progress progress-xs mb-3">
+													<div style="width: 20%" class="progress-bar progress-bar-striped bg-green"
+														role="progressbar" aria-valuemin="0"
+														aria-valuemax="100" >
+														<span class="sr-only">20% Complete</span>
+													</div>
+												</div>
+													<hr />
 												</div>
 											</div>
 										</td>
 										<td class="text-center"><h:commandButton
 												styleClass="btn btn-pill-right btn-info" value="Evaluate →"
 												action="#{eval360Beans.recupererEmployeAndEval(eval.concernedEmployee , eval)}" />
-												</td>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>

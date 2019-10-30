@@ -47,13 +47,13 @@ public class LoginBean implements Serializable {
 			EmployeeRole currentUserRole = this.current_user.getRole();
 			this.current_user_string = currentUserRole.toString();
 			if (currentUserRole == EmployeeRole.Manager)
-				navigateTo = "/pages/EmployesListEval.xhtml?faces-redirect=true";
+				navigateTo = "/pages/dashboard-v1.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Employee)
-				navigateTo = "/timesheet/ScrumBoard.xhtml?faces-redirect=true";
+				navigateTo = "/pages/dashboard-v1.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Admin)
-				navigateTo = "/pages/objectives.xhtml?faces-redirect=true";
+				navigateTo = "/pages/dashboard-v1.xhtml?faces-redirect=true";
 			loggedIn = true;
 
 		} else {

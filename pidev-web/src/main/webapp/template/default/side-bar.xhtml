@@ -23,6 +23,9 @@
 						<!-- Iterates over all sidebar items-->
 						<li class="nav-heading "><span
 							data-localize="sidebar.heading.HEADER">Main Navigation</span></li>
+							
+							
+							<!-- hedhy evaluation mte3i  -->
 						<li class=" "><a href="#dashboard" title="Dashboard"
 							data-toggle="collapse"> <i class="fa fa-fw fa-dashboard"></i><span
 								data-localize="sidebar.nav.DASHBOARD">Evaluation</span>
@@ -84,28 +87,61 @@
 								</ul>
 
 							</c:if></li>
+							<!-- hedhy END evaluation mte3i  -->
 
-							
-							<li class=" "><a href="#dashboard" title="Dashboard"
-								data-toggle="collapse">
-									<div class="float-right badge badge-success">3</div> <i
-									class="fa fa-fw fa-ticket"></i><span
-									data-localize="sidebar.nav.DASHBOARD">Timesheet</span>
-							</a>
+
+								<!-- hedhy TimeSheet mte3i  -->
+						<li class=" "><a href="#dashboard" title="Dashboard"
+							data-toggle="collapse"> <i class="fa fa-fw fa-dashboard"></i><span
+								data-localize="sidebar.nav.DASHBOARD">TimeSheet</span>
+						</a> <c:if test='#{loginBean.current_user_string.equals("Manager")}'>
+
 								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
 									<li class="sidebar-subnav-header">Dashboard</li>
-									<c:if test='#{loginBean.current_user_string.equals("Manager")}'>
-									<li class=" active"><h:link value="Liste des tickets"
+
+									<li class=" active"><h:link value="Home"
+											outcome="/pages/dashboard-v1.xhtml" /></li>
+
+									<li class=" active"><h:link
+											value="list des tickets"
 											outcome="/timesheet/ticketList.xhtml" /></li>
-	
-									<li class=" active"><h:link value="Liste des equipes"
-											outcome="/timesheet/TeamList.xhtml" /></li>
-	
-									<li class=" active"><h:link value="Calendrier"
-											outcome="/timesheet/Calendar.xhtml" /></li>
-										</c:if>
-	
-								</ul></li>
+
+											
+									<li class=" active"><h:link value="liste des equipes "
+										outcome="/timesheet/ticketList.xhtml" /></li>
+
+								<li class=" active"><h:link
+										value="Calendrier"
+										outcome="/timesheet/ticketList.xhtml" /></li>
+
+							</ul></li>
+						
+						
+						</c:if>
+
+					
+						
+						<li class="nav-heading "><span
+							data-localize="sidebar.heading.COMPONENTS">Objective</span></li>
+									<li class=" active"><h:link value="ListEval Manager"
+											outcome="/pages/ListEval360Started.xhtml" /></li>
+								</ul>
+					<c:if test='#{loginBean.current_user_string.equals("Employee")}'>
+
+								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+									<li class="sidebar-subnav-header">Dashboard</li>
+
+									<li class=" active"><h:link value="Scrum Board"
+											outcome="/timesheet/ScrumBoard.xhtml" /></li>
+
+
+
+								</ul>
+
+							</c:if></li>
+							
+							
+							
 						<li class="nav-heading "><span
 							data-localize="sidebar.heading.COMPONENTS">Components</span></li>
 						<li class=" "><a href="#extras" title="Extras"

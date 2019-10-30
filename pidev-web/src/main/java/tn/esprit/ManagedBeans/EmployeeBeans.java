@@ -26,8 +26,8 @@ public class EmployeeBeans {
 	userService userSevice;
 
 	@EJB
-	TeamService teamService ;
-	
+	TeamService teamService;
+
 	private Date dateOfBirth;
 	private String phoneNumber;
 	private String gitLink;
@@ -39,9 +39,19 @@ public class EmployeeBeans {
 	private List<Eval360> evals360;
 
 	public int nbUsers;
-	public int nbTeam ;
+	public int nbTeam;
+	public int nbEmployees;
 	
 	
+
+	public int getNbEmployees() {
+		nbEmployees = employeService.getAllEmployes().size();
+		return nbEmployees;
+	}
+
+	public void setNbEmployees(int nbEmployees) {
+		this.nbEmployees = nbEmployees;
+	}
 
 	public userService getUserSevice() {
 		return userSevice;
