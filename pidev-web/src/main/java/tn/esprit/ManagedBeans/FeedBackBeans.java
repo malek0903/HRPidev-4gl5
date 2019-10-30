@@ -30,9 +30,9 @@ public class FeedBackBeans {
 
 	@EJB
 	NotificationService notificationService;
-
-	@ManagedProperty(value = "#{EmployeeBeans}")
-	EmployeeBeans employeebeans;
+	
+	@EJB
+	EmployeService employeeService ;
 
 	@ManagedProperty(value = "#{LoginBean}")
 	LoginBean loginBean;
@@ -51,7 +51,7 @@ public class FeedBackBeans {
 
 	public int nbAllFeedBacks;
 
-
+	public int widthFeedBacks;
 
 	public void initialisation() {
 		comment = null;
@@ -60,7 +60,14 @@ public class FeedBackBeans {
 		this.erreur = "";
 	}
 
-	
+	public int getWidthFeedBacks(Long idEval360) {
+		widthFeedBacks = ( this.getFeedBacksByEval(idEval360).size() *100 ) / employeeService.getAllEmployes().size() ;
+		return widthFeedBacks;
+	}
+
+	public void setWidthFeedBacks(int widthFeedBacks) {
+		this.widthFeedBacks = widthFeedBacks;
+	}
 
 	public int getNbAllFeedBacks() {
 		nbAllFeedBacks = feedBackService.getAllFeedback().size();
@@ -91,14 +98,6 @@ public class FeedBackBeans {
 
 	public Feedback getFeedBack() {
 		return feedBack;
-	}
-
-	public EmployeeBeans getEmployeebeans() {
-		return employeebeans;
-	}
-
-	public void setEmployeebeans(EmployeeBeans employeebeans) {
-		this.employeebeans = employeebeans;
 	}
 
 	public NotificationService getNotificationService() {
