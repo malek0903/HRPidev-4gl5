@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/template/default/template.xhtml">
+
+	<ui:define name="content">
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					Update Eval360 <small>..</small>
+				</div>
+			</div>
+
+
+			<!-- START card-->
+			<div class="row">
+				<div class="col-lg-10">
+					<div class="card card-default">
+
+						<div class="card-body">
+
+							<h:form styleClass="form-horizontal">
+								<legend>Eval details</legend>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Eval Status:</label>
+										<div class="col-md-2">
+
+											<h:selectOneMenu styleClass="custom-select custom-select-sm"
+												value="#{editEval360Beans.eval360.status}">
+												<f:selectItem itemValue="publicc" itemLabel="publicc" />
+												<f:selectItem itemValue="privatee" itemLabel="privatee" />
+											</h:selectOneMenu>
+
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Eval Details:</label>
+										<div class="col-md-4">
+											<h:inputTextarea id="evalDetails" styleClass="form-control"
+												value="#{editEval360Beans.eval360.evalDetails}"
+												required="true"
+												requiredMessage="the details field is required">
+											</h:inputTextarea>
+											<h:message for="evalDetails" style="color:red;" />
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Begins At:</label>
+										<div class="col-md-3">
+											<input name="dateBeginId"
+												value="#{editEval360Beans.eval360.dateBegin}"
+												class="form-control form-control-rounded" type="date" />
+											<c:if test='#{editEval360Beans.dateBeginSup.equals("true")}'>
+												<p style="color: red;">the field dateBegin must be after
+													the current time</p>
+											</c:if>
+
+										</div>
+									</div>
+								</fieldset>
+
+								<fieldset>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Ends At:</label>
+										<div class="col-md-3">
+											<input name="dateEndId"
+												value="#{editEval360Beans.eval360.dateEnd}"
+												class="form-control form-control-rounded" type="date" />
+												
+											<c:if test='#{editEval360Beans.dateEndSupDateBegin.equals("true")}'>
+												<p style="color: red;">the field date End must be after
+													the date Begin</p>
+											</c:if>
+										</div>
+									</div>
+								</fieldset>
+
+
+								<h:commandLink styleClass="btn btn-success"
+									action="#{editEval360Beans.updateEval360(editEval360Beans.eval360)}">
+									<i class="fa fa-fw fa-edit"></i>
+								</h:commandLink>
+								<h:commandLink style="margin-left:20px"
+									styleClass="text text-primary"
+									action="#{editEval360Beans.cancelEval360()}">  cancel </h:commandLink>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</section>
+	</ui:define>
+</ui:composition>

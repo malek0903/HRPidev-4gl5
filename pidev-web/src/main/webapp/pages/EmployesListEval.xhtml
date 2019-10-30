@@ -19,14 +19,7 @@
 				</div>
 
 				<!-- START Language list-->
-				<div class="ml-auto">
-					<div class="btn-group">
-						<button
-							class="btn btn-secondary dropdown-toggle dropdown-toggle-nocaret"
-							type="button" data-toggle="dropdown">English</button>
 
-					</div>
-				</div>
 
 				<!-- END Language list-->
 			</div>
@@ -36,38 +29,48 @@
 			<h:form>
 				<div class="row">
 					<c:forEach var="employe" items="#{eval360Beans.getEmployes()}">
-						<div class="col-lg-4">
-							<div class="card text-white bg-primary mb-3">
-								<div class="card-header">#{employe.firstName}
-									#{employe.lastName}</div>
-								<div align="right" class="float-right">
-									<h:commandButton style="background-color: #f05050;"
-										class="btn btn-primary btn-sm"
-										action="#{eval360Beans.recupererEmploye(employe)}"
-										value="Start Evaluation" />
-								</div>
 
 
-								<div class="card-body">
-									<h5 class="card-title" style="font-weight: bold;">#{employe.role}</h5>
-									<p class="card-text">
-										Birth Day : #{employe.dateOfBirth} <br /> Phone number :
-										#{employe.phoneNumber}
-									</p>
+						<div class="card">
+							<div class="card-body">
+								<div class="row align-items-center">
+									<div class="col-5 text-center">
+										<h:graphicImage class="img-thumbnail circle img-fluid thumb96"
+											value="/images/#{employe.firstName}.jpg" alt="" />
+									</div>
+									<div class="col-7">
+										<div class="text-right">
+											<h:commandButton class="btn btn-success btn-sm"
+												action="#{eval360Beans.recupererEmploye(employe)}"
+												value="Start Evaluation" />
+
+										</div>
+										<div class="d-flex">
+											<div class="text-left">
+												<h3 class="mt-0" style="padding-top: 14%">#{employe.firstName}
+													#{employe.lastName}</h3>
+												<p class="text-muted">
+													#{employe.role} <br /> Birth Day : #{employe.dateOfBirth} <br />
+													Phone number : #{employe.phoneNumber}
+												</p>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+						<!-- END card-->
 					</c:forEach>
 
 					<!-- END cards box-->
 				</div>
 
-				
+
 
 			</h:form>
 		</div>
-		
-		
+
+
 
 		</section>
 	</ui:define>

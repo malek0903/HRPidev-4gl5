@@ -105,7 +105,7 @@ public class Eval360 implements Serializable {
 	@Override
 	public String toString() {
 		return "Eval360 [id=" + id + ", evalDetails=" + evalDetails + ", dateBegin=" + dateBegin + ", dateEnd="
-				+ dateEnd + ", status=" + status + ", feedbacks=" + feedbacks + ", concernedEmployee="
+				+ dateEnd + ", status=" + status + ", feedbacks=" +  ", concernedEmployee="
 				+ concernedEmployee + "]";
 	}
 

@@ -1,18 +1,24 @@
 package tn.esprit.ManagedBeans;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.evaluation.entities.FeedbackPK;
+import tn.esprit.evaluation.entities.Notification;
+import tn.esprit.evaluation.entities.enums.NotificationType;
 import tn.esprit.evaluation.services.FeedBackService;
+import tn.esprit.evaluation.services.NotificationService;
 import tn.esprit.userCommun.entities.Employee;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @ManagedBean
 @SessionScoped
@@ -21,17 +27,98 @@ public class FeedBackBeans {
 	@EJB
 	FeedBackService feedBackService;
 
-	 @ManagedProperty(value="#{LoginBean}") 
-	 LoginBean loginBean;
-	 
+	@EJB
+	NotificationService notificationService;
+
+	@ManagedProperty(value = "#{LoginBean}")
+	LoginBean loginBean;
+
 	public String comment;
 	public LocalDate feedbackDate;
 	public int mark;
+	public String erreur = "";
+
+	public List<Feedback> feedBacksByEval;
+	public List<Feedback> feedBacksByGiven;
+
+	public Feedback feedBack;
+
+	public String commentEmpty = "";
+
+	public int nbAllFeedBacks ;
 
 	public void initialisation() {
 		comment = null;
 		feedbackDate = null;
 		mark = 0;
+		this.erreur = "";
+	}
+
+	public int getNbAllFeedBacks() {
+		nbAllFeedBacks = feedBackService.getAllFeedback().size();
+		return nbAllFeedBacks;
+	}
+
+	public void setNbAllFeedBacks(int nbAllFeedBacks) {
+		this.nbAllFeedBacks = nbAllFeedBacks;
+	}
+
+	public List<Feedback> getFeedBacksByEval(Long idEval360) {
+		feedBacksByEval = feedBackService.getAllFeedBackByidEval(idEval360);
+		return feedBacksByEval;
+	}
+
+	public void setFeedBacksByEval(List<Feedback> feedBacksByEval) {
+		this.feedBacksByEval = feedBacksByEval;
+	}
+
+	public List<Feedback> getFeedBacksByGiven(Long idEval360) {
+		feedBacksByEval = feedBackService.getAllFeedBackByEmployeeGiven(idEval360);
+		return feedBacksByGiven;
+	}
+
+	public void setFeedBacksByGiven(List<Feedback> feedBacksByGiven) {
+		this.feedBacksByGiven = feedBacksByGiven;
+	}
+
+	public Feedback getFeedBack() {
+		return feedBack;
+	}
+
+	public NotificationService getNotificationService() {
+		return notificationService;
+	}
+
+	public void setNotificationService(NotificationService notificationService) {
+		this.notificationService = notificationService;
+	}
+
+	public String getCommentEmpty() {
+		return commentEmpty;
+	}
+
+	public void setCommentEmpty(String commentEmpty) {
+		this.commentEmpty = commentEmpty;
+	}
+
+	public void setFeedBack(Feedback feedBack) {
+		this.feedBack = feedBack;
+	}
+
+	public List<Feedback> getFeedBacksByEval() {
+		return feedBacksByEval;
+	}
+
+	public List<Feedback> getFeedBacksByGiven() {
+		return feedBacksByGiven;
+	}
+
+	public String getErreur() {
+		return erreur;
+	}
+
+	public void setErreur(String erreur) {
+		this.erreur = erreur;
 	}
 
 	public FeedBackService getFeedBackService() {
@@ -65,7 +152,6 @@ public class FeedBackBeans {
 	public void setMark(int mark) {
 		this.mark = mark;
 	}
-	
 
 	public LoginBean getLoginBean() {
 		return loginBean;
@@ -75,29 +161,51 @@ public class FeedBackBeans {
 		this.loginBean = loginBean;
 	}
 
-	public void ajouterFeedBack(Employee emp , Eval360 eval) {
-//		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-//				.getRequest();
-//		String markId = req.getParameter("markId");
+	public String ajouterFeedBack(Employee emp, Eval360 eval) {
 
-		Feedback f = new Feedback();
-		f.setComment(this.getComment());
-		f.setFeedbackDate(LocalDate.now());
-		FeedbackPK idFeedback = new FeedbackPK(eval.getId(), emp.getId());
-		f.setFeedbackPK(idFeedback);
-		f.setEmployee(emp);
-		f.setEval360(eval);
-		f.setMark(this.getMark());
-		
-		//System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser().toString() +  "5raaaaaaaaaaaaa");
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		String markId = req.getParameter("markId");
+		String commentId = req.getParameter("commentId");
 
-		// f.setMark(Integer.valueOf(markId));
+		if (commentId.equals("")) {
+			this.commentEmpty = "true";
+			return null;
+		} else {
 
-//		feedBackService.addFeedback(f);
-//
-//		initialisation();
-//		return "/pages/ListEval360.xhtml?faces-redirect=true";
+			String navigateTo = null;
+			try {
+				Feedback f = new Feedback();
+				f.setComment(commentId);
+				f.setFeedbackDate(LocalDate.now());
+				FeedbackPK idFeedback = new FeedbackPK(eval.getId(), emp.getId());
+				f.setFeedbackPK(idFeedback);
+				f.setEmployee(emp);
+				f.setEval360(eval);
 
+				f.setMark(Integer.valueOf(markId));
+
+				feedBackService.addFeedback(f);
+
+				this.notificationService.addNotification(new Notification("New FeedBack",
+						"FeedBack For " + eval.getConcernedEmployee().getFirstName() + " has been added.",
+						NotificationType.GIVE_FEEDBACK_ON360EVAL, EmployeeRole.Employee));
+
+				initialisation();
+
+				navigateTo = "/pages/ListEval360.xhtml?faces-redirect=true";
+			} catch (Exception e) {
+				this.erreur = "true";
+				e.printStackTrace();
+			}
+
+			return navigateTo;
+		}
+
+	}
+
+	public String cancelFeedback() {
+		return "/pages/ListEval360.xhtml?faces-redirect=true";
 	}
 
 }

@@ -1,19 +1,26 @@
 	package tn.esprit.ManagedBeans;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.evaluation.entities.Notification;
+import tn.esprit.evaluation.entities.enums.NotificationType;
 import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.evaluation.services.Eval360Service;
+import tn.esprit.evaluation.services.NotificationService;
 import tn.esprit.userCommun.entities.Employee;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 import tn.esprit.userCommun.services.EmployeService;
 
 @ManagedBean
@@ -26,6 +33,12 @@ public class Eval360Beans {
 	@EJB
 	EmployeService employeService;
 
+	@EJB
+	NotificationService notificationService;
+
+	@ManagedProperty(value = "#{loginBean}")
+	LoginBean loginBeann;
+
 	private Long id;
 	private String evalDetails;
 	private List<Feedback> feedbacks;
@@ -34,17 +47,34 @@ public class Eval360Beans {
 	private LocalDate dateBegin;
 	private LocalDate dateEnd;
 
-	private List<Eval360> evalsPublic;
+	private List<Eval360> evalsPublicDate;
+
+	private List<Eval360> evals;
 
 	private List<Employee> employes;
 
 	private Employee Employe;
-	
-	private Eval360 eval360 ;
 
-	public List<Eval360> getEvalsPublic() {
-		evalsPublic = evalService.getListEval360Public();
-		return evalsPublic;
+	private Eval360 eval360;
+
+	private String ValidDate = "";
+
+	public List<Eval360> getEvals() {
+		evals = evalService.getAllEval360();
+		return evals;
+	}
+
+	public void setEvals(List<Eval360> evals) {
+		this.evals = evals;
+	}
+
+	public List<Eval360> getEvalsPublicDate() {
+		evalsPublicDate = evalService.getListEval360PublicAndDate();
+		return evalsPublicDate;
+	}
+
+	public void setEvalsPublicDate(List<Eval360> evalsPublicDate) {
+		this.evalsPublicDate = evalsPublicDate;
 	}
 
 	public LocalDate getDateBegin() {
@@ -61,10 +91,6 @@ public class Eval360Beans {
 
 	public void setDateEnd(LocalDate dateEnd) {
 		this.dateEnd = dateEnd;
-	}
-
-	public void setEvalsPublic(List<Eval360> evalsPublic) {
-		this.evalsPublic = evalsPublic;
 	}
 
 	public EmployeService getEmployeService() {
@@ -116,6 +142,14 @@ public class Eval360Beans {
 		this.evalDetails = evalDetails;
 	}
 
+	public String getValidDate() {
+		return ValidDate;
+	}
+
+	public void setValidDate(String validDate) {
+		ValidDate = validDate;
+	}
+
 	public List<Feedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -139,7 +173,6 @@ public class Eval360Beans {
 	public void setMark360(int mark360) {
 		this.mark360 = mark360;
 	}
-	
 
 	public Eval360 getEval360() {
 		return eval360;
@@ -147,6 +180,22 @@ public class Eval360Beans {
 
 	public void setEval360(Eval360 eval360) {
 		this.eval360 = eval360;
+	}
+
+	public NotificationService getNotificationService() {
+		return notificationService;
+	}
+
+	public void setNotificationService(NotificationService notificationService) {
+		this.notificationService = notificationService;
+	}
+
+	public LoginBean getLoginBeann() {
+		return loginBeann;
+	}
+
+	public void setLoginBeann(LoginBean loginBeann) {
+		this.loginBeann = loginBeann;
 	}
 
 	public void initialisation() {
@@ -170,31 +219,65 @@ public class Eval360Beans {
 //		String mark = req.getParameter("mark360");
 //		this.setMark360(Integer.parseInt(mark));
 
-		Eval360 e = new Eval360();
-		e.setEvalDetails(evalDetails);
-		e.setStatus(Status.publicc);
+		if (dateEnd.equals(LocalDate.now()) || dateEnd.isBefore(LocalDate.now())) {
+
+			System.out.println("d5alll ytesti ");
+			this.ValidDate = "false" ;
+
+			return "";
+		} else {
+
+			Eval360 e = new Eval360();
+			e.setEvalDetails(evalDetails);
+			e.setStatus(Status.publicc);
 //		e.setMark360(mark360);
-		e.setConcernedEmployee(Employe);
-		e.setDateBegin(LocalDate.now());
-		e.setDateEnd(dateEnd);
+			e.setConcernedEmployee(Employe);
+			e.setDateBegin(LocalDate.now());
+			e.setDateEnd(dateEnd);
 
-		Employee emp = this.getEmploye();
-		emp.setStatusEval360(Status.publicc);
+			Employee emp = this.getEmploye();
+			emp.setStatusEval360(Status.publicc);
 
-		employeService.updateEmploye(emp);
-		evalService.addEval360(e);
+			employeService.updateEmploye(emp);
+			evalService.addEval360(e);
 
-		initialisation();
-		return "/pages/EmployesListEval.xhtml?faces-redirect=true";
+			this.notificationService.addNotification(new Notification("New Evaluation360",
+					"Eval360 For " + emp.getFirstName() + " has been started From this "
+							+ this.loginBeann.getCurrent_user().getRole() + " "
+							+ this.loginBeann.getCurrent_user().getFirstName() + " At : " + new Date(),
+					NotificationType.STARTED_EVALUATION360_FROM_MANAGER, EmployeeRole.Employee));
+
+			this.notificationService.addNotification(new Notification("New Evaluation360",
+					"Eval360 For " + emp.getFirstName() + " has been started From this "
+							+ this.loginBeann.getCurrent_user().getRole() + " "
+							+ this.loginBeann.getCurrent_user().getFirstName() + "At : " + LocalDate.now(),
+					NotificationType.STARTED_EVALUATION360_FROM_MANAGER, EmployeeRole.Admin));
+
+			initialisation();
+
+			return "/pages/EmployesListEval.xhtml?faces-redirect=true";
+		}
 
 	}
-	
-	public String recupererEmployeAndEval(Employee emp , Eval360 eval)
-	{
+
+	public String recupererEmployeAndEval(Employee emp, Eval360 eval) {
 		this.setEmploye(emp);
 		this.setEval360(eval);
 		
 		return "/pages/Evaluate360Employee.xhtml?faces-redirect=true";
+	}
+
+	public void deleteEval360(Eval360 eval) {
+		Employee e = eval.getConcernedEmployee();
+
+		e.setStatusEval360(Status.privatee);
+
+		employeService.updateEmploye(e);
+		evalService.deleteEval360ById(eval.getId());
+	}
+
+	public String cancelEval360() {
+		return "/pages/ListEval360Started.xhtml?faces-redirect=true";
 	}
 
 }

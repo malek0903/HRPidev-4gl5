@@ -13,7 +13,7 @@
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					List Eval 360 #{loginBean.current_employe.firstName}<small data-localize="dashboard.WELCOME"></small>
+					List Eval 360 <small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 
@@ -35,26 +35,31 @@
 
 							</thead>
 							<tbody>
-								<c:forEach var="eval" items="#{eval360Beans.evalsPublic}">
+								<c:forEach var="eval" items="#{eval360Beans.evalsPublicDate}">
 									<tr>
 
 										<td>
 											<div class="media">
-												<a class="float-left" href="#"><img
-													class="img-fluid circle" src="img/user/01.jpg" alt="" /></a>
+												<a class="float-left" href="#"><h:graphicImage class="img-thumbnail circle img-fluid thumb96"
+											value="/images/#{eval.concernedEmployee.firstName}.jpg" alt="" /></a>
 												<div class="media-body">
 													<div class="float-right badge badge-info">#{eval.concernedEmployee.role}</div>
 													<h4>#{eval.concernedEmployee.firstName}</h4>
-													<p>Username: #{eval.concernedEmployee.userName}</p>
+													<p>Username: #{eval.concernedEmployee.userName}<br/>
+													Email : #{eval.concernedEmployee.email}<br/>
+													Phone Number : #{eval.concernedEmployee.phoneNumber}
+													</p>
+													
 													#{eval.evalDetails}
+													<hr/>
 												</div>
 											</div>
 										</td>
 										<td class="text-center"><h:commandButton
 												styleClass="btn btn-pill-right btn-info" value="Evaluate →"
-												action="#{eval360Beans.recupererEmployeAndEval(eval.concernedEmployee , eval)}" /></td>
+												action="#{eval360Beans.recupererEmployeAndEval(eval.concernedEmployee , eval)}" />
+												</td>
 									</tr>
-
 								</c:forEach>
 							</tbody>
 						</table>

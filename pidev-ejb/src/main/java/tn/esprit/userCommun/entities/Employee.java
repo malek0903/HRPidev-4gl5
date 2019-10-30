@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import tn.esprit.evaluation.entities.Eval360;
@@ -31,6 +32,9 @@ public class Employee extends User {
 	private float salary;
 	private Boolean chefEquipe ;
 
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Team team;
+	
 	@Enumerated(EnumType.STRING)
 	private Status statusEval360;
 

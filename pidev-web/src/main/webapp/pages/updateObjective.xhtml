@@ -33,16 +33,20 @@
 									<legend>Objective details</legend>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Objective name:</label>
-										<div class="col-md-2">
-											<h:inputText styleClass="form-control form-control-rounded"
-												value="#{editObjectiveBean.objective.name}" />
+										<div class="col-md-3">
+											<h:inputText id="nameObj"
+												styleClass="form-control form-control-rounded"
+												value="#{editObjectiveBean.objective.name}" required="true"
+												requiredMessage="the name field is required" />
+											<h:message for="nameObj" style="color:red;" />
 										</div>
 									</div>
 								</fieldset>
+
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Begins At:</label>
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<input id="beginsAt" name="beginsAt"
 												value="#{editObjectiveBean.objective.dateBegin}"
 												class="form-control form-control-rounded" type="date" />
@@ -54,7 +58,7 @@
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Ends At:</label>
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<input id="endsAt" name="endsAt"
 												value="#{editObjectiveBean.objective.dateEnd}"
 												class="form-control form-control-rounded" type="date" />
@@ -67,18 +71,18 @@
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Objective
 											category:</label>
-										<div class="col-md-2">
+										<div class="col-md-3">
 
-											<select id="categoryId" name="categoryId"
-												class="custom-select custom-select-sm">
-												<option disabled="disabled" selected="">#{editObjectiveBean.objective.category}</option>
-												<option value="status">status</option>
-												<option value="salary">salary</option>
-												<option value="classifications">classifications</option>
-												<option value="level">level</option>
-												<option value="membership">membership</option>
+											<h:selectOneMenu styleClass="custom-select custom-select-sm"
+												value="#{editObjectiveBean.objective.category}">
+												<f:selectItem itemValue="status" itemLabel="status" />
+												<f:selectItem itemValue="salary" itemLabel="salary" />
+												<f:selectItem itemValue="classifications"
+													itemLabel="classifications" />
+												<f:selectItem itemValue="level" itemLabel="level" />
+												<f:selectItem itemValue="membership" itemLabel="membership" />
 
-											</select>
+											</h:selectOneMenu>
 										</div>
 									</div>
 								</fieldset>
@@ -87,18 +91,25 @@
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Objective
 											details:</label>
-										<div class="col-md-2">
-											<h:inputTextarea styleClass="form-control"
-												value="#{editObjectiveBean.objective.description}">
-											</h:inputTextarea>
+										<div class="col-md-3">
+											<h:inputTextarea id="detailObj" styleClass="form-control"
+												value="#{editObjectiveBean.objective.description}"
+												required="true"
+												requiredMessage="the details field is required" />
+											<h:message for="detailObj"  style="color:red;"/>
+
 										</div>
 									</div>
 								</fieldset>
 
-								<h:commandLink styleClass="btn btn-success"
+
+
+								<h:commandLink styleClass="text text-white btn btn-warning"
 									action="#{editObjectiveBean.onUpdateObjective()}">
 									<i class="fa fa-fw fa-edit"></i>
 								</h:commandLink>
+
+
 								<h:commandLink style="margin-left:20px"
 									styleClass="text text-primary"
 									action="#{editObjectiveBean.cancel()}">  cancel </h:commandLink>
@@ -110,5 +121,8 @@
 		</div>
 
 		</section>
+
+
+
 	</ui:define>
 </ui:composition>

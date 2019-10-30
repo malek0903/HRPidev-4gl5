@@ -36,6 +36,8 @@ public class FeedBackService implements FeedBackInterfaceRemote {
 		em.remove(f);
 	}
 	
+	
+	
 	@Override
 	public List<Feedback> getAllFeedback() {
 		TypedQuery<Feedback> query = em.createQuery("Select e from Feedback e", Feedback.class);
@@ -45,8 +47,22 @@ public class FeedBackService implements FeedBackInterfaceRemote {
 	
 	@Override
 	public List<Feedback> getAllFeedBackByEmployeeGiven(Long idEmpGiven) {
-		TypedQuery<Feedback> query = em.createQuery("Select e from Feedback e where e.idGivenByEmployee=:idEmpGiven", Feedback.class).setParameter("idEmpGiven", idEmpGiven);
+		TypedQuery<Feedback> query = em.createQuery("Select e from Feedback e where e.feedbackPK.idGivenByEmployee=:idEmpGiven", Feedback.class).setParameter("idEmpGiven", idEmpGiven);
 		List<Feedback> result = query.getResultList();
 		return result;
+	}
+	
+	@Override
+	public List<Feedback> getAllFeedBackByidEval(Long idEval360) {
+		TypedQuery<Feedback> query = em.createQuery("Select e from Feedback e where e.feedbackPK.idEval360=:idEval360", Feedback.class).setParameter("idEval360", idEval360);
+		List<Feedback> result = query.getResultList();
+		return result;
+	}
+	
+	@Override
+	public Integer getNbAllFeddbacks() {
+		TypedQuery<Integer> query = em.createQuery("Select COUNT(c) FROM Feedback c", Integer.class);
+		Integer EmployeCount = query.getSingleResult();
+		return EmployeCount;
 	}
 }

@@ -53,9 +53,7 @@
 					</li>
 					<!-- END User avatar toggle-->
 					<!-- START lock screen-->
-					<li class="nav-item d-none d-md-block"><a class="nav-link"
-						href="lock.html" title="Lock screen"><i
-							class="fa fa-fw fa-lock"></i></a></li>
+					
 					<!-- END lock screen-->
 				</ul>
 				<!-- END Left navbar-->
@@ -68,20 +66,44 @@
 					<li class="nav-item dropdown dropdown-list"><a
 						class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
 						data-toggle="dropdown"><i class="fa fa-fw fa-bell-o"></i><span
-							class="badge badge-danger">11</span></a> <!-- START Dropdown menu-->
+							class="badge badge-danger">#{notificationBean.nbNotifications}</span></a>
+						<!-- START Dropdown menu-->
 						<div class="dropdown-menu dropdown-menu-right animated flipInX">
 							<div class="dropdown-item">
 								<!-- START list group-->
 								<div class="list-group">
 									<!-- list item-->
-									<div class="list-group-item list-group-item-action">
-										<div class="media">
-											<div class="align-self-start mr-2">
-												<i class="fa fa-fw fa-twitter fa-2x text-info"></i>
+
+
+
+									<c:forEach var="notification"
+										items="#{notificationBean.evalCreatedByManager}">
+										<!-- list item-->
+										<div class="list-group-item list-group-item-action">
+											<div class="media">
+												<div class="align-self-start mr-2">
+													<i class="fa fa-fw fa-star-half-empty fa-2x text-info"></i>
+												</div>
+												<div class="media-body">
+													<p class="m-0">#{notification.title}</p>
+													<p class="m-0 text-muted text-sm">#{notification.description}</p>
+												</div>
 											</div>
-											<div class="media-body">
-												<p class="m-0">New followers</p>
-												<p class="m-0 text-muted text-sm">1 new follower</p>
+										</div>
+									</c:forEach>
+
+									<c:forEach var="notification"
+										items="#{notificationBean.evalCreatedByAdmin}">
+										<!-- list item-->
+										<div class="list-group-item list-group-item-action">
+											<div class="media">
+												<div class="align-self-start mr-2">
+													<i class="fa fa-fw fa-star-half-empty fa-2x text-danger"></i>
+												</div>
+												<div class="media-body">
+													<p class="m-0">#{notification.title}</p>
+													<p class="m-0 text-muted text-sm">#{notification.description}</p>
+												</div>
 											</div>
 											<div class="media-body">
 												<p class="m-0">New followers</p>
@@ -115,10 +137,85 @@
 											class="text-sm">More notifications</span><span
 											class="badge badge-danger ml-auto">14</span></span>
 									</div>
+										</div>
+									</c:forEach>
+
+									<c:forEach var="notification"
+										items="#{notificationBean.objectiveCreatedByAdmin}">
+										<!-- list item-->
+										<div class="list-group-item list-group-item-action">
+											<div class="media">
+												<div class="align-self-start mr-2">
+													<i class="fa fa-fw fa-edit fa-2x text-danger"></i>
+												</div>
+												<div class="media-body">
+													<p class="m-0">#{notification.title}</p>
+													<p class="m-0 text-muted text-sm">#{notification.description}</p>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+
+
+									<c:forEach var="notification"
+										items="#{notificationBean.objectiveCreatedByManager}">
+										<!-- list item-->
+										<div class="list-group-item list-group-item-action">
+											<div class="media">
+												<div class="align-self-start mr-2">
+													<i class="fa fa-fw fa-edit fa-2x text-primary"></i>
+												</div>
+												<div class="media-body">
+													<p class="m-0">#{notification.title}</p>
+													<p class="m-0 text-muted text-sm">#{notification.description}</p>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+
+									<c:forEach var="notification"
+										items="#{notificationBean.evalStartedByManager}">
+										<!-- list item-->
+										<div class="list-group-item list-group-item-action">
+											<div class="media">
+												<div class="align-self-start mr-2">
+													<i class="fa fa-fw fa-edit fa-2x text-primary"></i>
+												</div>
+												<div class="media-body">
+													<p class="m-0">#{notification.title}</p>
+													<p class="m-0 text-muted text-sm">#{notification.description}</p>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+
+									<c:forEach var="notification"
+										items="#{notificationBean.giveFeedbackon360Eval}">
+										<!-- list item-->
+										<div class="list-group-item list-group-item-action">
+											<div class="media">
+												<div class="align-self-start mr-2">
+													<i class="fa fa-fw fa-address-card fa-2x text-info"></i>
+												</div>
+												<div class="media-body">
+													<p class="m-0">#{notification.title}</p>
+													<p class="m-0 text-muted text-sm">#{notification.description}</p>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+
 								</div>
 								<!-- END list group-->
 							</div>
 						</div> <!-- END Dropdown menu--></li>
+
+					<li class="nav-item d-none d-md-block"><a class="nav-link"
+						href="../login.xhtml" title="Lock screen"><i
+							class="fa fa-fw fa-lock"></i></a></li>
+
+
+
 					<!-- END Alert menu-->
 
 

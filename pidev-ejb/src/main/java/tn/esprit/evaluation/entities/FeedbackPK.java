@@ -18,6 +18,8 @@ public class FeedbackPK implements Serializable {
 		this.idEval360 = idEval360;
 		this.idGivenByEmployee = idEmployee;
 	}
+	
+	public FeedbackPK() {}
 
 	public Long getIdEval360() {
 		return idEval360;

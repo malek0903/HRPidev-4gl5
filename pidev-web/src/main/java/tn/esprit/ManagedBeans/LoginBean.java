@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -28,42 +27,49 @@ public class LoginBean implements Serializable {
 	private Boolean loggedIn;
 	private Employee current_employe;
 
+	private String current_user_string;
+
 	@EJB
 	userService userService;
-	
+
 	@EJB
 	EmployeService employeService ;
 	
 	
 	public String doLogin() {
 		String navigateTo = "null";
+
 		this.current_user = userService.getUserByEmailPassword(login, password);
 		this.current_employe = employeService.getEmployeeByEmailPassword(login, password);
 		System.out.println(current_user.getId() + "5raaaaaaaaaa");
 		EmployeeRole currentUserRole = this.current_user.getRole();
 		if (currentUserRole != null) {
+		// this.current_employe = employeService.getEmployeeByEmailPassword(login,
+		// password);
+
+		if (current_user != null) {
+			EmployeeRole currentUserRole = this.current_user.getRole();
+			this.current_user_string = currentUserRole.toString();
 			if (currentUserRole == EmployeeRole.Manager)
-				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";
+				navigateTo = "/pages/EmployesListEval.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Employee)
 				navigateTo = "/timesheet/ScrumBoard.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Admin)
-				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";
+				navigateTo = "/pages/objectives.xhtml?faces-redirect=true";
 			loggedIn = true;
 
+		} else {
+			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Wrong Email or password!"));
 		}
 
-		else {
-			System.out.println("dafagq" + currentUserRole);
-			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
-		}
 		return navigateTo;
 	}
 
 	public String doLogout() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/login?faces-redirect=true";
+
+		return "../login.xhtml";
 	}
 
 	public String getLogin() {
@@ -125,7 +131,13 @@ public class LoginBean implements Serializable {
 	public void setEmployeService(EmployeService employeService) {
 		this.employeService = employeService;
 	}
-	
-	
+
+	public String getCurrent_user_string() {
+		return current_user_string;
+	}
+
+	public void setCurrent_user_string(String current_user_string) {
+		this.current_user_string = current_user_string;
+	}
 
 }

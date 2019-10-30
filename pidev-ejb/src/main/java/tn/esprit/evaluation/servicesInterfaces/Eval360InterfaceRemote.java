@@ -19,4 +19,10 @@ public interface Eval360InterfaceRemote {
 
 	List<Eval360> getListEval360Public();
 
+	void deleteEval360(Eval360 eval);
+
+	void updateEval360(Eval360 eval);
+
+	List<Eval360> getListEval360PublicAndDate();
+
 }

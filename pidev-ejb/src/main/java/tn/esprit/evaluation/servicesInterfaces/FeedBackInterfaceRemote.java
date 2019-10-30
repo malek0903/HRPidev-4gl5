@@ -19,4 +19,8 @@ public interface FeedBackInterfaceRemote {
 
 	List<Feedback> getAllFeedBackByEmployeeGiven(Long idEmpGiven);
 
+	List<Feedback> getAllFeedBackByidEval(Long idEval360);
+
+	Integer getNbAllFeddbacks();
+
 }

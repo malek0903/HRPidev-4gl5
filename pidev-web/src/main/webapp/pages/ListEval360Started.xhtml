@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/default/template.xhtml">
+
+
+	<ui:define name="content">
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					Eval360 List<small data-localize="dashboard.WELCOME"></small>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-xl-8 col-md-8">
+					<div class="card">
+						<div class="card-header">Update objectives</div>
+						<div class="card-body">
+							<div class="table-responsive bootgrid">
+								<h:dataTable style="border:none"
+									styleClass="table table-striped" id="bootgrid-command"
+									value="#{eval360Beans.getEvals()}" var="eval" border="1">
+									<h:column>
+
+										<f:facet name="header">
+											<h:outputText value="Employee" />
+										</f:facet>
+										<h:outputText value="#{eval.concernedEmployee.firstName}" />
+									</h:column>
+
+									<h:column>
+
+										<f:facet name="header">
+											<h:outputText value="Status" />
+										</f:facet>
+										<h:outputText value="#{eval.status}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Begins At" />
+										</f:facet>
+										<h:outputText value="#{eval.dateBegin}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Ends At" />
+										</f:facet>
+										<h:outputText value="#{eval.dateEnd}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Details" />
+										</f:facet>
+										<h:outputText value="#{eval.evalDetails}" />
+									</h:column>
+									<h:column>
+										<h:form>
+											<h:commandButton
+												styleClass="btn btn-sm btn-warning mr-2 command-edit "
+												value="edit"
+												action="#{editEval360Beans.recupererEval360(eval)}">
+											</h:commandButton>
+
+											<h:commandButton
+												styleClass="btn btn-sm btn-danger command-delete"
+												value="delete"
+												action="#{eval360Beans.deleteEval360(eval)}">
+											</h:commandButton>
+										</h:form>
+									</h:column>
+
+								</h:dataTable>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+		</div>
+		</section>
+
+	</ui:define>
+
+</ui:composition>
