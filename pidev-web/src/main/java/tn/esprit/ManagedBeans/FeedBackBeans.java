@@ -19,6 +19,7 @@ import tn.esprit.evaluation.services.FeedBackService;
 import tn.esprit.evaluation.services.NotificationService;
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
+import tn.esprit.userCommun.services.EmployeService;
 
 @ManagedBean
 @SessionScoped
@@ -29,6 +30,9 @@ public class FeedBackBeans {
 
 	@EJB
 	NotificationService notificationService;
+
+	@ManagedProperty(value = "#{EmployeeBeans}")
+	EmployeeBeans employeebeans;
 
 	@ManagedProperty(value = "#{LoginBean}")
 	LoginBean loginBean;
@@ -45,7 +49,9 @@ public class FeedBackBeans {
 
 	public String commentEmpty = "";
 
-	public int nbAllFeedBacks ;
+	public int nbAllFeedBacks;
+
+
 
 	public void initialisation() {
 		comment = null;
@@ -53,6 +59,8 @@ public class FeedBackBeans {
 		mark = 0;
 		this.erreur = "";
 	}
+
+	
 
 	public int getNbAllFeedBacks() {
 		nbAllFeedBacks = feedBackService.getAllFeedback().size();
@@ -83,6 +91,14 @@ public class FeedBackBeans {
 
 	public Feedback getFeedBack() {
 		return feedBack;
+	}
+
+	public EmployeeBeans getEmployeebeans() {
+		return employeebeans;
+	}
+
+	public void setEmployeebeans(EmployeeBeans employeebeans) {
+		this.employeebeans = employeebeans;
 	}
 
 	public NotificationService getNotificationService() {
