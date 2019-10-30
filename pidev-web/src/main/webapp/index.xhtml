@@ -5,9 +5,24 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
 	template="/template/default/template.xhtml">
 	<ui:param name="page_name" value="Index" />
 	<ui:define name="menu">
+		<h:body>
+<h:form>
+
+	<p:commandButton value="graficar"  actionListener="#{staticsBean.graficar}" update="hp" />
+									<p:panelGrid id="hp">
+			<p:chart type="pie" model="#{staticsBean.pieModel2}" style="width: 1000px; height:1000px;" rendered="#{sqtaticsBean.pieModel2 != null}"/>
+			
+			</p:panelGrid>
+									
+									</h:form>
+			
+			
+			
+</h:body>
 		
 	</ui:define>
 </ui:composition>

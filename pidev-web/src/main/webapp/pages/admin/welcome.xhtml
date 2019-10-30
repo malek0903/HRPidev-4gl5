@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+template="/template/default/template.xhtml">
+	<ui:param name="page_name" value="Connexion" />
+	<ui:define name="menu">
+	
+		<h:form id="form">
+			<h1>Gerer les employees</h1>
+			<h:panelGrid columns="2">
+			
+				<h:body>
+	<div align="center">
+	
+		
+		
+			<h:dataTable value="#{employeBean.employes}" var="employe" border="1">
+		
+				<h:column>
+			
+					<f:facet name="header">
+						<h:outputText value="login" />
+					</f:facet>
+					<h:outputText value="#{employe.email}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="nom" />
+					</f:facet>
+					<h:outputText value="#{employe.nom}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="prenom" />
+					</f:facet>
+					<h:outputText value="#{employe.prenom}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="role" />
+					</f:facet>
+					<h:outputText value="#{employe.role}" />
+				</h:column>
+            <h:column>
+					<f:facet name="header">
+						<h:outputText value="Actif" />
+					</f:facet>
+					<h:outputText value="#{employe.isActif== true ? 'oui' : 'non'}" />
+				</h:column>
+
+				
+            <h:column>
+					<f:facet name="header">
+						<h:outputText value="numtelephone" />
+					</f:facet>
+					<h:outputText value="#{employe.numtelephone}" />
+				</h:column>
+				
+				 <h:column>
+					<f:facet name="header">
+						<h:outputText value="adresse" />
+					</f:facet>
+					<h:outputText value="#{employe.adresse}" />
+				</h:column>
+				 <h:column>
+					<f:facet name="header">
+						<h:outputText value="salaire" />
+					</f:facet>
+					<h:outputText value="#{employe.salaire}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					
+					<h:commandButton
+						action="#{employeBean.supprimerEmploye(employe.id)}"
+						value="supprimer" />
+						
+					<h:commandButton action="#{employeBean.recupererEmploye(employe)}"
+						value="Modifier" />
+
+</h:column>
+
+
+			</h:dataTable>
+	<h:commandButton action="#{employeBean.addEmploye()}"
+					value="Ajouter employe" />
+					
+					<h:commandButton action="#{employeBean.updateEmploye()}"
+				value="Modifier employe" />
+				<h:commandButton action="#{employeBean.navigateServlet()}"
+					value="Message" />
+	</div>
+
+
+	<div align="center">
+	
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="login (email)" />
+				<h:inputText value="#{employeBean.email}" />
+
+				<h:outputLabel value="password" />
+				<h:inputSecret value="#{employeBean.password}" />
+
+				<h:outputLabel value="nom" />
+				<h:inputText value="#{employeBean.nom}" />
+
+				<h:outputLabel value="prenom" />
+				<h:inputText value="#{employeBean.prenom}" />
+
+				<h:outputLabel value="Actif / inactif" />
+				<h:selectBooleanCheckbox value="#{employeBean.isActif}" />
+
+				<h:outputText value="Role" />
+				<h:selectOneMenu value="#{employeBean.role}">
+					<f:selectItem itemLabel="Selectionner le role" itemValue="" />
+					<f:selectItems value="#{data.roles}" />
+				</h:selectOneMenu>
+           <h:outputLabel value="numtelephone" />
+				<h:inputText value="#{employeBean.numtelephone}" />
+				 <h:outputLabel value="adresse" />
+				<h:inputText value="#{employeBean.adresse}" />
+				
+			
+			
+					<h:outputLabel value="salaire" />
+		
+			 <h:inputText id="validatesalaire"
+				 value="#{employeBean.salaire}" 
+			required="true"
+			requiredMessage="tu dois specifier le salaire"
+			validatorMessage ="le salaire doit etre comprise entre 350 et 3500">
+			<f:validateDoubleRange minimum ="350" maximum ="3500" for="validatesalaire"/>
+			
+			
+			</h:inputText>
+	<h:message for="validatesalaire" style ="color:green"/>
+
+				
+			</h:panelGrid>
+	
+	</div>
+
+	<h:form>
+		<h:commandButton action="#{loginBean.doLogout()}" value="logout" />
+	</h:form>
+
+</h:body>
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
