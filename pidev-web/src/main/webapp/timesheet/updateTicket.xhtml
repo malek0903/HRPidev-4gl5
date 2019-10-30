@@ -88,7 +88,7 @@
 									<h:selectOneMenu value="#{ticketBean.selectedTeamId}">
 										<f:selectItem itemLabel="Selectionner l'equipe "
 											itemValue="" />
-										<f:selectItems value="#{ticketBean.team}" var="team"
+										<f:selectItems value="#{ticketBean.teams}" var="team"
 											itemValue="#{team.id}" itemLabel="#{team}" />
 
 									</h:selectOneMenu>
@@ -97,13 +97,14 @@
 								</div>
 							</div>
 						</fieldset>
-
-						<h:commandLink styleClass="btn btn-success"
+						<div class="col-md-2">
+						<h:commandLink class="btn btn-success" 
 							action="#{ticketBean.onUpdateTeam()}">
-							<i class="fa fa-fw fa-plus">update</i>
+							update
 						</h:commandLink>
 						<h:commandLink styleClass="text text-primary"
 							action="#{ticketBean.cancel()}">  cancel </h:commandLink>
+							</div>
 					</h:form>
 				</div>
 			</div>

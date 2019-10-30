@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
@@ -12,6 +13,7 @@ import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.userCommun.services.EmployeService;
 
 @ManagedBean
+@SessionScoped
 public class EmployeeBeans {
 
 	@EJB

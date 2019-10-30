@@ -13,86 +13,205 @@
 		<section class="section-container"> <!-- Page content-->
 		<div class="content-wrapper">
 			<div class="content-heading">Scrum Board</div>
+			<div>
+				<ul
+					style="height: 100%; width: 100%; overflow: hidden; overflow-x: scroll; display: flex;">
+					<c:forEach var="ticket" items="#{ticketBean.tickets}">
+						<c:if test="#{ticket.toDoList==true}">
+							<li style="display: inline-block; margin-left: 4px;">
+								<div>
+									<!-- Team Card-->
+									<div class="card card-default">
+										<div class="card-header">
+											<div class="float-right">
+												<div class="badge badge-success">free</div>
+											</div>
+											<div class="card-title">#{ticket.title}</div>
+										</div>
+										<div class="card-body bt">
+											<h4>Description</h4>
+											#{ticket.title}
+										</div>
+										<div class="card-body">
+											<ul class="list-inline m-0">
+												<li class="list-inline-item">
+													<div class="badge bg-gray">#{ticket.difficulty}</div>
+												</li>
+											</ul>
+										</div>
+										<div class="card-footer text-center">
+											<h:form>
+												<h:commandLink class="btn btn-primary"
+													action="#{ticketBean.affecter(ticket,loginBean.current_employe)}">Affecter a moi</h:commandLink>
+											</h:form>
+										</div>
+									</div>
+									<!-- end Team Card-->
+								</div>
+							</li>
+						</c:if>
+					</c:forEach>
+
+				</ul>
+			</div>
+
+			<!-- Bottom  Block -->
 
 			<div class="row">
 				<c:forEach var="ticket" items="#{ticketBean.tickets}">
-					<div class="col-xl-4 col-lg-6">
-						<!-- Team Card-->
-						<div class="card card-default">
-							<div class="card-header">
-								<div class="float-right">
-									<div class="badge badge-success">free</div>
+					<c:if test="#{ticket.toDo==true}">
+						<c:if
+							test="#{ticket.employesTicket.id == loginBean.current_employe.id}">
+
+
+							<!-- ToDo list  -->
+							<div class="col-xl-4 col-lg-4">
+								<h5>TO DO list</h5>
+								<!-- Team Card-->
+								<div class="card card-default">
+									<div class="card-header">
+										<div class="float-right">
+											<div class="badge badge-success">#{loginBean.current_user.firstName}</div>
+										</div>
+										<div class="card-title">#{ticket.title}</div>
+									</div>
+									<div class="card-body bt">
+										<h4>Description</h4>
+										#{ticket.title}
+									</div>
+									<div class="card-body">
+										<ul class="list-inline m-0">
+											<li class="list-inline-item">
+												<div class="badge bg-gray">#{ticket.difficulty}</div>
+											</li>
+
+										</ul>
+									</div>
+									<div class="card-footer text-center">
+										<h:form>
+											<h:commandLink class="btn btn-primary"
+												action="#{ticketBean.DoIt(ticket,loginBean.current_employe)}">DO IT</h:commandLink>
+										</h:form>
+									</div>
+
 								</div>
-								<div class="card-title">#{ticket.title}</div>
-							</div>
-							<div class="card-body bt">
-								<h4>Description</h4>
-								#{ticket.title}
-
-							</div>
+								<!-- end Team Card-->
 
 
-							<div class="card-body">
-								<ul class="list-inline m-0">
-									<li class="list-inline-item">
-										<div class="badge bg-gray">#{ticket.difficulty}</div>
-									</li>
+							</div>
+							<div class="col-xl-4 col-lg-4"></div>
+							<div class="col-xl-4 col-lg-4"></div>
+						</c:if>
+					</c:if>
 
-								</ul>
+				<!-- end toDo List -->
+
+				<!-- doing List -->
+
+			
+					<c:if test="#{ticket.doing==true}">
+						<c:if
+							test="#{ticket.employesTicket.id == loginBean.current_employe.id}">
+							<div class="col-xl-4 col-lg-4"></div>
+							<div class="col-xl-4 col-lg-4">
+								<h5>Doing list</h5>
+								<!-- Team Card-->
+								<div class="card   mb-3">
+									<div class="card-header bg-primary">
+										<div class="float-right">
+											<div class="badge badge-success">#{loginBean.current_user.firstName}</div>
+										</div>
+
+										<div class="card-title">#{ticket.title}</div>
+									</div>
+									<div class="card-body bt">
+										<h4>Description</h4>
+										#{ticket.title}
+									</div>
+									<div class="card-body">
+										<ul class="list-inline m-0">
+											<li class="list-inline-item">
+												<div class="badge bg-gray">#{ticket.difficulty}</div>
+											</li>
+
+										</ul>
+										<div class="progress">
+													<div class="progress-bar bg-success" style="width: #{ticketBean.compareDate(ticket)}%">
+													<span class="sr-only">35% Complete (success)</span>
+												</div>
+														<div class="progress-bar bg-warning progress-bar-striped"
+													style="width:#{ticketBean.compareDate1(ticket)}%">
+													<span class="sr-only">20% Complete (warning)</span>
+												</div>
+
+													<div class="progress-bar bg-danger" style="width: #{ticketBean.compareDate2(ticket)}%">
+													<span class="sr-only">10% Complete (danger)</span>
+												</div>
+										</div>
+									</div>
+									<div class="card-footer text-center">
+										<h:form>
+											<h:commandLink class="btn btn-primary"
+												action="#{ticketBean.finishIt(ticket,loginBean.current_employe)}">Finish IT</h:commandLink>
+										</h:form>
+									</div>
+
+								</div>
+								<!-- end Team Card-->
 							</div>
-							<div class="card-footer text-center">
-								<h:form>
-									<h:commandButton class="btn btn-primary"
-										action="#{ticketBean.affecter(ticket)}">Affecter a moi</h:commandButton>
-								</h:form>
+
+							<div class="col-xl-4 col-lg-4"></div>
+						</c:if>
+					</c:if>
+
+
+				<!-- end doing List -->
+				<!-- doing List -->
+
+					<c:if test="#{ticket.done==true}">
+						<c:if
+							test="#{ticket.employesTicket.id == loginBean.current_employe.id}">
+							<div class="col-xl-4 col-lg-4"></div>
+
+							<div class="col-xl-4 col-lg-4"></div>
+							<div class="col-xl-4 col-lg-4">
+								<h5>DONE list</h5>
+
+								<!-- Team Card-->
+								<div class="card   mb-3">
+									<div class="card-header bg-success">
+										<div class="float-right">
+											<div class="badge badge-success">#{loginBean.current_user.firstName}</div>
+										</div>
+										<div class="card-title ">#{ticket.title}</div>
+									</div>
+									<div class="card-body bt">
+										<h4>Description</h4>
+										#{ticket.title}
+									</div>
+									<div class="card-body">
+										<ul class="list-inline m-0">
+											<li class="list-inline-item">
+												<div class="badge bg-gray">#{ticket.difficulty}</div>
+											</li>
+
+										</ul>
+									</div>
+									<div class="card-footer text-center"></div>
+
+								</div>
+								<!-- end Team Card-->
+
+
 							</div>
-						</div>
-						<!-- end Team Card-->
-					</div>
+						</c:if>
+					</c:if>
 
 				</c:forEach>
+				<!-- end doing List -->
 			</div>
-			<!-- ToDo list  -->
-
-			<c:if test="#{ticketBean.toDoList==true}">
-				<div class="row">
-					<c:forEach var="ticket" items="#{ticketBean.tickets}">
-						<div class="col-xl-4 col-lg-6">
-							<!-- Team Card-->
-							<div class="card card-default">
-								<div class="card-header">
-									<div class="float-right">
-										<div class="badge badge-success">free</div>
-									</div>
-									<div class="card-title">#{ticket.title}</div>
-								</div>
-								<div class="card-body bt">
-									<h4>Description</h4>
-									#{ticket.title}
-
-								</div>
-
-
-								<div class="card-body">
-									<ul class="list-inline m-0">
-										<li class="list-inline-item">
-											<div class="badge bg-gray">#{ticket.difficulty}</div>
-										</li>
-
-									</ul>
-								</div>
-								<div class="card-footer text-center"></div>
-
-							</div>
-							<!-- end Team Card-->
-						</div>
-
-					</c:forEach>
-				</div>
-			</c:if>
-			<!-- end toDo List -->
 		</div>
-		</section>
+		<!-- end bloc --> </section>
 		<!-- Page footer-->
 
 	</ui:define>

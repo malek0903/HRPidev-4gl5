@@ -31,7 +31,7 @@ public class TeamBean {
 	private List<Ticket> tickets = new ArrayList<Ticket>();
 	private List<Team> team=new ArrayList<Team>();
 	private List<Projet> projets = new ArrayList<Projet>();
-	
+	private Boolean chefEquipe;
 	private List<String> cities;
 	  private String[] selectedCities2;
 	@EJB
@@ -45,19 +45,6 @@ public class TeamBean {
 	public String goToAjouter() {
 
 		return "/timesheet/addTeam.xhtml?faces-redirect=true";
-	}
-	@PostConstruct
-    public void init() {
-        cities = new ArrayList<String>();
-        cities.add("Miami");
-        cities.add("London");
-        cities.add("Paris");
-        cities.add("Istanbul");
-        cities.add("Berlin");
-        cities.add("Barcelona");
-        cities.add("Rome");
-        cities.add("Brasilia");
-        cities.add("Amsterdam");
 	}
 	
 	public void ajouterTeamold() {
@@ -173,6 +160,14 @@ public class TeamBean {
 
 	public void setSelectedCities2(String[] selectedCities2) {
 		this.selectedCities2 = selectedCities2;
+	}
+
+	public Boolean getChefEquipe() {
+		return chefEquipe;
+	}
+
+	public void setChefEquipe(Boolean chefEquipe) {
+		this.chefEquipe = chefEquipe;
 	}
 
 

@@ -2,6 +2,7 @@ package tn.esprit.ManagedBeans;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -32,19 +33,20 @@ public class LoginBean implements Serializable {
 	
 	@EJB
 	EmployeService employeService ;
-
+	
+	
 	public String doLogin() {
 		String navigateTo = "null";
 		this.current_user = userService.getUserByEmailPassword(login, password);
 		this.current_employe = employeService.getEmployeeByEmailPassword(login, password);
-		//System.out.println(current_user.getId() + "5raaaaaaaaaa");
+		System.out.println(current_user.getId() + "5raaaaaaaaaa");
 		EmployeeRole currentUserRole = this.current_user.getRole();
 		if (currentUserRole != null) {
 			if (currentUserRole == EmployeeRole.Manager)
 				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Employee)
-				navigateTo = "/pages/ListEval360.xhtml?faces-redirect=true";
+				navigateTo = "/timesheet/ScrumBoard.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Admin)
 				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";

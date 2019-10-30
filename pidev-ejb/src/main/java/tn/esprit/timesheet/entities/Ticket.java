@@ -37,7 +37,7 @@ public class Ticket  implements Serializable {
 	private Boolean toDoList;
 	private Boolean toDo;
 	private Boolean doing;
-	private Boolean Done;
+	private Boolean done;
 	
 	@Enumerated(EnumType.STRING)
 	private Difficulty difficulty;
@@ -228,7 +228,7 @@ public class Ticket  implements Serializable {
 	
 	
 	public Ticket(int idTicket, String title, String description
-			, Difficulty difficulty,Status status,Boolean toDoList,Boolean toDo,Boolean doing ,Boolean Done) {
+			, Difficulty difficulty,Status status,Boolean toDoList,Boolean toDo,Boolean doing ,Boolean Done,Employee employesTicket,Date dateBegin) {
 		super();
 		this.idTicket = idTicket;
 		this.title = title;
@@ -238,7 +238,50 @@ public class Ticket  implements Serializable {
 		this.toDoList=toDoList;
 		this.toDo=toDo;
 		this.doing=doing;
-		this.Done= Done;
+		this.done= Done;
+		this.employesTicket=employesTicket;
+		this.dateBegin = dateBegin;
+	}
+	
+	
+	public Ticket(int idTicket, Boolean toDoList, Boolean toDo, Boolean doing, Boolean done, Difficulty difficulty,
+			Status status) {
+		super();
+		this.idTicket = idTicket;
+		this.toDoList = toDoList;
+		this.toDo = toDo;
+		this.doing = doing;
+		this.done = done;
+		this.difficulty = difficulty;
+		this.status = status;
+	}
+	public Ticket(int idTicket, Boolean toDoList, Boolean toDo, Boolean doing, Boolean done, Difficulty difficulty,
+			Status status,Date dateBegin) {
+		super();
+		this.idTicket = idTicket;
+		this.toDoList = toDoList;
+		this.toDo = toDo;
+		this.doing = doing;
+		this.done = done;
+		this.difficulty = difficulty;
+		this.status = status;
+		this.dateBegin= dateBegin;
+	}
+	
+	public Ticket(int idTicket, String title, String description
+			, Difficulty difficulty,Status status,Boolean toDoList,Boolean toDo,Boolean doing ,Boolean Done,Employee employesTicket) {
+		super();
+		this.idTicket = idTicket;
+		this.title = title;
+		this.description = description;
+		this.difficulty = difficulty;
+		this.status = status;
+		this.toDoList=toDoList;
+		this.toDo=toDo;
+		this.doing=doing;
+		this.done= Done;
+		this.employesTicket=employesTicket;
+		
 	}
 	public Boolean getToDoList() {
 		return toDoList;
@@ -259,10 +302,10 @@ public class Ticket  implements Serializable {
 		this.doing = doing;
 	}
 	public Boolean getDone() {
-		return Done;
+		return done;
 	}
 	public void setDone(Boolean done) {
-		Done = done;
+		done = done;
 	}
 	public Projet getProjet() {
 		return projet;

@@ -16,14 +16,10 @@
 					List ticket<small data-localize="dashboard.WELCOME"></small>
 				</div>
 			</div>
-
-
-
 			<div class="row">
 				<div class="col-xl-12 col-md-12">
 					<div class="card" style="">
 						<div class="card-header">list tickets</div>
-
 						<div class="ml-auto">
 							<h:form>
 								<h:commandLink
@@ -34,8 +30,9 @@
 					</div>
 					<div class="card-body">
 						<div class="table-responsive bootgrid">
-							<h:dataTable style="border:none" styleClass="table table-striped"
-								id="bootgrid-command" value="#{ticketBean.tickets}"
+							<h:dataTable class="table table-striped my-4 w-100" id="datatable1" 
+								style="border:none" 
+								 value="#{ticketBean.tickets}"
 								var="tickets" border="1">
 								<h:column>
 
@@ -62,6 +59,19 @@
 									</f:facet>
 									<h:outputText value="#{tickets.team.nameTeam}" />
 								</h:column>
+								
+									<h:column>
+									<f:facet name="header">
+										<h:outputText value="Temp estimé" />
+									</f:facet>
+									
+									<h:outputText  value="#{tickets.estimatedHours}"  >
+									<f:convertNumber pattern="#0.0" />
+									
+									</h:outputText>
+									<h:outputText value="   "/>
+									<h:outputText value="Hours"/>
+								</h:column>
 
 								<h:column>
 
@@ -70,8 +80,8 @@
 											action="#{ticketBean.modifier(tickets)}">
 											update
 										</h:commandLink>
-								
-					
+
+
 										<h:commandLink styleClass="btn btn-danger"
 											action="#{ticketBean.delete(tickets.idTicket)}">
 											delete

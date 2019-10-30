@@ -20,7 +20,7 @@
 							data-toggle="button" aria-pressed="false"
 							action="#{teamBean.goToAjouter}">  Ajouter Team </h:commandLink>
 					</h:form>
-					
+
 				</div>
 			</div>
 			<div class="row">
@@ -37,10 +37,10 @@
 							<div class="card-body bt">
 								<h4>Employees</h4>
 								<c:forEach var="employe" items="#{teamBean.employees}">
-									<c:if test="">
-									<a class="inline" href="#">#{employe.firstName}</a>
+									<c:if test="#{employe.employeesTeam.id == teams.id }">
+										<a class="inline" href="#">#{employe.firstName}</a>
 									</c:if>
-								</c:forEach>
+							</c:forEach>
 							</div>
 							<div class="card-body bb text-center">
 								<div data-toggle="tooltip"
@@ -84,8 +84,17 @@
 								</ul>
 							</div>
 							<div class="card-footer text-center">
-								<a class="btn btn-secondary btn-oval" href="#">Manage Team</a>
+								<c:forEach var="employe" items="#{teamBean.employees}">
+							<c:if test="#{employe.chefEquipe == true}">
+							<c:if test="#{employe.employeesTeam.id == teams.id }">
+								<a class="btn btn-secondary btn-oval" href="#">Manage Team <br/>#{employe.firstName}</a>
+							</c:if>
+							</c:if>
+								
+								</c:forEach>
 							</div>
+							
+							
 						</div>
 						<!-- end Team Card-->
 					</div>
