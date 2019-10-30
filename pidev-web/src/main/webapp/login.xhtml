@@ -20,6 +20,7 @@
 						<h:form id="form">
 							<h1 style="margin-left: 30%">Connexion</h1>
 
+
 							<h:panelGroup layout="block">
 								<div class="form-group">
 									<h:outputText value="Email" />
@@ -40,15 +41,22 @@
 									<h:outputText value="Mot de passe" />
 									<h:inputSecret a:placeholder="Saisir votre mot de passe"
 										class="form-control" value="#{loginBean.password}" />
-								</div>
-							</h:panelGroup>
-							<h:commandButton id="btn" value="Connexion"
-								styleClass="btn btn-success" action="#{loginBean.doLogin()}" />
-							<h:message for="btn"
-								styleClass="alert alert-danger alert-dismissible " />
 
+								</div>
+
+							</h:panelGroup>
+							<div align="center">
+								<h:commandButton id="btn" value="Connexion"
+									styleClass="btn btn-success" action="#{loginBean.doLogin()}" />
+
+								<br />
+								<br />
+
+								<h:message for="btn" styleClass="alert alert-danger" />
+							</div>
 
 						</h:form>
+
 					</div>
 
 				</div>

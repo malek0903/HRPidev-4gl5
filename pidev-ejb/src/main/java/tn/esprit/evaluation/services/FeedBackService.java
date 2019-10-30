@@ -58,4 +58,11 @@ public class FeedBackService implements FeedBackInterfaceRemote {
 		List<Feedback> result = query.getResultList();
 		return result;
 	}
+	
+	@Override
+	public Integer getNbAllFeddbacks() {
+		TypedQuery<Integer> query = em.createQuery("Select COUNT(c) FROM Feedback c", Integer.class);
+		Integer EmployeCount = query.getSingleResult();
+		return EmployeCount;
+	}
 }

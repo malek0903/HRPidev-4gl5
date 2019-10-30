@@ -2,6 +2,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
 	xmlns:t="http://myfaces.apache.org/tomahawk">
 	<h:head>
@@ -23,31 +24,60 @@
 						<li class="nav-heading "><span
 							data-localize="sidebar.heading.HEADER">Main Navigation</span></li>
 						<li class=" "><a href="#dashboard" title="Dashboard"
-							data-toggle="collapse">
-								<div class="float-right badge badge-success">3</div> <i
-								class="fa fa-fw fa-dashboard"></i><span
+							data-toggle="collapse"> <i class="fa fa-fw fa-dashboard"></i><span
 								data-localize="sidebar.nav.DASHBOARD">Evaluation</span>
-						</a>
-							<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
-								<li class="sidebar-subnav-header">Dashboard</li>
-								
-								<li class=" active"><h:link value="Home"
-										outcome="/pages/dashboard-v1.xhtml" /></li>
-										
-								<li class=" active"><h:link value="Start new Evaluation Manager"
-										outcome="/pages/EmployesListEval.xhtml" /></li>
+						</a> <c:if test='#{loginBean.current_user_string.equals("Manager")}'>
 
-								<li class=" active"><h:link value="List Eval360"
-										outcome="/pages/ListEval360.xhtml" /></li>
+								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+									<li class="sidebar-subnav-header">Dashboard</li>
 
-								<li class=" active"><h:link value="Objectives Manager"
-										outcome="/pages/objectives.xhtml" /></li>
+									<li class=" active"><h:link value="Home"
+											outcome="/pages/dashboard-v1.xhtml" /></li>
 
-								<li class=" active"><h:link value="ListEval Manager"
-										outcome="/pages/ListEval360Started.xhtml" /></li> 
+									<li class=" active"><h:link
+											value="Start new Evaluation Manager"
+											outcome="/pages/EmployesListEval.xhtml" /></li>
+
+									<li class=" active"><h:link value="ListEval Manager"
+											outcome="/pages/ListEval360Started.xhtml" /></li>
+								</ul>
+
+							</c:if> <c:if test='#{loginBean.current_user_string.equals("Admin")}'>
+
+								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+									<li class="sidebar-subnav-header">Dashboard</li>
+
+									<li class=" active"><h:link value="Home"
+											outcome="/pages/dashboard-v1.xhtml" /></li>
+
+									<li class=" active"><h:link value="Start new Evaluation"
+											outcome="/pages/EmployesListEval.xhtml" /></li>
+
+									<li class=" active"><h:link value="List Eval360"
+											outcome="/pages/ListEval360.xhtml" /></li>
+
+									<li class=" active"><h:link value="Objectives"
+											outcome="/pages/objectives.xhtml" /></li>
+
+									<li class=" active"><h:link value="ListEval"
+											outcome="/pages/ListEval360Started.xhtml" /></li>
+								</ul>
+
+							</c:if> <c:if test='#{loginBean.current_user_string.equals("Employee")}'>
+
+								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+									<li class="sidebar-subnav-header">Dashboard</li>
+
+									<li class=" active"><h:link value="Home"
+											outcome="/pages/dashboard-v1.xhtml" /></li>
+
+									<li class=" active"><h:link value="List Eval360"
+											outcome="/pages/ListEval360.xhtml" /></li>
 
 
-							</ul></li>
+								</ul>
+
+							</c:if></li>
 						<li class="nav-heading "><span
 							data-localize="sidebar.heading.COMPONENTS">Components</span></li>
 						<li class=" "><a href="#extras" title="Extras"
@@ -56,24 +86,7 @@
 
 
 
-						<li class="nav-heading "><span
-							data-localize="sidebar.heading.COMPONENTS">Objective</span></li>
-
-
-
-
-						<li class=" "><h:link
-								outcome="/pages/evaluation/addObjective.xhtml">
-								<em class="fa fa-fw fa-plus"></em>
-								<span>Add objective</span>
-							</h:link></li>
-
-
-						<li class=" "><h:link
-								outcome="/pages/evaluation/objectives.xhtml">
-								<em class="fa fa-fw fa-list"></em>
-								<span>All objectives</span>
-							</h:link></li>
+						
 
 
 

@@ -7,7 +7,7 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:t="http://myfaces.apache.org/tomahawk"
-	template="/template/default/admin/template.xhtml">
+	template="/template/default/template.xhtml">
 
 	<ui:define name="content">
 
@@ -34,15 +34,15 @@
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Objective name:</label>
 										<div class="col-md-3">
-											<h:inputText id="nameObj" styleClass="form-control form-control-rounded"
-												value="#{editObjectiveBean.objective.name}" 
-												required="true"
-												requiredMessage="the name field is required"/>
-												<h:message for="nameObj" />
+											<h:inputText id="nameObj"
+												styleClass="form-control form-control-rounded"
+												value="#{editObjectiveBean.objective.name}" required="true"
+												requiredMessage="the name field is required" />
+											<h:message for="nameObj" style="color:red;" />
 										</div>
 									</div>
 								</fieldset>
-								
+
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Begins At:</label>
@@ -72,15 +72,16 @@
 										<label class="col-md-2 col-form-label">Objective
 											category:</label>
 										<div class="col-md-3">
-										
+
 											<h:selectOneMenu styleClass="custom-select custom-select-sm"
 												value="#{editObjectiveBean.objective.category}">
 												<f:selectItem itemValue="status" itemLabel="status" />
 												<f:selectItem itemValue="salary" itemLabel="salary" />
-												<f:selectItem itemValue="classifications" itemLabel="classifications" />
+												<f:selectItem itemValue="classifications"
+													itemLabel="classifications" />
 												<f:selectItem itemValue="level" itemLabel="level" />
 												<f:selectItem itemValue="membership" itemLabel="membership" />
-												
+
 											</h:selectOneMenu>
 										</div>
 									</div>
@@ -95,20 +96,19 @@
 												value="#{editObjectiveBean.objective.description}"
 												required="true"
 												requiredMessage="the details field is required" />
-												<h:message for="detailObj" />
-											
+											<h:message for="detailObj"  style="color:red;"/>
+
 										</div>
 									</div>
 								</fieldset>
 
-								<a class="text text-white btn btn-warning"
-									onclick="editObjective()" href="javascript:timedRefresh(5000)">
-									<i class="fa fa-fw fa-edit"></i>
-								</a>
 
-								<p:remoteCommand name="editObjectiveMethod"
-									actionListener="#{editObjectiveBean.onUpdateObjective()}"
-									style="display: none;" />
+
+								<h:commandLink styleClass="text text-white btn btn-warning"
+									action="#{editObjectiveBean.onUpdateObjective()}">
+									<i class="fa fa-fw fa-edit"></i>
+								</h:commandLink>
+
 
 								<h:commandLink style="margin-left:20px"
 									styleClass="text text-primary"
@@ -123,43 +123,6 @@
 		</section>
 
 
-		<script type="application/javascript">
-			
-			
-			
-		 function editObjective(){
-			
-			 var e = jQuery.Event("click");
-			
-			 e.preventDefault();
 
-			 swal({
-				  title: "Are you sure?",
-				  text: "Do you confirm updating this objective!",
-				  icon: "warning",
-				  buttons: true,
-				  dangerMode: true,
-				})
-				.then((willDelete) => {
-				  if (willDelete) {
-				    swal("Objective successfully updated!", {
-				      icon: "success",
-				    });
-				    editObjectiveMethod();
-				    
-				  } else {
-				    
-				  }
-				});
-			return false;
-	    }
-		 
-		 function timedRefresh(timeoutPeriod) {
-				setTimeout('location.replace("/pidev-web/pages/objectives.xhtml")',timeoutPeriod);
-			}
-		 
-
-		
-		</script>
 	</ui:define>
 </ui:composition>

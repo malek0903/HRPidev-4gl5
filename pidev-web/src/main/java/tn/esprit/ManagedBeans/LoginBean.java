@@ -26,6 +26,8 @@ public class LoginBean implements Serializable {
 	private Boolean loggedIn;
 	private Employee current_employe;
 
+	private String current_user_string;
+
 	@EJB
 	userService userService;
 
@@ -41,6 +43,7 @@ public class LoginBean implements Serializable {
 
 		if (current_user != null) {
 			EmployeeRole currentUserRole = this.current_user.getRole();
+			this.current_user_string = currentUserRole.toString();
 			if (currentUserRole == EmployeeRole.Manager)
 				navigateTo = "/pages/EmployesListEval.xhtml?faces-redirect=true";
 			loggedIn = true;
@@ -121,6 +124,14 @@ public class LoginBean implements Serializable {
 
 	public void setEmployeService(EmployeService employeService) {
 		this.employeService = employeService;
+	}
+
+	public String getCurrent_user_string() {
+		return current_user_string;
+	}
+
+	public void setCurrent_user_string(String current_user_string) {
+		this.current_user_string = current_user_string;
 	}
 
 }

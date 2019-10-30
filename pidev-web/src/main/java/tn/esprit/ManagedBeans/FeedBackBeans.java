@@ -45,11 +45,22 @@ public class FeedBackBeans {
 
 	public String commentEmpty = "";
 
+	public int nbAllFeedBacks ;
+
 	public void initialisation() {
 		comment = null;
 		feedbackDate = null;
 		mark = 0;
 		this.erreur = "";
+	}
+
+	public int getNbAllFeedBacks() {
+		nbAllFeedBacks = feedBackService.getAllFeedback().size();
+		return nbAllFeedBacks;
+	}
+
+	public void setNbAllFeedBacks(int nbAllFeedBacks) {
+		this.nbAllFeedBacks = nbAllFeedBacks;
 	}
 
 	public List<Feedback> getFeedBacksByEval(Long idEval360) {
