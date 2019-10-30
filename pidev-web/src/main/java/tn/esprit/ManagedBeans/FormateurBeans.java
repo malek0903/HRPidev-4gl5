@@ -51,6 +51,7 @@ public class FormateurBeans {
 	public String updateFormateur() {
 		formateurservices.updateFormateur(formateurToUpadate);
 		return "FormationList";
+		
 	}
 	public String removeFormateur(Formateur formateur) {
 		formateurservices.deleteFormateur(formateur);

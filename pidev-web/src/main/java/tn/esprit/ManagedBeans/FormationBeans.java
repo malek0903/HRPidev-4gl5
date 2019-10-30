@@ -15,6 +15,7 @@ import tn.esprit.training.services.FormationServices;
 
 @ManagedBean
 @SessionScoped
+
 public class FormationBeans {
 	@EJB
 	FormationServices formationservices;
@@ -44,7 +45,7 @@ public class FormationBeans {
 	}
 	public String editFormation(Formation formation) {
 		setFormationToUpadate(formation);
-		return "UpdateFormation";
+		return "UpdateTraining";
 	}
 	public String updateFormation() {
 		formationservices.updateFormation(formationToUpadate);

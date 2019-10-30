@@ -1,5 +1,5 @@
 package tn.esprit.training.services;
-import java.io.Serializable;
+
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

@@ -34,7 +34,7 @@ public class Planification implements Serializable{
 	private Formateur formateur;
 	
 	private Date dateDebut;
-	private Date deateFin;
+	private Date dateFin;
 	private int  numberP;
 	public int getId() {
 		return id;
@@ -51,20 +51,18 @@ public class Planification implements Serializable{
 	public Formateur getFormateur() {
 		return formateur;
 	}
-	public void setFormateur(Formateur formateur) {
-		this.formateur = formateur;
-	}
+	
 	public Date getDateDebut() {
 		return dateDebut;
 	}
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
+	public static void setDateDebut(Date dateDebut) {
+		dateDebut = dateDebut;
 	}
-	public Date getDeateFin() {
-		return deateFin;
+	public Date getDateFin() {
+		return dateFin;
 	}
-	public void setDeateFin(Date deateFin) {
-		this.deateFin = deateFin;
+	public static void setDateFin(Date dateFin) {
+		dateFin = dateFin;
 	}
 	public int getNumberP() {
 		return numberP;
