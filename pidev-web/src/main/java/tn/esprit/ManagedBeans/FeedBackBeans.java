@@ -26,9 +26,9 @@ public class FeedBackBeans {
 
 	@EJB
 	FeedBackService feedBackService;
-	
+
 	@EJB
-	NotificationService notificationService ;
+	NotificationService notificationService;
 
 	@ManagedProperty(value = "#{LoginBean}")
 	LoginBean loginBean;
@@ -40,8 +40,10 @@ public class FeedBackBeans {
 
 	public List<Feedback> feedBacksByEval;
 	public List<Feedback> feedBacksByGiven;
-	
-	public Feedback feedBack ;
+
+	public Feedback feedBack;
+
+	public String commentEmpty = "";
 
 	public void initialisation() {
 		comment = null;
@@ -51,7 +53,7 @@ public class FeedBackBeans {
 	}
 
 	public List<Feedback> getFeedBacksByEval(Long idEval360) {
-		feedBacksByEval = 	feedBackService.getAllFeedBackByidEval(idEval360);
+		feedBacksByEval = feedBackService.getAllFeedBackByidEval(idEval360);
 		return feedBacksByEval;
 	}
 
@@ -60,7 +62,7 @@ public class FeedBackBeans {
 	}
 
 	public List<Feedback> getFeedBacksByGiven(Long idEval360) {
-		feedBacksByEval = 	feedBackService.getAllFeedBackByEmployeeGiven(idEval360);
+		feedBacksByEval = feedBackService.getAllFeedBackByEmployeeGiven(idEval360);
 		return feedBacksByGiven;
 	}
 
@@ -68,9 +70,24 @@ public class FeedBackBeans {
 		this.feedBacksByGiven = feedBacksByGiven;
 	}
 
-	
 	public Feedback getFeedBack() {
 		return feedBack;
+	}
+
+	public NotificationService getNotificationService() {
+		return notificationService;
+	}
+
+	public void setNotificationService(NotificationService notificationService) {
+		this.notificationService = notificationService;
+	}
+
+	public String getCommentEmpty() {
+		return commentEmpty;
+	}
+
+	public void setCommentEmpty(String commentEmpty) {
+		this.commentEmpty = commentEmpty;
 	}
 
 	public void setFeedBack(Feedback feedBack) {
@@ -140,32 +157,39 @@ public class FeedBackBeans {
 		String markId = req.getParameter("markId");
 		String commentId = req.getParameter("commentId");
 
-		String navigateTo = null;
-		try {
+		if (commentId.equals("")) {
+			this.commentEmpty = "true";
+			return null;
+		} else {
 
-			Feedback f = new Feedback();
-			f.setComment(commentId);
-			f.setFeedbackDate(LocalDate.now());
-			FeedbackPK idFeedback = new FeedbackPK(eval.getId(), emp.getId());
-			f.setFeedbackPK(idFeedback);
-			f.setEmployee(emp);
-			f.setEval360(eval);
+			String navigateTo = null;
+			try {
+				Feedback f = new Feedback();
+				f.setComment(commentId);
+				f.setFeedbackDate(LocalDate.now());
+				FeedbackPK idFeedback = new FeedbackPK(eval.getId(), emp.getId());
+				f.setFeedbackPK(idFeedback);
+				f.setEmployee(emp);
+				f.setEval360(eval);
 
-			f.setMark(Integer.valueOf(markId));
+				f.setMark(Integer.valueOf(markId));
 
-			feedBackService.addFeedback(f);
-			
-			this.notificationService.addNotification(new Notification("New FeedBack", "FeedBack For "+eval.getConcernedEmployee().getFirstName()+" has been added.",
-					NotificationType.GIVE_FEEDBACK_ON360EVAL, EmployeeRole.Employee));
-			
-			initialisation();
-			navigateTo = "/pages/ListEval360.xhtml?faces-redirect=true";
-		} catch (Exception e) {
-			this.erreur = "true";
-			System.out.println(this.erreur + "5raaa");
+				feedBackService.addFeedback(f);
+
+				this.notificationService.addNotification(new Notification("New FeedBack",
+						"FeedBack For " + eval.getConcernedEmployee().getFirstName() + " has been added.",
+						NotificationType.GIVE_FEEDBACK_ON360EVAL, EmployeeRole.Employee));
+
+				initialisation();
+
+				navigateTo = "/pages/ListEval360.xhtml?faces-redirect=true";
+			} catch (Exception e) {
+				this.erreur = "true";
+				e.printStackTrace();
+			}
+
+			return navigateTo;
 		}
-
-		return navigateTo;
 
 	}
 

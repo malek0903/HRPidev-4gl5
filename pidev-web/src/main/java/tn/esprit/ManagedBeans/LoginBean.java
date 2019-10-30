@@ -3,7 +3,6 @@ package tn.esprit.ManagedBeans;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -26,7 +25,6 @@ public class LoginBean implements Serializable {
 	private User current_user;
 	private Boolean loggedIn;
 	private Employee current_employe;
-	private String erreur = "";
 
 	@EJB
 	userService userService;
@@ -36,27 +34,27 @@ public class LoginBean implements Serializable {
 
 	public String doLogin() {
 		String navigateTo = "null";
+
 		this.current_user = userService.getUserByEmailPassword(login, password);
-		this.current_employe = employeService.getEmployeeByEmailPassword(login, password);
-		// System.out.println(current_user.getId() + "5raaaaaaaaaa");
+		// this.current_employe = employeService.getEmployeeByEmailPassword(login,
+		// password);
 
 		if (current_user != null) {
 			EmployeeRole currentUserRole = this.current_user.getRole();
 			if (currentUserRole == EmployeeRole.Manager)
-				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";
+				navigateTo = "/pages/EmployesListEval.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Employee)
 				navigateTo = "/pages/ListEval360.xhtml?faces-redirect=true";
 			loggedIn = true;
 			if (currentUserRole == EmployeeRole.Admin)
-				navigateTo = "/pages/ObjectiveList.xhtml?faces-redirect=true";
+				navigateTo = "/pages/objectives.xhtml?faces-redirect=true";
 			loggedIn = true;
-			this.erreur = "";
+
 		} else {
-			this.erreur = "true";
-			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
+			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Wrong Email or password!"));
 		}
-		System.out.println(this.erreur + "5raaaaa");
+
 		return navigateTo;
 	}
 
@@ -123,14 +121,6 @@ public class LoginBean implements Serializable {
 
 	public void setEmployeService(EmployeService employeService) {
 		this.employeService = employeService;
-	}
-
-	public String getErreur() {
-		return erreur;
-	}
-
-	public void setErreur(String erreur) {
-		this.erreur = erreur;
 	}
 
 }

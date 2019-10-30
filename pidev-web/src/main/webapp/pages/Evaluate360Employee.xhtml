@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	template="/template/default/template.xhtml"
+	template="/template/default/employee/template.xhtml"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
@@ -18,14 +18,14 @@
 			</div>
 
 
-			<c:if test='#{feedBackBeans.erreur.equals("true")}'>
-				<div class="alert alert-danger alert-dismissible fade show"
+		<c:if test='#{feedBackBeans.erreur.equals("true")}'>
+				<div class="alert alert-warning alert-dismissible fade show"
 					role="alert">
 					<button class="close" type="button" data-dismiss="alert"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<strong>Oh Sorry!</strong> you has already evaluate this employe
+					<strong>Soryy !</strong> you have already gives your feed back for this employee .
 				</div>
 			</c:if>
 			<div class="card card-default">
@@ -52,9 +52,9 @@
 								<td class="text-center" style="width: 15%;">
 									<div class="mt-2">
 										<a href=""><h:graphicImage class="rounded-circle thumb64"
-											value="/images/anonymous.png"/></a>
-									</div>
-									<small></small><br/><small></small>
+												value="/images/anonymous.png" /></a>
+									</div> <small></small><br />
+								<small></small>
 								</td>
 
 								<td>
@@ -72,7 +72,12 @@
 					</tbody>
 
 				</table>
+				
+				
 			</div>
+
+			
+			
 			<div class="text-center mb-3">
 				<button class="btn btn-primary" data-toggle="collapse"
 					data-target="#topic-reply">Give Your FeedBack</button>
@@ -84,6 +89,9 @@
 							<div class="form-group">
 								<textarea id="commentId" name="commentId" class="form-control"
 									rows="5" placeholder="Type your Feedback..."></textarea>
+									<c:if test='#{feedBackBeans.commentEmpty.equals("true")}'>
+										<p style="color:red;"> the feedBack field is required </p>
+									</c:if>
 								<fieldset>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">FeedBack Mark:</label>
@@ -102,7 +110,7 @@
 							<div class="form-group text-center">
 								<h:commandLink id="btn" styleClass="btn btn-sm btn-primary"
 									value="Post my Feedback"
-									action="#{feedBackBeans.ajouterFeedBack(loginBean.current_employe , eval360Beans.eval360)}">
+									action="#{feedBackBeans.ajouterFeedBack(loginBean.current_user , eval360Beans.eval360)}">
 								</h:commandLink>
 								<h:commandLink style=" margin-left: 3%"
 									styleClass="btn btn-sm btn-primary" value="Cancel"

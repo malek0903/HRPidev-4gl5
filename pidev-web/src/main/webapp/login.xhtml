@@ -9,7 +9,7 @@
 	template="/template/default/visitor/templateVisitor.xhtml">
 	<ui:param name="page_name" value="Connexion" />
 	<ui:define name="menu">
-		
+
 
 
 		<h:panelGroup layout="block">
@@ -19,27 +19,20 @@
 					<div class="col-xl-4">
 						<h:form id="form">
 							<h1 style="margin-left: 30%">Connexion</h1>
-							
-							
-							<c:if test='#{loginBean.erreur.equals("true")}'>
-								<div class="alert alert-danger alert-dismissible fade show"
-									role="alert">
-									<button class="close" type="button" data-dismiss="alert"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									<strong>Oh Sorry!</strong> you have entred wrong details
-								</div>
-							</c:if>
-							
 
 							<h:panelGroup layout="block">
 								<div class="form-group">
 									<h:outputText value="Email" />
-									<h:inputText a:placeholder="Saisir votre mail"
-										class="form-control" value="#{loginBean.login}" />
-									<small id="emailHelp" class="form-text text-muted">Votre
-										email ne sera pas partager</small>
+									<h:inputText id="validatorEmail"
+										a:placeholder="Saisir votre mail" class="form-control"
+										value="#{loginBean.login}" required="true"
+										requiredMessage="the email field is required">
+										<f:validator validatorId="tn.esprit.validator.EmailValidator" />
+									</h:inputText>
+									<h:message for="validatorEmail" style="Color:red;" />
+
+									<small id="emailHelp" class="form-text text-muted">Your
+										email will not share</small>
 								</div>
 							</h:panelGroup>
 							<h:panelGroup layout="block">
@@ -51,7 +44,9 @@
 							</h:panelGroup>
 							<h:commandButton id="btn" value="Connexion"
 								styleClass="btn btn-success" action="#{loginBean.doLogin()}" />
-							
+							<h:message for="btn"
+								styleClass="alert alert-danger alert-dismissible " />
+
 
 						</h:form>
 					</div>

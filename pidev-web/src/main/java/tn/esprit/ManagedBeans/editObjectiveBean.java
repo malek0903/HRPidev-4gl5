@@ -46,7 +46,10 @@ public class editObjectiveBean {
 				.getRequest();
 		String beginsAtid = req.getParameter("beginsAt");
 		String endsAtid = req.getParameter("endsAt");
-		String categoryId = req.getParameter("categoryId");
+		
+		
+		
+
 
 		// convert String to LocalDate
 		LocalDate beginsAt = LocalDate.parse(beginsAtid);
@@ -58,7 +61,7 @@ public class editObjectiveBean {
 		o.setDescription(this.objective.getDescription());
 		o.setDateBegin(beginsAt);
 		o.setDateEnd(endsAt);
-		o.setCategory(Category.valueOf(categoryId));
+		o.setCategory(this.objective.getCategory());
 
 		objectiveService.updateObj(o);
 

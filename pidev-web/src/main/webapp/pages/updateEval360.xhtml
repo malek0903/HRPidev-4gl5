@@ -7,7 +7,8 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:t="http://myfaces.apache.org/tomahawk"
-	template="/template/default/template.xhtml">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/template/default/manager/template.xhtml">
 
 	<ui:define name="content">
 
@@ -35,28 +36,26 @@
 										<label class="col-md-2 col-form-label">Eval Status:</label>
 										<div class="col-md-2">
 
-											<select name="statusId"
-												class="custom-select custom-select-sm">
-												<option disabled="disabled" selected="">#{editEval360Beans.eval360.status}</option>
-												<option value="publicc">publicc</option>
-												<option value="privatee">privatee</option>
+											<h:selectOneMenu styleClass="custom-select custom-select-sm"
+												value="#{editEval360Beans.eval360.status}">
+												<f:selectItem itemValue="publicc" itemLabel="publicc" />
+												<f:selectItem itemValue="privatee" itemLabel="privatee" />
+											</h:selectOneMenu>
 
-											</select>
 										</div>
 									</div>
 								</fieldset>
 
 								<fieldset>
-
-
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Eval Details:</label>
-										<div class="col-md-2">
-											<h:inputTextarea styleClass="form-control"
-												value="#{editEval360Beans.eval360.evalDetails}">
+										<div class="col-md-4">
+											<h:inputTextarea id="evalDetails" styleClass="form-control"
+												value="#{editEval360Beans.eval360.evalDetails}"
+												required="true"
+												requiredMessage="the details field is required">
 											</h:inputTextarea>
-
-
+											<h:message for="evalDetails" />
 										</div>
 									</div>
 								</fieldset>
@@ -67,6 +66,10 @@
 											<input name="dateBeginId"
 												value="#{editEval360Beans.eval360.dateBegin}"
 												class="form-control form-control-rounded" type="date" />
+											<c:if test='#{editEval360Beans.dateBeginSup.equals("true")}'>
+												<p style="color: red;">the field dateBegin must be after
+													the current time</p>
+											</c:if>
 
 										</div>
 									</div>
@@ -79,7 +82,11 @@
 											<input name="dateEndId"
 												value="#{editEval360Beans.eval360.dateEnd}"
 												class="form-control form-control-rounded" type="date" />
-
+												
+											<c:if test='#{editEval360Beans.dateEndSupDateBegin.equals("true")}'>
+												<p style="color: red;">the field date End must be after
+													the date Begin</p>
+											</c:if>
 										</div>
 									</div>
 								</fieldset>

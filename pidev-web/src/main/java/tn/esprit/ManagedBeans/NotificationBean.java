@@ -50,7 +50,7 @@ public class NotificationBean {
 	}
 
 	public List<Notification> getNotifications() {
-		User user = this.loginBean.getCurrent_employe();
+		User user = this.loginBean.getCurrent_user();
 		this.notifications = notificationService.getNotificationForRole(user.getRole());
 		return notifications;
 	}

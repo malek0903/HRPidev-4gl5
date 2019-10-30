@@ -1,10 +1,13 @@
 package tn.esprit.ManagedBeans;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +32,12 @@ public class Eval360Beans {
 
 	@EJB
 	EmployeService employeService;
-	
+
 	@EJB
-	NotificationService notificationService ;
+	NotificationService notificationService;
+
+	@ManagedProperty(value = "#{loginBean}")
+	LoginBean loginBeann;
 
 	private Long id;
 	private String evalDetails;
@@ -50,6 +56,8 @@ public class Eval360Beans {
 	private Employee Employe;
 
 	private Eval360 eval360;
+
+	private String ValidDate = "";
 
 	public List<Eval360> getEvals() {
 		evals = evalService.getAllEval360();
@@ -134,6 +142,14 @@ public class Eval360Beans {
 		this.evalDetails = evalDetails;
 	}
 
+	public String getValidDate() {
+		return ValidDate;
+	}
+
+	public void setValidDate(String validDate) {
+		ValidDate = validDate;
+	}
+
 	public List<Feedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -166,6 +182,22 @@ public class Eval360Beans {
 		this.eval360 = eval360;
 	}
 
+	public NotificationService getNotificationService() {
+		return notificationService;
+	}
+
+	public void setNotificationService(NotificationService notificationService) {
+		this.notificationService = notificationService;
+	}
+
+	public LoginBean getLoginBeann() {
+		return loginBeann;
+	}
+
+	public void setLoginBeann(LoginBean loginBeann) {
+		this.loginBeann = loginBeann;
+	}
+
 	public void initialisation() {
 		evalDetails = null;
 		feedbacks = null;
@@ -187,40 +219,59 @@ public class Eval360Beans {
 //		String mark = req.getParameter("mark360");
 //		this.setMark360(Integer.parseInt(mark));
 
-		Eval360 e = new Eval360();
-		e.setEvalDetails(evalDetails);
-		e.setStatus(Status.publicc);
+		if (dateEnd.equals(LocalDate.now()) || dateEnd.isBefore(LocalDate.now())) {
+
+			System.out.println("d5alll ytesti ");
+			this.ValidDate = "false" ;
+
+			return "";
+		} else {
+
+			Eval360 e = new Eval360();
+			e.setEvalDetails(evalDetails);
+			e.setStatus(Status.publicc);
 //		e.setMark360(mark360);
-		e.setConcernedEmployee(Employe);
-		e.setDateBegin(LocalDate.now());
-		e.setDateEnd(dateEnd);
+			e.setConcernedEmployee(Employe);
+			e.setDateBegin(LocalDate.now());
+			e.setDateEnd(dateEnd);
 
-		Employee emp = this.getEmploye();
-		emp.setStatusEval360(Status.publicc);
+			Employee emp = this.getEmploye();
+			emp.setStatusEval360(Status.publicc);
 
-		employeService.updateEmploye(emp);
-		evalService.addEval360(e);
-		
-		this.notificationService.addNotification(new Notification("New Evaluation360", "Eval360 For "+emp.getFirstName()+" has been started.",
-				NotificationType.STARTED_EVALUATION360_FROM_MANAGER, EmployeeRole.Employee));
+			employeService.updateEmploye(emp);
+			evalService.addEval360(e);
 
-		initialisation();
-		return "/pages/EmployesListEval.xhtml?faces-redirect=true";
+			this.notificationService.addNotification(new Notification("New Evaluation360",
+					"Eval360 For " + emp.getFirstName() + " has been started From this "
+							+ this.loginBeann.getCurrent_user().getRole() + " "
+							+ this.loginBeann.getCurrent_user().getFirstName() + " At : " + new Date(),
+					NotificationType.STARTED_EVALUATION360_FROM_MANAGER, EmployeeRole.Employee));
+
+			this.notificationService.addNotification(new Notification("New Evaluation360",
+					"Eval360 For " + emp.getFirstName() + " has been started From this "
+							+ this.loginBeann.getCurrent_user().getRole() + " "
+							+ this.loginBeann.getCurrent_user().getFirstName() + "At : " + LocalDate.now(),
+					NotificationType.STARTED_EVALUATION360_FROM_MANAGER, EmployeeRole.Admin));
+
+			initialisation();
+
+			return "/pages/EmployesListEval.xhtml?faces-redirect=true";
+		}
 
 	}
 
 	public String recupererEmployeAndEval(Employee emp, Eval360 eval) {
 		this.setEmploye(emp);
 		this.setEval360(eval);
-
+		
 		return "/pages/Evaluate360Employee.xhtml?faces-redirect=true";
 	}
 
 	public void deleteEval360(Eval360 eval) {
 		Employee e = eval.getConcernedEmployee();
-		
+
 		e.setStatusEval360(Status.privatee);
-		
+
 		employeService.updateEmploye(e);
 		evalService.deleteEval360ById(eval.getId());
 	}
