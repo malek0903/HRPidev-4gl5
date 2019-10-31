@@ -88,17 +88,17 @@
 										</ul>
 									</div>
 									<div class="card-footer text-center">
-										<c:if test="#{ticketBean.disabled(ticket) == true}">
-											<h:form>
+										<!-- <c:if test="#{ticketBean.disabled(ticket) == true}"> -->
+											<!-- <h:form>
 												<h:commandButton class="btn btn-primary" disabled="true">DO IT</h:commandButton>
-											</h:form>
-										</c:if>
-										<c:if test="#{ticketBean.disabled(ticket) == false}">
+											</h:form> -->
+									<!-- 	</c:if> -->
+										<!-- <c:if test="#{ticketBean.disabled(ticket) == false}"> -->
 											<h:form>
 												<h:commandLink class="btn btn-primary"
 													action="#{ticketBean.DoIt(ticket,loginBean.current_employe)}">DO IT</h:commandLink>
 											</h:form>
-										</c:if>
+									<!-- 	</c:if> -->
 									</div>
 
 								</div>

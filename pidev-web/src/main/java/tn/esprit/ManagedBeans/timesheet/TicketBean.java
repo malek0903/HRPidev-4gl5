@@ -239,19 +239,29 @@ public class TicketBean {
 		this.doing = false;
 		this.done = true;
 		this.dateEnd = new Date();
+		
+
+		System.out.println("ticket ajouter : " + (ticket.getDateBegin().getMinutes()/60));
+		
+		
 
 		this.setTicketToBeUpdated(ticket.getIdTicket());
-
 		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, difficulty, status);
+		double dure = (ticket.getDateBegin().getHours() + ((double)ticket.getDateBegin().getMinutes()/60)) - (new Date().getHours() + ((double)new Date().getMinutes()/60));
+		
 		tickets.setEmployesTicket(emp);
 		tickets.setTitle(ticket.getTitle());
 		tickets.setDescription(ticket.getDescription());
 		tickets.setDifficulty(ticket.getDifficulty());
 		tickets.setEstimatedHours(ticket.getEstimatedHours());
-		tickets.setTeam(ticket.getTeam());
-		tickets.setDateEnd(dateEnd);
-
-		System.out.println("ticket ajouter : " + tickets);
+		tickets.setTeam(ticket.getTeam());	
+		tickets.setDateBegin(ticket.getDateBegin());
+		tickets.setDateEnd(this.dateEnd);
+		
+		
+		
+		
+		tickets.setDuration(dure);
 		ticketService.updateTicket(tickets);
 		initialisate();
 	}

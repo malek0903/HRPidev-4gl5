@@ -48,7 +48,7 @@ public class TicketService implements ITicketService {
 
 	@Override
 	public List<Ticket> getAllTicketWithoutEmployee() {
-		TypedQuery<Ticket> query = em.createQuery("Select o from Ticket o where o.employesTicket IS NULL AND o.employesTicket.role=:Employee", Ticket.class).setParameter("Employee", EmployeeRole.Employee );
+		TypedQuery<Ticket> query = em.createQuery("Select o from Ticket o where o.employesTicket IS NULL", Ticket.class);
 		List<Ticket> result = query.getResultList();
 		return result;
 	}

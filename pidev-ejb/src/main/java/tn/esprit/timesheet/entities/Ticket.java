@@ -268,6 +268,20 @@ public class Ticket  implements Serializable {
 		this.dateBegin= dateBegin;
 	}
 	
+	public Ticket(int idTicket, Boolean toDoList, Boolean toDo, Boolean doing, Boolean done, Difficulty difficulty,
+			Status status,Date dateBegin,Date dateEnd) {
+		super();
+		this.idTicket = idTicket;
+		this.toDoList = toDoList;
+		this.toDo = toDo;
+		this.doing = doing;
+		this.done = done;
+		this.difficulty = difficulty;
+		this.status = status;
+		this.dateBegin= dateBegin;
+		this.dateEnd = dateEnd;
+	}
+	
 	public Ticket(int idTicket, String title, String description
 			, Difficulty difficulty,Status status,Boolean toDoList,Boolean toDo,Boolean doing ,Boolean Done,Employee employesTicket) {
 		super();
