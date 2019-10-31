@@ -35,7 +35,7 @@
 					<h:outputLabel value="Name: " />
 					<h:outputText value="#{jobBeans.jobToUpadate.jobName}" />
 					<h:outputLabel value="Description: " />
-					<h:inputText value="#{jobBeans.jobToUpadate.jobDesc}" />
+					<h:inputText value="#{jobBeans.jobToUpadate.jobDesc}" required="true" />
 					<h:commandButton value="Update" action="#{jobBeans.updateJob()}" />
 				</h:panelGrid>
 			</h:form>

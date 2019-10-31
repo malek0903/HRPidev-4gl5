@@ -35,7 +35,11 @@
 					<h:outputLabel value="Skill: " />
 					<h:outputText value="#{skillMatrixBeans.skillToAdd.getSkillName()}" />
 					<h:outputLabel value="Score: " />
-					<h:inputText value="#{skillMatrixBeans.skillScore}" />
+					<h:inputText id="scorem" value="#{skillMatrixBeans.skillScore}">
+						<f:validateRegex
+							pattern="[0-5]{1}" />
+					</h:inputText>
+					<h:message for="scorem" style="color:red" />
 					<h:commandButton value="ADD" action="#{skillMatrixBeans.addSkillMatrix()}" />
 				</h:panelGrid>
 			</h:form>

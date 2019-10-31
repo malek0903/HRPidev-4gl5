@@ -35,7 +35,7 @@
 					<h:outputLabel value="Name: " />
 					<h:outputText value="#{skillBeans.skillToUpadate.skillName}" />
 					<h:outputLabel value="Description: " />
-					<h:inputText value="#{skillBeans.skillToUpadate.skillDesc}" />
+					<h:inputText value="#{skillBeans.skillToUpadate.skillDesc}" required="true" />
 					<h:commandButton value="Update" action="#{skillBeans.updateSkill()}" />
 				</h:panelGrid>
 			</h:form>

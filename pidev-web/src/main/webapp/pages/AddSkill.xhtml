@@ -33,9 +33,9 @@
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Name: " />
-					<h:inputText value="#{skillBeans.skillName}" />
+					<h:inputText value="#{skillBeans.skillName}" required="true" />
 					<h:outputLabel value="Description: " />
-					<h:inputText value="#{skillBeans.skillDesc}" />
+					<h:inputText value="#{skillBeans.skillDesc}" required="true" />
 					<h:commandButton value="ADD" action="#{skillBeans.addSkill()}" />
 				</h:panelGrid>
 			</h:form>

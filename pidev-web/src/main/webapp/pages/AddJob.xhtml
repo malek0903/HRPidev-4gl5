@@ -33,9 +33,9 @@
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Name: " />
-					<h:inputText value="#{jobBeans.jobName}" />
+					<h:inputText value="#{jobBeans.jobName}" required="true" />
 					<h:outputLabel value="Description: " />
-					<h:inputText value="#{jobBeans.jobDesc}" />
+					<h:inputText value="#{jobBeans.jobDesc}" required="true" />
 					<h:commandButton value="ADD" action="#{jobBeans.addJob()}" />
 				</h:panelGrid>
 			</h:form>
