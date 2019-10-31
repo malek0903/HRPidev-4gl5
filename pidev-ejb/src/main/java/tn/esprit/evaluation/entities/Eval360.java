@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -32,11 +33,13 @@ public class Eval360 implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.privatee;
 
-	@OneToMany(mappedBy = "eval360")
+	@OneToMany(mappedBy = "eval360", cascade = CascadeType.REMOVE)
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
 
 	@ManyToOne
 	private Employee concernedEmployee;
+	
+	private int sommeMark ;
 
 	public Eval360() {
 		// TODO Auto-generated constructor stub
@@ -101,12 +104,21 @@ public class Eval360 implements Serializable {
 	public void setDateEnd(LocalDate dateEnd) {
 		this.dateEnd = dateEnd;
 	}
+	
+	
+
+	public int getSommeMark() {
+		return sommeMark;
+	}
+
+	public void setSommeMark(int sommeMark) {
+		this.sommeMark = sommeMark;
+	}
 
 	@Override
 	public String toString() {
 		return "Eval360 [id=" + id + ", evalDetails=" + evalDetails + ", dateBegin=" + dateBegin + ", dateEnd="
-				+ dateEnd + ", status=" + status + ", feedbacks=" +  ", concernedEmployee="
-				+ concernedEmployee + "]";
+				+ dateEnd + ", status=" + status + ", feedbacks=" + ", concernedEmployee=" + concernedEmployee + "]";
 	}
 
 	@Override
@@ -119,6 +131,7 @@ public class Eval360 implements Serializable {
 		result = prime * result + ((evalDetails == null) ? 0 : evalDetails.hashCode());
 		result = prime * result + ((feedbacks == null) ? 0 : feedbacks.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + sommeMark;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -162,9 +175,13 @@ public class Eval360 implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (sommeMark != other.sommeMark)
+			return false;
 		if (status != other.status)
 			return false;
 		return true;
 	}
+
+	
 
 }

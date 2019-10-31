@@ -15,6 +15,7 @@ import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.evaluation.entities.FeedbackPK;
 import tn.esprit.evaluation.entities.Notification;
 import tn.esprit.evaluation.entities.enums.NotificationType;
+import tn.esprit.evaluation.services.Eval360Service;
 import tn.esprit.evaluation.services.FeedBackService;
 import tn.esprit.evaluation.services.NotificationService;
 import tn.esprit.userCommun.entities.Employee;
@@ -26,13 +27,16 @@ import tn.esprit.userCommun.services.EmployeService;
 public class FeedBackBeans {
 
 	@EJB
+	Eval360Service eval360Service ;
+	
+	@EJB
 	FeedBackService feedBackService;
 
 	@EJB
 	NotificationService notificationService;
-
-	@ManagedProperty(value = "#{EmployeeBeans}")
-	EmployeeBeans employeebeans;
+	
+	@EJB
+	EmployeService employeeService ;
 
 	@ManagedProperty(value = "#{LoginBean}")
 	LoginBean loginBean;
@@ -51,7 +55,7 @@ public class FeedBackBeans {
 
 	public int nbAllFeedBacks;
 
-
+	public int widthFeedBacks;
 
 	public void initialisation() {
 		comment = null;
@@ -60,7 +64,14 @@ public class FeedBackBeans {
 		this.erreur = "";
 	}
 
-	
+	public int getWidthFeedBacks(Long idEval360) {
+		widthFeedBacks = ( this.getFeedBacksByEval(idEval360).size() *100 ) / employeeService.getAllEmployes().size() ;
+		return widthFeedBacks;
+	}
+
+	public void setWidthFeedBacks(int widthFeedBacks) {
+		this.widthFeedBacks = widthFeedBacks;
+	}
 
 	public int getNbAllFeedBacks() {
 		nbAllFeedBacks = feedBackService.getAllFeedback().size();
@@ -91,14 +102,6 @@ public class FeedBackBeans {
 
 	public Feedback getFeedBack() {
 		return feedBack;
-	}
-
-	public EmployeeBeans getEmployeebeans() {
-		return employeebeans;
-	}
-
-	public void setEmployeebeans(EmployeeBeans employeebeans) {
-		this.employeebeans = employeebeans;
 	}
 
 	public NotificationService getNotificationService() {
@@ -198,10 +201,14 @@ public class FeedBackBeans {
 				f.setFeedbackPK(idFeedback);
 				f.setEmployee(emp);
 				f.setEval360(eval);
-
 				f.setMark(Integer.valueOf(markId));
+				
+				Eval360 e = eval ;
+				e.setSommeMark(e.getSommeMark() + Integer.valueOf(markId));
 
+				
 				feedBackService.addFeedback(f);
+				eval360Service.updateEval360(e);
 
 				this.notificationService.addNotification(new Notification("New FeedBack",
 						"FeedBack For " + eval.getConcernedEmployee().getFirstName() + " has been added.",
