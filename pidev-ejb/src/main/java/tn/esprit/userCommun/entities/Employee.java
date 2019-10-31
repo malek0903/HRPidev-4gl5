@@ -11,9 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-import tn.esprit.evaluation.entities.Eval360;
-import tn.esprit.evaluation.entities.Evaluation;
-import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.skill.entities.Job;
 import tn.esprit.skill.entities.Skill;
@@ -37,15 +34,6 @@ public class Employee extends User {
 
 	@ManyToOne
 	private Job job;
-
-	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
-	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
-
-	@OneToMany(mappedBy = "employee")
-	private List<Feedback> feedbacks = new ArrayList<Feedback>();
-
-	@OneToMany(mappedBy = "concernedEmployee")
-	private List<Eval360> evals360 = new ArrayList<Eval360>();
 
 	public Employee(String userName, String lastName, String firstName, String email, String password,
 			EmployeeRole role, LocalDate dateOfBirth, String phoneNumber) {
@@ -117,30 +105,6 @@ public class Employee extends User {
 		return serialVersionUID;
 	}
 
-	public List<Evaluation> getEvaluations() {
-		return evaluations;
-	}
-
-	public void setEvaluations(List<Evaluation> evaluations) {
-		this.evaluations = evaluations;
-	}
-
-	public List<Feedback> getFeedbacks() {
-		return feedbacks;
-	}
-
-	public void setFeedbacks(List<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
-	}
-
-	public List<Eval360> getEvals360() {
-		return evals360;
-	}
-
-	public void setEvals360(List<Eval360> evals360) {
-		this.evals360 = evals360;
-	}
-
 	@Override
 	public String toString() {
 		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
@@ -176,9 +140,6 @@ public class Employee extends User {
 		int result = super.hashCode();
 		result = prime * result + ((cvDetails == null) ? 0 : cvDetails.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
-		result = prime * result + ((evals360 == null) ? 0 : evals360.hashCode());
-		result = prime * result + ((evaluations == null) ? 0 : evaluations.hashCode());
-		result = prime * result + ((feedbacks == null) ? 0 : feedbacks.hashCode());
 		result = prime * result + ((gitLink == null) ? 0 : gitLink.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + Float.floatToIntBits(salary);
@@ -203,21 +164,6 @@ public class Employee extends User {
 			if (other.dateOfBirth != null)
 				return false;
 		} else if (!dateOfBirth.equals(other.dateOfBirth))
-			return false;
-		if (evals360 == null) {
-			if (other.evals360 != null)
-				return false;
-		} else if (!evals360.equals(other.evals360))
-			return false;
-		if (evaluations == null) {
-			if (other.evaluations != null)
-				return false;
-		} else if (!evaluations.equals(other.evaluations))
-			return false;
-		if (feedbacks == null) {
-			if (other.feedbacks != null)
-				return false;
-		} else if (!feedbacks.equals(other.feedbacks))
 			return false;
 		if (gitLink == null) {
 			if (other.gitLink != null)

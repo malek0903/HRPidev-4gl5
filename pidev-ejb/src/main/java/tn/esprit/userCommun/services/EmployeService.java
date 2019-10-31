@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.entities.User;
