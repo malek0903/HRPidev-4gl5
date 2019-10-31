@@ -32,6 +32,8 @@
 			<!-- START cards box-->
 			<h:form>
 				<h:panelGrid columns="2">
+				
+				
 				<h:outputLabel value="Name:" />
 					<h:inputText value="#{formateurBeans.name}" />
 					
@@ -39,8 +41,10 @@
 					<h:inputText value="#{formateurBeans.specialite}" />
 					
 					<h:outputLabel value="Number: " />
-					<h:inputText value="#{formateurBeans.number}" />
-					
+					<h:inputText id="num"  value="#{formateurBeans.number}">
+						<f:validateRegex  minimum="8" maximum="8"/>
+					</h:inputText>
+					<h:message for="num" style="color:red"/>
 						<h:outputLabel value="disponibilite" />
 				<h:selectBooleanCheckbox value="#{formateurBeans.disponibilite}" />
 					

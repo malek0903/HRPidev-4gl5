@@ -93,10 +93,7 @@ planification.setDateFin(dateFin);
 	        return results;  
 	    } 
 
-	    
-	    
-	    
-	    
+	  
 	    
 	    
 	    

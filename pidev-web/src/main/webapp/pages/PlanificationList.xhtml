@@ -88,7 +88,7 @@ template="/template/default/template.xhtml">
 					<h:outputText value="#{p.dateFin}" />
 				
 				<h:form>
-					<h:commandLink action="#{formateurBeans.editFormateur(formateur)}" value="inscri" />
+					<h:commandLink action="#{formateurBeans.editFormateur(formateur)}" value="inscri"   id="sub" requiredMessage="Welcome!"/>
 					
 					</h:form></h:column>
 			</h:dataTable>
