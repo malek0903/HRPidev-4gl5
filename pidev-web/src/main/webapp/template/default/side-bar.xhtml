@@ -93,12 +93,12 @@
 
 
 						<!-- hedhy TimeSheet mte3i  -->
-						<li class=" "><a href="#dashboard" title="Dashboard"
-							data-toggle="collapse"> <i class="fa fa-fw fa-dashboard"></i><span
+						<li class=" "><a href="#timesheet" title="Dashboard"
+							data-toggle="collapse"> <i class="fa fa-fw fa-clock"></i><span
 								data-localize="sidebar.nav.DASHBOARD">TimeSheet</span>
 						</a> <c:if test='#{loginBean.current_user_string.equals("Manager")}'>
 
-								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+								<ul class="sidebar-nav sidebar-subnav collapse" id="timesheet">
 									<li class="sidebar-subnav-header">Dashboard</li>
 
 									<li class=" active"><h:link value="Home"
@@ -140,25 +140,28 @@
 
 						<!-- hachelmm -->
 
-						<li class=" "><a href="#dashboard" title="Dashboard"
-							data-toggle="collapse"> <i class="fa fa-fw fa-dashboard"></i><span
-								data-localize="sidebar.nav.DASHBOARD">TimeSheet</span>
+						<li class=" "><a href="#mission" title="Dashboard"
+							data-toggle="collapse"> <i class="fa fa-fw fa-briefcase"></i><span
+								data-localize="sidebar.nav.DASHBOARD">Mission</span>
 						</a> <c:if test='#{loginBean.current_user_string.equals("Manager")}'>
 
-								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
-									<li class="sidebar-subnav-header">Dashboard</li>
+								<ul class="sidebar-nav sidebar-subnav collapse" id="mission">
+									<li class="sidebar-subnav-header">Mission</li>
 
-									<li class=" active"><h:link value="Home"
-											outcome="/pages/dashboard-v1.xhtml" /></li>
+									<li class=" active"><h:link value="Liste des missions"
+											outcome="/missions/admin/listemissionadmin.xhtml" /></li>
 
-									<li class=" active"><h:link value="ticket list"
-											outcome="/timesheet/ticketList.xhtml" /></li>
+									<li class=" active"><h:link value="Liste factureadmin"
+											outcome="/missions/admin/listefactureadmin.xhtml" /></li>
 
-									<li class=" active"><h:link value="TeamList"
-											outcome="/timesheet/TeamList.xhtml" /></li>
+									<li class=" active"><h:link value="Ajout partenaire"
+											outcome="/missions/admin/ajoutpartenaire.xhtml" /></li>
 
-									<li class=" active"><h:link value="Calendar"
-											outcome="/timesheet/Calendar.xhtml" /></li>
+									<li class=" active"><h:link value="liste partenaire admin"
+											outcome="/missions/admin/listepartenaireadmin.xhtml" /></li>
+											
+									<li class=" active"><h:link value="Statetat"
+											outcome="/missions/admin/statetat.xhtml" /></li>
 								</ul>
 
 							</c:if> <c:if test='#{loginBean.current_user_string.equals("Employee")}'>

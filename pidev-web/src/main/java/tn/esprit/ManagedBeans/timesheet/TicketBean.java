@@ -272,8 +272,8 @@ public class TicketBean {
 	
 	public int changeColor(Ticket ticket) {
 		
-		if(ticket.getDuration() > 0 )return 1;
-		if(ticket.getDuration() == 0) return 2;
+		if(ticket.getDuration() < ticket.getEstimatedHours() )return 1;
+		if(ticket.getDuration() == ticket.getEstimatedHours()) return 2;
 		else return 3;
 		
 		

@@ -1,12 +1,15 @@
 package tn.esprit.ManagedBeans.timesheet;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,7 @@ import tn.esprit.timesheet.entities.Team;
 import tn.esprit.timesheet.entities.Ticket;
 import tn.esprit.timesheet.service.ProjetService;
 import tn.esprit.timesheet.service.TeamsService;
+import tn.esprit.timesheet.service.TicketService;
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.services.EmployeService;
 
@@ -34,6 +38,8 @@ public class TeamBean {
 	private Boolean chefEquipe;
 	private List<String> cities;
 	  private String[] selectedCities2;
+	  
+	  
 	@EJB
 	TeamsService teamService;
 	@EJB
@@ -41,6 +47,11 @@ public class TeamBean {
 	
 	@EJB
 	ProjetService projetService;
+	
+	@EJB
+	TicketService ticketService;
+	@ManagedProperty(value="#{ticketBean}")
+	TicketBean ticketBean;
 	
 	public String goToAjouter() {
 
@@ -58,6 +69,14 @@ public class TeamBean {
 		
 	}
 	
+	public int getTicketForTeam(Team team) {
+		return ticketService.getAllTicket().stream().filter(t->{
+			return t.getTeam().getId() == team.getId();
+		}).collect(Collectors.toList()).size();
+	}
+	
+	
+	
 	public void ajouterTeam() {
 		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		for(Employee e : employees) {
@@ -73,6 +92,34 @@ public class TeamBean {
 		}
 			}
 	
+	}
+	
+	
+	public int compareDate(Team team) {
+		
+		List<Ticket> tickets;
+		tickets = this.getTickets().stream().filter(t->t.getTeam().getId()==team.getId()).collect(Collectors.toList());
+		
+		double somme = 0;
+		for (Ticket ticket : tickets) {
+			if(ticket.getDateBegin() != null)
+				
+			somme += ((ticketBean.compareDate(ticket)) +
+			(ticketBean.compareDate1(ticket))+
+			(ticketBean.compareDate2(ticket)));
+			//System.out.println("hellooo aklkl" + somme);
+			
+			
+		}
+		try {
+		return (int) somme;
+		}
+		
+		catch (ArithmeticException e) {
+			return 0;
+		}
+		
+		
 	}
 	public String getNameTeam() {
 		return nameTeam;
@@ -99,7 +146,7 @@ public class TeamBean {
 	}
 
 	public List<Ticket> getTickets() {
-		return tickets;
+		return ticketService.getAllTicket();
 	}
 
 	public void setTickets(List<Ticket> tickets) {
@@ -168,6 +215,46 @@ public class TeamBean {
 
 	public void setChefEquipe(Boolean chefEquipe) {
 		this.chefEquipe = chefEquipe;
+	}
+
+	public TeamsService getTeamService() {
+		return teamService;
+	}
+
+	public void setTeamService(TeamsService teamService) {
+		this.teamService = teamService;
+	}
+
+	public EmployeService getEmployeService() {
+		return employeService;
+	}
+
+	public void setEmployeService(EmployeService employeService) {
+		this.employeService = employeService;
+	}
+
+	public ProjetService getProjetService() {
+		return projetService;
+	}
+
+	public void setProjetService(ProjetService projetService) {
+		this.projetService = projetService;
+	}
+
+	public TicketService getTicketService() {
+		return ticketService;
+	}
+
+	public void setTicketService(TicketService ticketService) {
+		this.ticketService = ticketService;
+	}
+
+	public TicketBean getTicketBean() {
+		return ticketBean;
+	}
+
+	public void setTicketBean(TicketBean ticketBean) {
+		this.ticketBean = ticketBean;
 	}
 
 

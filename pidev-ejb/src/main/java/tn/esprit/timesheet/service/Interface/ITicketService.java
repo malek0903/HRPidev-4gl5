@@ -19,5 +19,8 @@ public interface ITicketService {
 	
 	
 	public List<Ticket> getAllTicketWithoutEmployee();
+	
+	
+	
 
 }
