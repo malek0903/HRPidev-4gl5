@@ -28,6 +28,7 @@ public class LoginBean implements Serializable {
 	private Employee current_employe;
 
 	private String current_user_string;
+	private String erreur = "";
 
 	@EJB
 	userService userService;

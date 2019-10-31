@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/default/template.xhtml">
+	
+	<ui:param name="page_name" value="Index" />
+	<ui:define name="content">
+
+
+		<section class="section-container"> <!-- Page content-->
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+					Demande mission<small>..</small>
+				</div>
+			</div>
+
+			<!-- START card-->
+			<div class="card card-default">
+
+				<div class="card-body">
+					<h:form styleClass="form-horizontal">
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>ID Employé</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Votre id SVP:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanmission.emp.id}" required="true"/>
+								</div>
+							</div>
+						</fieldset>
+						
+						
+						
+						<fieldset>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Begins At:</label>
+								<div class="col-md-2">
+									<input id="datedebut" name="datedebut"
+										value="#{managedBeanmissionn.datedebut}" required="true"
+										class="form-control form-control-rounded" type="date" />
+
+								</div>
+							</div>
+						</fieldset>
+						
+						
+							
+						<fieldset>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Ends At:</label>
+								<div class="col-md-2">
+									<input id="datefin" name="datefin"
+										value="#{managedBeanmissionn.datefin}" required="true"
+										class="form-control form-control-rounded" type="date" />
+
+								</div>
+							</div>
+						</fieldset>
+						
+						
+						
+							<legend>Mission territoire</legend>
+							<select id="missionter" name="missionter"
+										class="custom-select custom-select-sm">
+										<option disabled="disabled" selected="">#{managedBeanmission.territoire}</option>
+										<option value="externe">externe</option>
+										<option value="interne">interne</option>
+										
+
+									</select>
+							
+							
+						
+							
+
+						<fieldset></fieldset>
+						<fieldset>
+							<legend>Mission destination</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Mission
+									destination:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanmission.destination}" required="true" />
+								</div>
+							</div>
+						</fieldset>
+						<fieldset></fieldset>
+						
+						
+						
+						
+							<fieldset></fieldset>
+						<fieldset>
+							<legend>Mission Objectif</legend>
+							<div class="form-group row">
+								<label class="col-md-2 col-form-label">Mission
+									objectif:</label>
+								<div class="col-md-2">
+									<h:inputText styleClass="form-control form-control-rounded"
+										value="#{managedBeanmission.objectif}" required="true" />
+								</div>
+							</div>
+						</fieldset>
+						
+
+
+						<h:commandLink styleClass="btn btn-success"
+							action="#{managedBeanmission.ajout()}">
+							<i class="fa fa-fw fa-plus"></i>
+						</h:commandLink>
+						<h:commandLink styleClass="text text-primary"
+							action="#{ticketBean.cancel()}">  cancel </h:commandLink>
+
+
+					</h:form>
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+		
+		</section>
+
+	</ui:define>
+</ui:composition>
+

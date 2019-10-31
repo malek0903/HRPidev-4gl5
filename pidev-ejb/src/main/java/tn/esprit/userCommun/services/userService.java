@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.entities.User;
 import tn.esprit.userCommun.interfaces.userInterfaceRemote;
 
