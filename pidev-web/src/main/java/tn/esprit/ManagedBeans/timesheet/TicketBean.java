@@ -45,6 +45,8 @@ public class TicketBean {
 	private Team team;
 	private List<Employee> employees = new ArrayList<Employee>();
 	private int selectedTeamId;
+	
+	private Boolean archive=false ;
 
 	// private double test;
 	private List<Ticket> tickets = new ArrayList<Ticket>();
@@ -98,6 +100,7 @@ public class TicketBean {
 		ticket.setDoing(false);
 		ticket.setDone(false);
 		ticket.setToDo(false);
+		ticket.setArchive(false);
 		ticket.setEstimatedHours(estimatedHours);
 		ticketService.ajouterTicket(ticket);
 
@@ -105,7 +108,7 @@ public class TicketBean {
 		return "/timesheet/ticketList.xhtml?faces-redirect=true";
 
 	}
-
+		
 	public void affecter(Ticket ticket, Employee emp) {
 		// System.out.println("utilisateur connecter "+ loginBean.getCurrent_employe());
 
@@ -124,7 +127,7 @@ public class TicketBean {
 		tickets.setDifficulty(ticket.getDifficulty());
 		tickets.setEstimatedHours(ticket.getEstimatedHours());
 		tickets.setTeam(ticket.getTeam());
-
+		tickets.setArchive(false);
 		System.out.println("ticket ajouter : " + tickets);
 		ticketService.updateTicket(tickets);
 		initialisate();
@@ -148,7 +151,7 @@ public class TicketBean {
 		tickets.setDifficulty(ticket.getDifficulty());
 		tickets.setEstimatedHours(ticket.getEstimatedHours());
 		tickets.setTeam(ticket.getTeam());
-
+		tickets.setArchive(false);
 		System.out.println("ticket ajouter : " + tickets);
 		ticketService.updateTicket(tickets);
 		initialisate();
@@ -247,7 +250,53 @@ public class TicketBean {
 
 		this.setTicketToBeUpdated(ticket.getIdTicket());
 		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, difficulty, status);
-		double dure = (ticket.getDateBegin().getHours() + ((double)ticket.getDateBegin().getMinutes()/60)) - (new Date().getHours() + ((double)new Date().getMinutes()/60));
+		double dure = ((this.dateEnd.getHours() + ((double)this.dateEnd.getMinutes()/60)) - (ticket.getDateBegin().getHours() + ((double)ticket.getDateBegin().getMinutes()/60)) );
+			
+		tickets.setEmployesTicket(emp);
+		tickets.setTitle(ticket.getTitle());
+		tickets.setDescription(ticket.getDescription());
+		tickets.setDifficulty(ticket.getDifficulty());
+		tickets.setEstimatedHours(ticket.getEstimatedHours());
+		tickets.setTeam(ticket.getTeam());	
+		tickets.setDateBegin(ticket.getDateBegin());
+		tickets.setDateEnd(this.dateEnd);
+		tickets.setArchive(false);
+		
+		
+		
+		tickets.setDuration(dure);
+		ticketService.updateTicket(tickets);
+		initialisate();
+	}
+	
+	
+	public int changeColor(Ticket ticket) {
+		
+		if(ticket.getDuration() > 0 )return 1;
+		if(ticket.getDuration() == 0) return 2;
+		else return 3;
+		
+		
+	}
+	
+	
+	public void archivetIt(Ticket ticket,Employee emp) {
+		
+		this.status = Status.Doing;
+		this.toDoList = false;
+		this.toDo = false;
+		this.doing = false;
+		this.done = false;
+		this.dateEnd = new Date();
+		
+
+		System.out.println("ticket ajouter : " + (ticket.getDateBegin().getMinutes()/60));
+		
+		
+
+		this.setTicketToBeUpdated(ticket.getIdTicket());
+		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, difficulty, status);
+		double dure = ((this.dateEnd.getHours() + ((double)this.dateEnd.getMinutes()/60)) - (ticket.getDateBegin().getHours() + ((double)ticket.getDateBegin().getMinutes()/60)) );
 		
 		tickets.setEmployesTicket(emp);
 		tickets.setTitle(ticket.getTitle());
@@ -257,7 +306,7 @@ public class TicketBean {
 		tickets.setTeam(ticket.getTeam());	
 		tickets.setDateBegin(ticket.getDateBegin());
 		tickets.setDateEnd(this.dateEnd);
-		
+		tickets.setArchive(true);
 		
 		
 		
@@ -502,6 +551,14 @@ public class TicketBean {
 
 	public void setWidth3(int width3) {
 		this.width3 = width3;
+	}
+
+	public Boolean getArchive() {
+		return archive;
+	}
+
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
 	}
 
 }

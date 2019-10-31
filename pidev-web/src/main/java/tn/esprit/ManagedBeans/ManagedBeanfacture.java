@@ -12,8 +12,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.mail.Part;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 
 import tn.esprit.mission.factureservices.ServicefactureRemote;
 import tn.esprit.mission.missionentities.Facture;
@@ -142,49 +142,49 @@ public class ManagedBeanfacture {
 	public void setF(Facture f) {
 		this.f = f;
 	}
-
-	public String ajout(Mission a) throws IOException
-
-	{
-
-		String path = uploadFile();
-
-		Facture f = new Facture();
-
-		Partenariat p = new Partenariat();
-
-		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-				.getRequest();
-		String partenariat = req.getParameter("partenariat");
-		int idpartenaire = Integer.valueOf(partenariat);
-		System.out.println(idpartenaire);
-		Partenariat b = new Partenariat();
-		b = ser.pfind(idpartenaire);
-
-		f.setPartenariat(b);
-
-		HttpServletRequest rep = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-				.getRequest();
-		String type = rep.getParameter("type");
-		System.out.println(type);
-		f.setType(type);
-
-		f.setImage(path);
-		f.setMission(mission);
-
-		f.setSomme(somme);
-
-		/*
-		 * 
-		 * int i=a.getIdmission(); System.out.println(i); String g=a.getEtat();
-		 * System.out.println(g); String w=a.getDestination(); System.out.println(w);
-		 * 
-		 */
-
-		ser.ajouterFacture(f);
-		
-		return  "/missions/front/templatefront.xhtml ?faces-redirect=true";
-	}
+//
+//	public String ajout(Mission a) throws IOException
+//
+//	{
+//
+//		String path = uploadFile();
+//
+//		Facture f = new Facture();
+//
+//		Partenariat p = new Partenariat();
+//
+//		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+//				.getRequest();
+//		String partenariat = req.getParameter("partenariat");
+//		int idpartenaire = Integer.valueOf(partenariat);
+//		System.out.println(idpartenaire);
+//		Partenariat b = new Partenariat();
+//		b = ser.pfind(idpartenaire);
+//
+//		f.setPartenariat(b);
+//
+//		HttpServletRequest rep = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+//				.getRequest();
+//		String type = rep.getParameter("type");
+//		System.out.println(type);
+//		f.setType(type);
+//
+//		f.setImage(path);
+//		f.setMission(mission);
+//
+//		f.setSomme(somme);
+//
+//		/*
+//		 * 
+//		 * int i=a.getIdmission(); System.out.println(i); String g=a.getEtat();
+//		 * System.out.println(g); String w=a.getDestination(); System.out.println(w);
+//		 * 
+//		 */
+//
+//		ser.ajouterFacture(f);
+//		
+//		return  "/missions/front/templatefront.xhtml ?faces-redirect=true";
+//	}
 
 	public List<Facture> getFactures() {
 
@@ -262,19 +262,19 @@ public class ManagedBeanfacture {
 			System.out.println(e.getMessage());
 		}
 	}
-
-	public String uploadFile() throws IOException {
-
-		if (file != null) {
-			inputStream = file.getInputStream();
-			System.out.println("file name = " + file.getName());
-			fileName = file.getSubmittedFileName();
-			copyFile(fileName, inputStream);
-			file = null;
-			inputStream = null;
-			return "http://localhost:80/Pi/" + fileName;
-		}
-		return "";
-	}
+//
+//	public String uploadFile() throws IOException {
+//
+//		if (file != null) {
+//			inputStream = file.getInputStream();
+//			System.out.println("file name = " + file.getName());
+//			fileName = file.getSubmittedFileName();
+//			copyFile(fileName, inputStream);
+//			file = null;
+//			inputStream = null;
+//			return "http://localhost:80/Pi/" + fileName;
+//		}
+//		return "";
+//	}
 
 }

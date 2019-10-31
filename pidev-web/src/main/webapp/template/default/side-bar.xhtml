@@ -25,6 +25,7 @@
 							data-localize="sidebar.heading.HEADER">Main Navigation</span></li>
 
 
+
 						<!-- hedhy evaluation mte3i  -->
 						<li class=" "><a href="#dashboard" title="Dashboard"
 							data-toggle="collapse"> <i class="fa fa-fw fa-dashboard"></i><span
@@ -44,72 +45,48 @@
 									<li class=" active"><h:link value="ListEval Manager"
 											outcome="/pages/ListEval360Started.xhtml" /></li>
 								</ul>
-							</ul></li>
-							
-							<ul class="sidebar-nav">
-						<!-- Iterates over all sidebar items-->
-						<li class="nav-heading "><span
-							data-localize="sidebar.heading.HEADER">Main Navigation</span></li>
-						<li class=" "><a href="#dashboard" title="Dashboard"
-							data-toggle="collapse">
-								<div class="float-right badge badge-success">3</div> <i
-								class="fa fa-fw fa-dashboard"></i><span
-								data-localize="sidebar.nav.DASHBOARD">Mission</span>
-						</a>
+							</c:if></li>
+
+
+
+						<c:if test='#{loginBean.current_user_string.equals("Admin")}'>
+
 							<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
 								<li class="sidebar-subnav-header">Dashboard</li>
-								<li class=" active"><h:link value="Demande mission"
-										outcome="/missions/front/demandemission.xhtml" /></li>
-										<li class=" active"><h:link value="Demande Facture"
-										outcome="/missions/front/ajoutfacture.xhtml" /></li>
 
-                               
+								<li class=" active"><h:link value="Home"
+										outcome="/pages/dashboard-v1.xhtml" /></li>
 
-							</ul></li></ul> 
-							
-						
-							
-					
-							
-						
-						
+								<li class=" active"><h:link value="Start new Evaluation"
+										outcome="/pages/EmployesListEval.xhtml" /></li>
 
-							</c:if> <c:if test='#{loginBean.current_user_string.equals("Admin")}'>
+								<li class=" active"><h:link value="List Eval360"
+										outcome="/pages/ListEval360.xhtml" /></li>
 
-								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
-									<li class="sidebar-subnav-header">Dashboard</li>
+								<li class=" active"><h:link value="Objectives"
+										outcome="/pages/objectives.xhtml" /></li>
 
-									<li class=" active"><h:link value="Home"
-											outcome="/pages/dashboard-v1.xhtml" /></li>
+								<li class=" active"><h:link value="ListEval"
+										outcome="/pages/ListEval360Started.xhtml" /></li>
+							</ul>
 
-									<li class=" active"><h:link value="Start new Evaluation"
-											outcome="/pages/EmployesListEval.xhtml" /></li>
+						</c:if>
+						<c:if test='#{loginBean.current_user_string.equals("Employee")}'>
 
-									<li class=" active"><h:link value="List Eval360"
-											outcome="/pages/ListEval360.xhtml" /></li>
+							<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+								<li class="sidebar-subnav-header">Dashboard</li>
 
-									<li class=" active"><h:link value="Objectives"
-											outcome="/pages/objectives.xhtml" /></li>
+								<li class=" active"><h:link value="Home"
+										outcome="/pages/dashboard-v1.xhtml" /></li>
 
-									<li class=" active"><h:link value="ListEval"
-											outcome="/pages/ListEval360Started.xhtml" /></li>
-								</ul>
-
-							</c:if> <c:if test='#{loginBean.current_user_string.equals("Employee")}'>
-
-								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
-									<li class="sidebar-subnav-header">Dashboard</li>
-
-									<li class=" active"><h:link value="Home"
-											outcome="/pages/dashboard-v1.xhtml" /></li>
-
-									<li class=" active"><h:link value="List Eval360"
-											outcome="/pages/ListEval360.xhtml" /></li>
+								<li class=" active"><h:link value="List Eval360"
+										outcome="/pages/ListEval360.xhtml" /></li>
 
 
-								</ul>
+							</ul>
 
-							</c:if></li>
+						</c:if>
+
 						<!-- hedhy END evaluation mte3i  -->
 
 
@@ -127,8 +104,7 @@
 									<li class=" active"><h:link value="Home"
 											outcome="/pages/dashboard-v1.xhtml" /></li>
 
-									<li class=" active"><h:link
-											value="ticket list"
+									<li class=" active"><h:link value="ticket list"
 											outcome="/timesheet/ticketList.xhtml" /></li>
 
 									<li class=" active"><h:link value="TeamList"
@@ -138,11 +114,7 @@
 											outcome="/timesheet/Calendar.xhtml" /></li>
 								</ul>
 
-							</c:if> 
-							
-							
-							
-							<c:if test='#{loginBean.current_user_string.equals("Employee")}'>
+							</c:if> <c:if test='#{loginBean.current_user_string.equals("Employee")}'>
 
 								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
 									<li class="sidebar-subnav-header">Dashboard</li>
@@ -154,6 +126,11 @@
 											outcome="/timesheet/ScrumBoard.xhtml" /></li>
 
 
+
+									<li class=" active"><h:link value="Ticket archive"
+											outcome="/timesheet/ticketListArchive.xhtml" /></li>
+
+
 								</ul>
 
 							</c:if></li>
@@ -161,18 +138,49 @@
 
 
 
+						<!-- hachelmm -->
+
+						<li class=" "><a href="#dashboard" title="Dashboard"
+							data-toggle="collapse"> <i class="fa fa-fw fa-dashboard"></i><span
+								data-localize="sidebar.nav.DASHBOARD">TimeSheet</span>
+						</a> <c:if test='#{loginBean.current_user_string.equals("Manager")}'>
+
+								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+									<li class="sidebar-subnav-header">Dashboard</li>
+
+									<li class=" active"><h:link value="Home"
+											outcome="/pages/dashboard-v1.xhtml" /></li>
+
+									<li class=" active"><h:link value="ticket list"
+											outcome="/timesheet/ticketList.xhtml" /></li>
+
+									<li class=" active"><h:link value="TeamList"
+											outcome="/timesheet/TeamList.xhtml" /></li>
+
+									<li class=" active"><h:link value="Calendar"
+											outcome="/timesheet/Calendar.xhtml" /></li>
+								</ul>
+
+							</c:if> <c:if test='#{loginBean.current_user_string.equals("Employee")}'>
+
+								<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+									<li class="sidebar-subnav-header">Dashboard</li>
+
+									<li class=" active"><h:link value="demande mission"
+											outcome="/missions/front/demandemission.xhtml" /></li>
+
+									<li class=" active"><h:link value="ajout facture"
+											outcome="/missions/front/ajoutfacture.xhtml" /></li>
+
+
+								</ul>
+
+							</c:if></li>
+						<!-- end hachem -->
 
 
 
 
-
-
-
-						<li class="nav-heading "><span
-							data-localize="sidebar.heading.COMPONENTS">Components</span></li>
-						<li class=" "><a href="#extras" title="Extras"
-							data-toggle="collapse"><em class="fa fa-fw fa-info"></em><span
-								data-localize="sidebar.nav.extra.EXTRA">Extras</span></a></li>
 
 
 
@@ -181,7 +189,6 @@
 
 
 					</ul>
-					
 				</nav>
 			</div>
 		</aside>

@@ -33,7 +33,7 @@ public class Ticket  implements Serializable {
 	private Date dateBegin;
 	private Date dateEnd;
 	private double duration;
-	
+	private Boolean archive;
 	private Boolean toDoList;
 	private Boolean toDo;
 	private Boolean doing;
@@ -326,6 +326,12 @@ public class Ticket  implements Serializable {
 	}
 	public void setProjet(Projet projet) {
 		this.projet = projet;
+	}
+	public Boolean getArchive() {
+		return archive;
+	}
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
 	}
 
 	
