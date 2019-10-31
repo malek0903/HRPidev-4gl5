@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui"
-	template="/template/default/admin/template.xhtml">
+	template="/template/default/template.xhtml">
 
 	<ui:param name="page_name" value="Index" />
 	<ui:define name="content">
@@ -92,7 +92,7 @@
 							<p:inputText id="email" required="true" label="email" size="40"
 								requiredMessage="Please enter your email address."
 								validatorMessage="Invalid email format"
-								value="#{managedBeanpartenaire.emailpartenaire}" required="true">
+								value="#{managedBeanpartenaire.emailpartenaire}">
 
 								<f:validateRegex
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
