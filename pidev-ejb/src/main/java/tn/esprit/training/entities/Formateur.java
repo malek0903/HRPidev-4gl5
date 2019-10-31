@@ -28,7 +28,7 @@ public class Formateur implements Serializable {
 	private Boolean disponibilite;
 	@OneToMany(mappedBy="formateur")
 	private List<Planification> planification;
-private Formateur formateur;
+private Formateur formateurs;
 	public int getId() {
 		return id;
 	}
@@ -55,6 +55,14 @@ private Formateur formateur;
 
 	public int getNumber() {
 		return number;
+	}
+
+	public Formateur getFormateurs() {
+		return formateurs;
+	}
+
+	public void setFormateurs(Formateur formateur) {
+		this.formateurs = formateur;
 	}
 
 	public void setNumber(int number) {

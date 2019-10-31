@@ -11,7 +11,7 @@
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Add Schedule<small data-localize="dashboard.WELCOME"></small>
+					Skill List<small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -30,24 +30,30 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="Starting in: " />
-					<h:inputText value="#{planificationbean.dateDebut}" />
-					<h:outputLabel value="Ends in: " />
-					<h:inputText value="#{planificationbean.dateFin}" />
-					<h:outputLabel value="Available places: " />
-					<h:inputText value="#{planificationbean.numberP}" />
-					<p:outputLabel for="Formation" value="Training_Name: " />
-        <p:selectOneMenu id="FormationId" value="#{formationBean.FormationId}" effect="fold" editable="true">
-            <f:selectItem itemLabel="Select your training" itemValue="" />
-            <f:selectItems value="#{formationBean.nomFormation}" />
-        </p:selectOneMenu>
-					<h:outputLabel value="Description: " />
-					<h:inputText value="#{skillBeans.skillDesc}" />
-					<h:commandButton value="ADD" action="#{skillBeans.addSkill()}" />
-				</h:panelGrid>
-			</h:form>
+			<h:dataTable value="#{skillBeans.getAllSkills()}" var="skill"
+				border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{skill.skillName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet> 
+					<h:outputText value="#{skill.skillDesc}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="" />
+					</f:facet>
+					<h:form>
+						<h:commandButton action="#{skillBeans.removeSkill(skill)}" value="Delete" />
+						<h:commandLink action="#{skillBeans.editSkill(skill)}" value="Update" />
+					</h:form>
+				</h:column>
+			</h:dataTable>
 			<!-- END cards box-->
 		</div>
 		</section>

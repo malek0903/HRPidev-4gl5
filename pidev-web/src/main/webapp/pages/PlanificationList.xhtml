@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+template="/template/default/template.xhtml">
+	
+	<ui:define name="content">
+		<section class="section-container"> <!-- Page content-->
+
+		<div class="content-wrapper">
+			<div class="content-heading">
+				<div>
+				 <small
+						data-localize="dashboard.WELCOME"></small>
+				</div>
+
+				<!-- START Language list-->
+
+
+				<!-- END Language list-->
+			<h:head>
+		<title>Panel, PanelGrid, PanelMenu</title>
+		<script name="jquery/jquery.js" library="primefaces"></script>
+	</h:head>
+	
+	
+	                     
+                  <form>   
+                  <p:outputLabel value="Search" for="acMinLength" />
+        <p:autoComplete id="acMinLength" minQueryLength="3" value="#{autoCompleteView.txt2}" completeMethod="#{autoCompleteView.completeText}" effect="fade" />
+ 
+      
+	<h:dataTable value="#{planificationBeans.getAllPlanifications()}" var="p"
+				border="2">
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="id " />
+					</f:facet>
+					<h:outputText value="#{p.id}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Trainer" />
+					</f:facet>
+					<h:outputText value="#{p.formateur.name}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Trainering" />
+					</f:facet>
+					<h:outputText value="#{p.formation.nomFormation}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Available places" />
+					</f:facet>
+					<h:outputText value="#{p.numberP}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Starts in  " />
+					</f:facet> 
+					<h:outputText value="#{p.dateDebut}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Ends in  " />
+					</f:facet> 
+					<h:outputText value="#{p.dateFin}" />
+				</h:column>
+				
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Date fin " />
+					</f:facet> 
+					<h:outputText value="#{p.dateFin}" />
+				
+				<h:form>
+					<h:commandLink action="#{formateurBeans.editFormateur(formateur)}" value="inscri" />
+					
+					</h:form></h:column>
+			</h:dataTable>
+			</form>  
+		</div>
+
+
+
+	</div>	</section>
+	</ui:define>
+</ui:composition>

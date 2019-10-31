@@ -32,19 +32,27 @@
 			<!-- START cards box-->
 			<h:form>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Starting in: " />
-					<h:inputText value="#{planificationbean.dateDebut}" />
-					<h:outputLabel value="Ends in: " />
-					<h:inputText value="#{planificationbean.dateFin}" />
+					<h:outputLabel value="Starting in:" />
+					<h:inputText value="#{planificationBeans.dateDebut}" />
+					<h:outputLabel value="Ends in:" />
+					<h:inputText value="#{planificationBeans.dateFin}" />
 					<h:outputLabel value="Available places: " />
-					<h:inputText value="#{planificationbean.numberP}" />
-				
-				
-					<h:outputLabel value="Description: " />
-					<h:inputText value="#{skillBeans.skillDesc}" />
-					<h:commandButton value="ADD" action="#{skillBeans.addSkill()}" />
+					<h:inputText value="#{planificationBeans.numberP}" />
+					
+					<h:outputLabel value="Training: " />
+					<h:selectOneMenu value="#{planificationBeans.formationIdToEdit}">
+						<f:selectItem itemLabel="select formation" itemValue="0" />
+						<f:selectItems value="#{planificationBeans.getFormation()}" var="f" itemLabel="#{f.nomFormation}" itemValue="#{f.id}" />
+					</h:selectOneMenu>
+					
+					
+					<h:commandButton value="ADD" action="#{planificationBeans.addPlanification()}"/>
 				</h:panelGrid>
-			</h:form>
+				</h:form>
+        
+
+        
+      
 			<!-- END cards box-->
 		</div>
 		</section>

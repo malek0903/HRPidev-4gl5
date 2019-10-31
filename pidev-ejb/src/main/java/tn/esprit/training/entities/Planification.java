@@ -33,8 +33,8 @@ public class Planification implements Serializable{
     @JoinColumn(name = "idFormateur", referencedColumnName = "id", insertable=false, updatable=false)
 	private Formateur formateur;
 	
-	private Date dateDebut;
-	private Date dateFin;
+	private String dateDebut;
+	private String dateFin;
 	private int  numberP;
 	public int getId() {
 		return id;
@@ -51,18 +51,20 @@ public class Planification implements Serializable{
 	public Formateur getFormateur() {
 		return formateur;
 	}
-	
-	public Date getDateDebut() {
+	public String getDateDebut() {
 		return dateDebut;
 	}
-	public static void setDateDebut(Date dateDebut) {
-		dateDebut = dateDebut;
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
 	}
-	public Date getDateFin() {
+	public String getDateFin() {
 		return dateFin;
 	}
-	public static void setDateFin(Date dateFin) {
-		dateFin = dateFin;
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+	public void setFormateur(Formateur formateur) {
+		this.formateur = formateur;
 	}
 	public int getNumberP() {
 		return numberP;

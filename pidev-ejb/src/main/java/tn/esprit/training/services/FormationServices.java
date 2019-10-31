@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import tn.esprit.training.entities.Formateur;
 import tn.esprit.training.entities.Formation;
 import tn.esprit.training.interfaces.FormationServiceRemote;
 
@@ -41,14 +43,10 @@ public class FormationServices  implements FormationServiceRemote{
 
 @Override
 public void deleteFormation(Formation formation) {
-	// TODO Auto-generated method stub
+	em.remove(em.find(Formation.class, formation.getId()));
 	
 }
 
-//@Override
-//	public void deleteFormation(Formation formation) {
-	//	em.remove(em.find(Formation.class, Formation.getId()));
-	//}
 
 	
 

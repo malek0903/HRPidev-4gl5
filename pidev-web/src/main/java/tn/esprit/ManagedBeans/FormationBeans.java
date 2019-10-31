@@ -7,8 +7,11 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import tn.esprit.training.entities.Formation;
+
 import tn.esprit.training.services.FormationServices;
 
 
@@ -25,8 +28,8 @@ public class FormationBeans {
 	private String Description;
 	private String duration;
 	private int nbPlaceDispo;
-	//
-	//private Type Type;
+	
+	
 	private List<Formation> formation;
 	private Formation formationToUpadate;
 
@@ -39,7 +42,7 @@ public class FormationBeans {
 		formation.setDescription(Description);
 		formation.setDuration(duration);
 		formation.setNbPlaceDispo(nbPlaceDispo);
-		//formation.setType(Type);
+		
 		formationservices.addFormation(formation);
 		return null;
 	}
@@ -79,6 +82,10 @@ public class FormationBeans {
 	public void setDescription(String description) {
 		Description = description;
 	}
+	
+	
+	
+	
 	public String getDuration() {
 		return duration;
 	}
@@ -103,13 +110,7 @@ public class FormationBeans {
 	public void setFormationToUpadate(Formation formationToUpadate) {
 		this.formationToUpadate = formationToUpadate;
 	}
-	//public Type getType() {
-	///	return Type;
-	//}
-	//public void setType(Type type) {
-	//	Type = type;
-	//}
-
+	
 
 
 	

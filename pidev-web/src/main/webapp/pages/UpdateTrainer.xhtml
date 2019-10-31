@@ -35,13 +35,12 @@
 					<h:outputLabel value="Name: " />
 					<h:inputText value="#{formateurBeans. formateurToUpadate.name}" />	
 					<h:outputLabel value="Specialite: " />
-					<h:inputText value="#{formateurBean.formateurToUpadate.specialite}" />
+					<h:inputText value="#{formateurBeans.formateurToUpadate.specialite}" />
 					<h:outputLabel value="number: " />
 					<h:inputText value="#{formateurBeans.formateurToUpadate.number}" />	
 					<h:outputLabel value="disponibilite: " />
 					<h:inputText value="#{formateurBeans.formateurToUpadate.disponibilite}" />	
 					<h:commandButton value="Update" action="#{formateurBeans.updateFormateur()}" />
-						<h:commandButton action="#{formateurBeans.removeFormateur(formateur)}" value="Delete" />
 				</h:panelGrid>
 			</h:form>
 			<!-- END cards box-->

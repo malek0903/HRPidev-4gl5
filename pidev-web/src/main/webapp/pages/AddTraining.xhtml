@@ -32,17 +32,33 @@
 			<!-- START cards box-->
 			<h:form>
 				<h:panelGrid columns="2">
+				
+				
+				
+				
 				<h:outputLabel value="Description: " />
-					<h:inputText value="#{formationBeans.description}" />
+				
+					<h:inputText id="des" value="#{formationBeans.description}" required="true" requiredMessage="Description is mandatory!"  />
+				
+					
 					
 					<h:outputLabel value="duration: " />
 					<h:inputText value="#{formationBeans.duration}" />
 					
+					
+					
 					<h:outputLabel value="Places: " />
 					<h:inputText value="#{formationBeans.nbPlaceDispo}" />
+					
+					
+					
 					<h:outputLabel value="Name: " />
-					<h:inputText value="#{formationBeans.nomFormation}" />
-					<h:commandButton value="ADD" action="#{formationBeans.addFormation()}"/>
+					
+					<h:inputText id="nameid"  value="#{formationBeans.nomFormation}" required="true" requiredMessage="Name is mandatory!"  />
+					
+				
+				<h:commandButton value="ADD" action="#{formationBeans.addFormation()}"/>
+				
 				</h:panelGrid>
 			</h:form>
 			<!-- END cards box-->

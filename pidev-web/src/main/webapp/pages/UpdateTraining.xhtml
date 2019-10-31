@@ -32,16 +32,13 @@
 			<!-- START cards box-->
 			<h:form>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Description: " />
-					<h:inputText value="#{formationBean.formationToUpadate.description}" />	
 					<h:outputLabel value="Duration: " />
-					<h:inputText value="#{formationBean.formationToUpadate.duration}" />
+					<h:inputText value="#{formationBeans.formationToUpadate.duration}" />
 					<h:outputLabel value="nb places: " />
-					<h:inputText value="#{formationBean.formationToUpadate.nbPlaceDispo}" />	
+					<h:inputText value="#{formationBeans.formationToUpadate.nbPlaceDispo}" />	
 					<h:outputLabel value="Name: " />
-					<h:inputText value="#{formationBean.formationToUpadate.nomFormation}" />	
-					<h:commandButton value="Update" action="#{formationBean.updateFormation()}" />
-						<h:commandButton action="#{formationBean.removeFormation(formation)}" value="Delete" />
+					<h:inputText value="#{formationBeans.formationToUpadate.nomFormation}" />	
+					<h:commandButton value="Update" action="#{formationBeans.updateFormation()}" />
 				</h:panelGrid>
 			</h:form>
 			<!-- END cards box-->

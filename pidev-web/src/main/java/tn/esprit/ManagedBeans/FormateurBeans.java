@@ -46,11 +46,12 @@ public class FormateurBeans {
 	}
 	public String editFormateur(Formateur formateur) {
 		setFormateurToUpadate(formateur);
-		return "UpdateFormateur";
+		return "UpdateTrainer";
 	}
 	public String updateFormateur() {
 		formateurservices.updateFormateur(formateurToUpadate);
 		return "FormationList";
+		
 		
 	}
 	public String removeFormateur(Formateur formateur) {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 //import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -28,9 +29,10 @@ public class Formation implements Serializable {
 	private String duration;
 	private int nbPlaceDispo ;	
 	@Enumerated(EnumType.STRING)
-	private Type Type;
 	
-	@OneToMany(mappedBy="formateur")
+	
+	@OneToMany(mappedBy="formateur", cascade = CascadeType.ALL, orphanRemoval = true)
+	
 	private List<Planification> planification;
 	public int getId() {
 		return id;
@@ -41,9 +43,7 @@ public class Formation implements Serializable {
 	public void setPlanification(List<Planification> planification) {
 		this.planification = planification;
 	}
-	public void setType(Type type) {
-		Type = type;
-	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -71,9 +71,7 @@ public class Formation implements Serializable {
 	public void setNbPlaceDispo(int nbPlaceDispo) {
 		this.nbPlaceDispo = nbPlaceDispo;
 	}
-	public Type getType() {
-		return Type;
-	}
+	
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
