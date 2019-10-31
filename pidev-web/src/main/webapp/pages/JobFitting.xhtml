@@ -11,7 +11,7 @@
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Skill job<small data-localize="dashboard.WELCOME"></small>
+					Job fitting<small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -33,12 +33,12 @@
 			<h:panelGrid columns="2">
 				<h:form>
 					<h:outputLabel value="Choose a job: " />&nbsp;
-					<h:selectOneMenu value="#{skillJobBeans.jobIdToAddEdit}"
-						valueChangeListener="#{skillJobBeans.skillJobToAddEdit}"
+					<h:selectOneMenu value="#{skillMatrixAndSkillJobBeans.jobIdToAddEdit}"
+						valueChangeListener="#{skillMatrixAndSkillJobBeans.skillJobToAddEdit}"
 						onchange="submit()" immediate="true">
 						<f:selectItem itemvalue="0" itemLabel="Select a job"/>
 						<f:selectItems
-							value="#{skillJobBeans.getJobs()}"
+							value="#{skillMatrixAndSkillJobBeans.getJobs()}"
 							var="job" itemLabel="#{job.jobName}"
 							itemValue="#{job.jobId}" />
 					</h:selectOneMenu>

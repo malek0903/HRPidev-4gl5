@@ -1,6 +1,9 @@
 package tn.esprit.skill.services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -12,12 +15,24 @@ import tn.esprit.skill.entities.Skill;
 import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.skill.servicesInterfaces.SkillMatrixServiceRemote;
 import tn.esprit.userCommun.entities.Employee;
+import tn.esprit.userCommun.services.EmployeService;
 
 @Stateless
 @LocalBean
 public class SkillMatrixServiceImpl implements SkillMatrixServiceRemote {
 	@PersistenceContext(unitName="pidev-ejb")
 	EntityManager entityManager;
+	EmployeService employeeService;
+
+	@Override
+	public Map<Employee, List<SkillMatrix>> findAllSkillsMatrixGroupByEmployeeIds(){
+		List<Employee> employees = employeeService.getAllEmployes();
+		Map<Employee, List<SkillMatrix>> SkillsMatrixs = new HashMap<>();
+		for(Employee emp : employees) {
+			SkillsMatrixs.put(emp, findSkillMatrixByEmployeeId(emp.getId()));
+		}
+		return SkillsMatrixs;
+	}
 
 	@Override
 	public List<SkillMatrix> findSkillMatrixByEmployeeId(long employeeId) {

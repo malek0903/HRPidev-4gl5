@@ -5,13 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="/template/default/template.xhtml">
 	<ui:define name="content">
 		<section class="section-container"> <!-- Page content-->
 		<div class="content-wrapper">
 			<div class="content-heading">
 				<div>
-					Skill job<small data-localize="dashboard.WELCOME"></small>
+					Skill List<small data-localize="dashboard.WELCOME"></small>
 				</div>
 				<!-- START Language list-->
 				<div class="ml-auto">
@@ -30,20 +31,38 @@
 				<!-- END Language list-->
 			</div>
 			<!-- START cards box-->
-			<h:panelGrid columns="2">
-				<h:form>
-					<h:outputLabel value="Choose a job: " />&nbsp;
-					<h:selectOneMenu value="#{skillJobBeans.jobIdToAddEdit}"
-						valueChangeListener="#{skillJobBeans.skillJobToAddEdit}"
-						onchange="submit()" immediate="true">
-						<f:selectItem itemvalue="0" itemLabel="Select a job"/>
-						<f:selectItems
-							value="#{skillJobBeans.getJobs()}"
-							var="job" itemLabel="#{job.jobName}"
-							itemValue="#{job.jobId}" />
-					</h:selectOneMenu>
-				</h:form>
-			</h:panelGrid>
+				<h:dataTable
+					value="#{skillMatrixAndSkillJobBeans.mismatchingSkillJobWithSkillMatrix()}"
+					var="emp" border="1">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="CIN : " />
+						</f:facet>
+						<h:outputText value="#{emp.cin}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="First Name : " />
+						</f:facet>
+						<h:outputText value="#{emp.firstName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Last Name : " />
+						</f:facet>
+						<h:outputText value="#{emp.lastName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						<h:form>
+							<h:commandButton
+								action="#{skillMatrixAndSkillJobBeans.assignEmployeeNewJob(emp)}"
+								value="Assign" />
+						</h:form>
+					</h:column>
+				</h:dataTable>
 			<!-- END cards box-->
 		</div>
 		</section>

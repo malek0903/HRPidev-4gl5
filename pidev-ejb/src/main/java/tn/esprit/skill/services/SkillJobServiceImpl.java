@@ -23,6 +23,11 @@ public class SkillJobServiceImpl implements SkillJobServiceRemote {
 	EntityManager entityManager;
 
 	@Override
+	public SkillJob findSkillJobById(long id) {
+		return entityManager.find(SkillJob.class, id);
+	}
+
+	@Override
 	public List<SkillJob> findSkillJobByJobId(long jobId) {
 		Job j = new Job();
 		j.setJobId(jobId);

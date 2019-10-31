@@ -33,8 +33,13 @@
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Enter CIN: " />
-					<h:inputText value="#{skillMatrixBeans.cin}" />
-					<h:commandButton value="Search" action="#{skillMatrixBeans.getUserByCIN()}" />
+					<h:inputText id="cin" value="#{skillMatrixBeans.cin}">
+						<f:validateRegex
+							pattern="[0-9]{8}" />
+					</h:inputText>
+					<h:message for="cin" message="aaaa" style="color:red" />
+					<h:commandButton value="Search"
+						action="#{skillMatrixBeans.getUserByCIN()}" />
 				</h:panelGrid>
 			</h:form>
 			<!-- END cards box-->
