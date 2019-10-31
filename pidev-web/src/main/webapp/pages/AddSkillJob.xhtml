@@ -39,8 +39,6 @@
 					<h:outputText value="#{skillJobBeans.skillToAdd.getSkillName()}" />
 					<h:outputLabel value="Score: " />
 					<h:inputText id="score" value="#{skillJobBeans.skillScore}">
-						<f:validateRegex
-							pattern="[0-5]{1}" />
 					</h:inputText>
 					<h:message for="score" style="color:red" />
 					<h:commandButton value="ADD" action="#{skillJobBeans.addSkillJob()}" />

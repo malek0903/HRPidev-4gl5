@@ -34,7 +34,7 @@ public class JobBeans {
 		java.sql.Date date=new java.sql.Date(millis);
 		job.setJobDate(date);
 		jobService.addJob(job);
-		return null;
+		return "JobList";
 	}
 	public String editJob(Job job) {
 		setJobToUpadate(job);

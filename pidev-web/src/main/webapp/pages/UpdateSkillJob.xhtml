@@ -39,8 +39,6 @@
 					<h:outputText value="#{skillJobBeans.skillJobToUpadate.skill.skillName}" />
 					<h:outputLabel value="Score: " />
 					<h:inputText id="scorej" value="#{skillJobBeans.skillJobToUpadate.skillJobScore}">
-						<f:validateRegex
-							pattern="[0-5]{1}" />
 					</h:inputText>
 					<h:message for="scorej" style="color:red" />
 					<h:commandButton value="Update" action="#{skillJobBeans.updateSkillJob()}" />

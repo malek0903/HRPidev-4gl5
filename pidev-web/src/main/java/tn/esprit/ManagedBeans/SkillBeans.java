@@ -34,7 +34,7 @@ public class SkillBeans {
 		java.sql.Date date=new java.sql.Date(millis);
 		skill.setSkillDate(date);
 		skillService.addSkill(skill);
-		return null;
+		return "SkillList";
 	}
 	public String editSkill(Skill skill) {
 		setSkillToUpadate(skill);
