@@ -38,11 +38,7 @@ public class Employee extends User {
 	@Enumerated(EnumType.STRING)
 	private Status statusEval360;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Team team;
 	
-	@Enumerated(EnumType.STRING)
-	private Status statusEval360;
 
 	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
