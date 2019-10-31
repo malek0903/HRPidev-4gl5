@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 
 import tn.esprit.evaluation.entities.Notification;
 import tn.esprit.evaluation.servicesInterfaces.INotificationRemoteService;
-import tn.esprit.userCommun.entities.Team;
+import tn.esprit.timesheet.entities.Team;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @Stateless
@@ -32,11 +32,7 @@ public class NotificationService implements INotificationRemoteService {
 		return em.createQuery("from Notification ", Notification.class).getResultList();
 	}
 
-	@Override
-	public Team getNotificationById(Long idNotification) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<Notification> getNotificationForRole(EmployeeRole userRole) {

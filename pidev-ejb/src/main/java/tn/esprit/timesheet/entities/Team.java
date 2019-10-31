@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import tn.esprit.userCommun.entities.Employee;
+import tn.esprit.userCommun.entities.Manager;
 @Entity
 public class Team implements Serializable{
 
@@ -34,6 +36,11 @@ public class Team implements Serializable{
 	
 	@OneToMany(mappedBy="team")
 	private List<Ticket> tickets =new ArrayList<Ticket>();
+	
+	
+
+	@OneToOne
+	private Manager manager;
 	public int getId() {
 		return id;
 	}
@@ -139,6 +146,12 @@ public class Team implements Serializable{
 		super();
 		this.nameTeam = nameTeam;
 		this.dateCreation = dateCreation;
+	}
+	public Manager getManager() {
+		return manager;
+	}
+	public void setManager(Manager manager) {
+		this.manager = manager;
 	}
 	
 	

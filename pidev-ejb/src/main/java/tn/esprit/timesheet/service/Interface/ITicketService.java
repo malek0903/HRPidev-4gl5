@@ -17,5 +17,7 @@ public interface ITicketService {
 	
 	public void updateTicket(Ticket ticket);
 	
+	
+	public List<Ticket> getAllTicketWithoutEmployee();
 
 }

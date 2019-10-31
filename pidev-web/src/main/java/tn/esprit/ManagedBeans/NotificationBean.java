@@ -1,5 +1,7 @@
 package tn.esprit.ManagedBeans;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +13,10 @@ import javax.faces.bean.ManagedProperty;
 import tn.esprit.evaluation.entities.Notification;
 import tn.esprit.evaluation.entities.enums.NotificationType;
 import tn.esprit.evaluation.services.NotificationService;
+import tn.esprit.timesheet.entities.Ticket;
+import tn.esprit.timesheet.service.TicketService;
 import tn.esprit.userCommun.entities.User;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @ApplicationScoped
 @ManagedBean
@@ -19,6 +24,11 @@ public class NotificationBean {
 
 	@EJB
 	NotificationService notificationService;
+	
+	
+
+	@EJB
+	TicketService ticketService;
 
 	@ManagedProperty(value = "#{loginBean}")
 	LoginBean loginBean;
@@ -38,7 +48,13 @@ public class NotificationBean {
 	private List<Notification> evalStartedByManager;
 
 	private List<Notification> notifications;
+	
+	private List<Ticket> tickets = new ArrayList<Ticket>();
 
+	
+	
+	
+	
 	private int nbNotifications;
 
 	public NotificationService getNotificationService() {
@@ -146,12 +162,30 @@ public class NotificationBean {
 	}
 
 	public int getNbNotifications() {
-		nbNotifications = this.getNotifications().size();
+		
+		nbNotifications = this.getNotifications().size()+this.getTickets().size();
 		return nbNotifications;
 	}
 
 	public void setNbNotifications(int nbNotifications) {
 		this.nbNotifications = nbNotifications;
+	}
+
+	public TicketService getTicketService() {
+		return ticketService;
+	}
+
+	public void setTicketService(TicketService ticketService) {
+		this.ticketService = ticketService;
+	}
+
+	public List<Ticket> getTickets() {
+		
+		return ticketService.getAllTicketWithoutEmployee();
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
 
 }

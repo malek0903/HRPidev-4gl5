@@ -8,8 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.timesheet.entities.Ticket;
 import tn.esprit.timesheet.service.Interface.ITicketService;
+import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 @Stateless
 @LocalBean
 public class TicketService implements ITicketService {
@@ -42,6 +44,13 @@ public class TicketService implements ITicketService {
 	public void updateTicket(Ticket ticket) {
 		em.merge(ticket);
 		
+	}
+
+	@Override
+	public List<Ticket> getAllTicketWithoutEmployee() {
+		TypedQuery<Ticket> query = em.createQuery("Select o from Ticket o where o.employesTicket IS NULL AND o.employesTicket.role=:Employee", Ticket.class).setParameter("Employee", EmployeeRole.Employee );
+		List<Ticket> result = query.getResultList();
+		return result;
 	}
 
 }

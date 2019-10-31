@@ -53,7 +53,7 @@
 					</li>
 					<!-- END User avatar toggle-->
 					<!-- START lock screen-->
-					
+
 					<!-- END lock screen-->
 				</ul>
 				<!-- END Left navbar-->
@@ -75,7 +75,26 @@
 									<!-- list item-->
 
 
-
+									<c:forEach var="ticket" items="#{ticketBean.tickets}">
+										<c:if test="#{ticket.employesTicket == null }">
+										<c:if test="loginBean.current_user_string==Employee">
+											<!-- list item-->
+											<div class="list-group-item list-group-item-action">
+												<div class="media">
+													<div class="align-self-start mr-2">
+														<i class="fa fa-fw fa-tasks fa-2x text-success"></i>
+													</div>
+													<div class="media-body">
+														<h:link outcome="/timesheet/ScrumBoard.xhtml">
+															<p class="m-0">#{ticket.title}</p>
+															<p class="m-0 text-muted text-sm">New Ticket</p>
+														</h:link>
+													</div>
+												</div>
+											</div>
+										</c:if>
+										</c:if>
+									</c:forEach>
 									<c:forEach var="notification"
 										items="#{notificationBean.evalCreatedByManager}">
 										<!-- list item-->
@@ -110,35 +129,8 @@
 												<p class="m-0 text-muted text-sm">1 new follower</p>
 											</div>
 										</div>
-									</div>
-									<!-- list item-->
-									<c:forEach var="ticket" items="#{ticketBean.tickets}">
-										<c:if test="#{ticket.employesTicket == null}">
-											<!-- list item-->
-											<div class="list-group-item list-group-item-action">
-												<div class="media">
-													<div class="align-self-start mr-2">
-														<i class="fa fa-fw fa-tasks fa-2x text-success"></i>
-													</div>
-													<div class="media-body">
-														<h:link outcome="/timesheet/ScrumBoard.xhtml">
-															<p class="m-0">#{ticket.title}</p>
-															<p class="m-0 text-muted text-sm">New Ticket</p>
-														</h:link>
-													</div>
-												</div>
-											</div>
-										</c:if>
 									</c:forEach>
-									<!-- last list item-->
 
-									<div class="list-group-item list-group-item-action">
-										<span class="d-flex align-items-center"><span
-											class="text-sm">More notifications</span><span
-											class="badge badge-danger ml-auto">14</span></span>
-									</div>
-										</div>
-									</c:forEach>
 
 									<c:forEach var="notification"
 										items="#{notificationBean.objectiveCreatedByAdmin}">

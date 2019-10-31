@@ -10,9 +10,9 @@ import javax.faces.bean.SessionScoped;
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
+import tn.esprit.timesheet.service.TeamsService;
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.services.EmployeService;
-import tn.esprit.userCommun.services.TeamService;
 import tn.esprit.userCommun.services.userService;
 
 @ManagedBean
@@ -26,7 +26,7 @@ public class EmployeeBeans {
 	userService userSevice;
 
 	@EJB
-	TeamService teamService;
+	TeamsService teamService;
 
 	private Date dateOfBirth;
 	private String phoneNumber;
@@ -61,11 +61,13 @@ public class EmployeeBeans {
 		this.userSevice = userSevice;
 	}
 
-	public TeamService getTeamService() {
+
+
+	public TeamsService getTeamService() {
 		return teamService;
 	}
 
-	public void setTeamService(TeamService teamService) {
+	public void setTeamService(TeamsService teamService) {
 		this.teamService = teamService;
 	}
 

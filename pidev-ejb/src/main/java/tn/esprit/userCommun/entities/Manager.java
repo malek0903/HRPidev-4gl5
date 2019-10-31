@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
+import tn.esprit.timesheet.entities.Team;
+
 @Entity
 public class Manager extends User{
 	
