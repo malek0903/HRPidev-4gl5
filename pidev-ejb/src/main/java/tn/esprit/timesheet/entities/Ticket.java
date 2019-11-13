@@ -255,7 +255,17 @@ public class Ticket  implements Serializable {
 		this.difficulty = difficulty;
 		this.status = status;
 	}
-	public Ticket(int idTicket, Boolean toDoList, Boolean toDo, Boolean doing, Boolean done, Difficulty difficulty,
+	public Ticket(int idTicket, Boolean toDoList, Boolean toDo, Boolean doing, Boolean done, 
+			Status status) {
+		super();
+		this.idTicket = idTicket;
+		this.toDoList = toDoList;
+		this.toDo = toDo;
+		this.doing = doing;
+		this.done = done;
+		this.status = status;
+	}
+	public Ticket(int idTicket, Boolean toDoList, Boolean toDo, Boolean doing, Boolean done, 
 			Status status,Date dateBegin) {
 		super();
 		this.idTicket = idTicket;
@@ -263,7 +273,6 @@ public class Ticket  implements Serializable {
 		this.toDo = toDo;
 		this.doing = doing;
 		this.done = done;
-		this.difficulty = difficulty;
 		this.status = status;
 		this.dateBegin= dateBegin;
 	}

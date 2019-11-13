@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -45,7 +46,8 @@ public class TicketBean {
 	private Team team;
 	private List<Employee> employees = new ArrayList<Employee>();
 	private int selectedTeamId;
-	
+	private List<Ticket> ticketsArchivet = new ArrayList<Ticket>();
+
 	private Boolean archive=false ;
 
 	// private double test;
@@ -120,7 +122,7 @@ public class TicketBean {
 
 		this.setTicketToBeUpdated(ticket.getIdTicket());
 
-		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, difficulty, status);
+		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, status);
 		tickets.setEmployesTicket(emp);
 		tickets.setTitle(ticket.getTitle());
 		tickets.setDescription(ticket.getDescription());
@@ -140,17 +142,18 @@ public class TicketBean {
 		this.toDo = false;
 		this.doing = true;
 		this.done = false;
-		this.dateBegin = new Date();
+		//this.dateBegin = new Date();
 
 		this.setTicketToBeUpdated(ticket.getIdTicket());
 
-		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, difficulty, status, dateBegin);
+		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, status);
 		tickets.setEmployesTicket(emp);
 		tickets.setTitle(ticket.getTitle());
 		tickets.setDescription(ticket.getDescription());
 		tickets.setDifficulty(ticket.getDifficulty());
 		tickets.setEstimatedHours(ticket.getEstimatedHours());
 		tickets.setTeam(ticket.getTeam());
+		tickets.setDateBegin(new Date());
 		tickets.setArchive(false);
 		System.out.println("ticket ajouter : " + tickets);
 		ticketService.updateTicket(tickets);
@@ -241,7 +244,7 @@ public class TicketBean {
 		this.toDo = false;
 		this.doing = false;
 		this.done = true;
-		this.dateEnd = new Date();
+		//this.dateEnd = new Date();
 		
 
 		System.out.println("ticket ajouter : " + (ticket.getDateBegin().getMinutes()/60));
@@ -249,7 +252,7 @@ public class TicketBean {
 		
 
 		this.setTicketToBeUpdated(ticket.getIdTicket());
-		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, difficulty, status);
+		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, status);
 		double dure = ((this.dateEnd.getHours() + ((double)this.dateEnd.getMinutes()/60)) - (ticket.getDateBegin().getHours() + ((double)ticket.getDateBegin().getMinutes()/60)) );
 			
 		tickets.setEmployesTicket(emp);
@@ -259,7 +262,7 @@ public class TicketBean {
 		tickets.setEstimatedHours(ticket.getEstimatedHours());
 		tickets.setTeam(ticket.getTeam());	
 		tickets.setDateBegin(ticket.getDateBegin());
-		tickets.setDateEnd(this.dateEnd);
+		tickets.setDateEnd(new Date());
 		tickets.setArchive(false);
 		
 		
@@ -287,7 +290,7 @@ public class TicketBean {
 		this.toDo = false;
 		this.doing = false;
 		this.done = false;
-		this.dateEnd = new Date();
+		//this.dateEnd = new Date();
 		
 
 		System.out.println("ticket ajouter : " + (ticket.getDateBegin().getMinutes()/60));
@@ -295,9 +298,9 @@ public class TicketBean {
 		
 
 		this.setTicketToBeUpdated(ticket.getIdTicket());
-		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, difficulty, status);
-		double dure = ((this.dateEnd.getHours() + ((double)this.dateEnd.getMinutes()/60)) - (ticket.getDateBegin().getHours() + ((double)ticket.getDateBegin().getMinutes()/60)) );
-		
+		Ticket tickets = new Ticket(ticketToBeUpdated, toDoList, toDo, doing, done, status);
+		//double dure = ((ticket.getDateEnd().getHours() + ((double)ticket.getDateEnd().getMinutes()/60)) - (ticket.getDateBegin().getHours() + ((double)ticket.getDateBegin().getMinutes()/60)) );
+		tickets.setDuration(ticket.getDuration());
 		tickets.setEmployesTicket(emp);
 		tickets.setTitle(ticket.getTitle());
 		tickets.setDescription(ticket.getDescription());
@@ -305,12 +308,12 @@ public class TicketBean {
 		tickets.setEstimatedHours(ticket.getEstimatedHours());
 		tickets.setTeam(ticket.getTeam());	
 		tickets.setDateBegin(ticket.getDateBegin());
-		tickets.setDateEnd(this.dateEnd);
+		tickets.setDateEnd(ticket.getDateEnd());
 		tickets.setArchive(true);
 		
 		
 		
-		tickets.setDuration(dure);
+		
 		ticketService.updateTicket(tickets);
 		initialisate();
 	}
@@ -560,5 +563,19 @@ public class TicketBean {
 	public void setArchive(Boolean archive) {
 		this.archive = archive;
 	}
+	
+	
+	public List<Ticket> getTicketsArchivet() {
+		return tickets.stream().filter(t->{
+			return ( t.getArchive()==true );
+			
+		}).collect(Collectors.toList());
+	}
+
+	public void setTicketsArchivet(List<Ticket> ticketsArchivet) {
+		this.ticketsArchivet = ticketsArchivet;
+	}
+	
+	
 
 }

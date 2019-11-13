@@ -254,6 +254,14 @@ public class Employee extends User {
 			return false;
 		return true;
 	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 	
 	
 

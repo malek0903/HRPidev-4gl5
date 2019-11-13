@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	template="/template/default/template.xhtml"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:param name="page_name" value="Index" />
 	<ui:define name="content">
 		<section class="section-container"> <!-- Page content-->
@@ -30,10 +31,11 @@
 					</div>
 					<div class="card-body">
 						<div class="table-responsive bootgrid">
-							<h:dataTable class="table table-striped my-4 w-100" id="datatable1" 
+							<h:dataTable class="table table-striped my-4 w-100" id="datatable2" 
 								style="border:none" 
 								 value="#{ticketBean.tickets}"
 								var="tickets" border="1">
+								
 								<h:column>
 
 									<f:facet name="header">
@@ -60,6 +62,14 @@
 									<h:outputText value="#{tickets.team.nameTeam}" />
 								</h:column>
 								
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Archive" />
+									</f:facet>
+									<h:outputText value="#{tickets.archive ==false ? 'Archive' : 'non Archive'}" />
+								</h:column>
+								
 									<h:column>
 									<f:facet name="header">
 										<h:outputText value="Temp estimé" />
@@ -74,7 +84,6 @@
 								</h:column>
 
 								<h:column>
-
 									<h:form>
 										<h:commandLink styleClass="btn btn-success"
 											action="#{ticketBean.modifier(tickets)}">
@@ -88,6 +97,8 @@
 										</h:commandLink>
 
 									</h:form>
+								
+								
 								</h:column>
 
 							</h:dataTable>

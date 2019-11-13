@@ -88,17 +88,17 @@
 										</ul>
 									</div>
 									<div class="card-footer text-center">
-										<!-- <c:if test="#{ticketBean.disabled(ticket) == true}"> -->
-										<!-- <h:form>
+										<c:if test="#{ticketBean.disabled(ticket) == true}">
+											<h:form>
 												<h:commandButton class="btn btn-primary" disabled="true">DO IT</h:commandButton>
-											</h:form> -->
-										<!-- 	</c:if> -->
-										<!-- <c:if test="#{ticketBean.disabled(ticket) == false}"> -->
-										<h:form>
-											<h:commandLink class="btn btn-primary"
-												action="#{ticketBean.DoIt(ticket,loginBean.current_employe)}">DO IT</h:commandLink>
-										</h:form>
-										<!-- 	</c:if> -->
+											</h:form>
+										</c:if>
+										<c:if test="#{ticketBean.disabled(ticket) == false}">
+											<h:form>
+												<h:commandLink class="btn btn-primary"
+													action="#{ticketBean.DoIt(ticket,loginBean.current_employe)}">DO IT</h:commandLink>
+											</h:form>
+										</c:if>
 									</div>
 
 								</div>
@@ -134,6 +134,7 @@
 										<div class="card-title">#{ticket.title}</div>
 									</div>
 									<div class="card-body bt">
+									
 										<h4>Description</h4>
 										#{ticket.title}
 									</div>
@@ -146,9 +147,7 @@
 										</ul>
 										<div class="progress">
 											<div class="progress-bar bg-success"
-												style="width: #{ticketBean.compareDate(ticket)}%">
-											
-											</div>
+												style="width: #{ticketBean.compareDate(ticket)}%"></div>
 											<div class="progress-bar bg-warning progress-bar-striped"
 												style="width: #{ticketBean.compareDate1(ticket)}%">
 												<span class="sr-only">20% Complete (warning)</span>
@@ -158,11 +157,11 @@
 												style="width: #{ticketBean.compareDate2(ticket)}%">
 												<span class="sr-only">10% Complete (danger)</span>
 											</div>
-											
-											
+
 										</div>
-										<h:outputText value="#{ticketBean.compareDate(ticket) + ticketBean.compareDate1(ticket) + ticketBean.compareDate2(ticket) }%"/>
-									
+										<h:outputText
+											value="#{ticketBean.compareDate(ticket) + ticketBean.compareDate1(ticket) + ticketBean.compareDate2(ticket)}%" />
+											
 									</div>
 									<div class="card-footer text-center">
 										<h:form>
@@ -194,104 +193,104 @@
 
 								<!-- Team Card Red-->
 								<c:if test="#{ticketBean.changeColor(ticket)==3}">
-								<c:if test="#{ticketBean.archive==false}">
-									<div class="card   mb-3">
-										<div class="card-header bg-danger">
-											<div class="float-right">
-												<div class="badge badge-danger">#{loginBean.current_user.firstName}</div>
+									<c:if test="#{ticketBean.archive==false}">
+										<div class="card   mb-3">
+											<div class="card-header bg-danger">
+												<div class="float-right">
+													<div class="badge badge-danger">#{loginBean.current_user.firstName}</div>
+												</div>
+												<div class="card-title ">#{ticket.title}</div>
 											</div>
-											<div class="card-title ">#{ticket.title}</div>
-										</div>
-										<div class="card-body bt">
-											<h4>Description</h4>
-											#{ticket.title}
-										</div>
-										<div class="card-body">
-											<ul class="list-inline m-0">
-												<li class="list-inline-item">
-													<div class="badge bg-gray">#{ticket.difficulty}</div>
-												</li>
+											<div class="card-body bt">
+												<h4>Description</h4>
+												#{ticket.title}
+											</div>
+											<div class="card-body">
+												<ul class="list-inline m-0">
+													<li class="list-inline-item">
+														<div class="badge bg-gray">#{ticket.difficulty}</div>
+													</li>
 
-											</ul>
-										</div>
-										<div class="card-footer text-center">
-											<h:form>
-												<h:commandLink class="btn btn-primary"
-													action="#{ticketBean.archivetIt(ticket,loginBean.current_employe)}">Archive</h:commandLink>
-											</h:form>
+												</ul>
+											</div>
+											<div class="card-footer text-center">
+												<h:form>
+													<h:commandLink class="btn btn-primary"
+														action="#{ticketBean.archivetIt(ticket,loginBean.current_employe)}">Archive</h:commandLink>
+												</h:form>
 
 
-										</div>
+											</div>
 
-									</div>
-								</c:if>
+										</div>
+									</c:if>
 								</c:if>
 								<!-- end Team Card primary-->
 
 								<!-- Team Card-->
 								<c:if test="#{ticketBean.changeColor(ticket) == 2}">
-								<c:if test="#{ticketBean.archive==false}">
-									<div class="card   mb-3">
-										<div class="card-header bg-primary">
-											<div class="float-right">
-												<div class="badge badge-primary">#{loginBean.current_user.firstName}</div>
+									<c:if test="#{ticketBean.archive==false}">
+										<div class="card   mb-3">
+											<div class="card-header bg-primary">
+												<div class="float-right">
+													<div class="badge badge-primary">#{loginBean.current_user.firstName}</div>
+												</div>
+												<div class="card-title ">#{ticket.title}</div>
 											</div>
-											<div class="card-title ">#{ticket.title}</div>
-										</div>
-										<div class="card-body bt">
-											<h4>Description</h4>
-											#{ticket.title}
-										</div>
-										<div class="card-body">
-											<ul class="list-inline m-0">
-												<li class="list-inline-item">
-													<div class="badge bg-gray">#{ticket.difficulty}</div>
-												</li>
+											<div class="card-body bt">
+												<h4>Description</h4>
+												#{ticket.title}
+											</div>
+											<div class="card-body">
+												<ul class="list-inline m-0">
+													<li class="list-inline-item">
+														<div class="badge bg-gray">#{ticket.difficulty}</div>
+													</li>
 
-											</ul>
-										</div>
-										<div class="card-footer text-center">
-										
-										<h:form>
-												<h:commandLink class="btn btn-primary"
-													action="#{ticketBean.archivetIt(ticket,loginBean.current_employe)}">Archive</h:commandLink>
-											</h:form>
-										
-										</div>
+												</ul>
+											</div>
+											<div class="card-footer text-center">
 
-									</div>
-								</c:if>
+												<h:form>
+													<h:commandLink class="btn btn-primary"
+														action="#{ticketBean.archivetIt(ticket,loginBean.current_employe)}">Archive</h:commandLink>
+												</h:form>
+
+											</div>
+
+										</div>
+									</c:if>
 								</c:if>
 								<!-- end Team Card primary-->
 
 								<!-- Team Card success-->
 								<c:if test="#{ticketBean.changeColor(ticket) == 1}">
-								<c:if test="#{ticketBean.archive==false}">
-									<div class="card   mb-3">
-										<div class="card-header bg-success">
-											<div class="float-right">
-												<div class="badge badge-success">#{loginBean.current_user.firstName}</div>
+									<c:if test="#{ticketBean.archive==false}">
+										<div class="card   mb-3">
+											<div class="card-header bg-success">
+												<div class="float-right">
+													<div class="badge badge-success">#{loginBean.current_user.firstName}</div>
+												</div>
+												<div class="card-title ">#{ticket.title}</div>
 											</div>
-											<div class="card-title ">#{ticket.title}</div>
+											<div class="card-body bt">
+												<h4>Description</h4>
+												#{ticket.title}
+											</div>
+											<div class="card-body">
+												<ul class="list-inline m-0">
+													<li class="list-inline-item">
+														<div class="badge bg-gray">#{ticket.difficulty}</div>
+													</li>
+												</ul>
+											</div>
+											<div class="card-footer text-center">
+												<h:form>
+													<h:commandLink class="btn btn-primary"
+														action="#{ticketBean.archivetIt(ticket,loginBean.current_employe)}">Archive</h:commandLink>
+												</h:form>
+											</div>
 										</div>
-										<div class="card-body bt">
-											<h4>Description</h4>
-											#{ticket.title}
-										</div>
-										<div class="card-body">
-											<ul class="list-inline m-0">
-												<li class="list-inline-item">
-													<div class="badge bg-gray">#{ticket.difficulty}</div>
-												</li>
-											</ul>
-										</div>
-										<div class="card-footer text-center">
-										<h:form>
-												<h:commandLink class="btn btn-primary"
-													action="#{ticketBean.archivetIt(ticket,loginBean.current_employe)}">Archive</h:commandLink>
-											</h:form>										
-										</div>
-									</div>
 									</c:if>
 								</c:if>
 								<!-- end Team Card success-->
@@ -305,6 +304,18 @@
 		</div>
 		<!-- end bloc --> </section>
 		<!-- Page footer-->
+
+		<script type="application/javascript">
+			
+			
+			function notToMatchHours(){
+				
+			}
+		
+		
+		
+		</script>
+
 
 	</ui:define>
 </ui:composition>

@@ -71,11 +71,24 @@ public class TeamBean {
 	
 	public int getTicketForTeam(Team team) {
 		return ticketService.getAllTicket().stream().filter(t->{
-			return t.getTeam().getId() == team.getId();
+			return (t.getTeam().getId() == team.getId() && t.getArchive()==false);
 		}).collect(Collectors.toList()).size();
 	}
 	
-	
+	public List<String> getAllemployeesByTeam(Team team){
+		
+		List<String> namesE = new ArrayList<String>();
+		
+		for (Employee e : employeService.getAllEmployes()) {
+			if (e.getTeam().getId()==team.getId())
+				namesE.add(e.getUserName());
+		}
+		
+		
+		return namesE;
+		
+		 
+	}
 	
 	public void ajouterTeam() {
 		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -138,7 +151,7 @@ public class TeamBean {
 	}
 
 	public List<Employee> getEmployees() {
-		return employeService.getAllEmployes();
+		return employees;
 	}
 
 	public void setEmployees(List<Employee> employees) {
