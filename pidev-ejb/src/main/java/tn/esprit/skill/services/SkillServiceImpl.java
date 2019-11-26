@@ -43,4 +43,9 @@ public class SkillServiceImpl implements SkillServiceRemote {
 		entityManager.remove(entityManager.find(Skill.class, skill.getSkillId()));
 	}
 
+	@Override
+	public void deleteSkillById(long id) {
+		entityManager.remove(entityManager.find(Skill.class, id));
+	}
+
 }

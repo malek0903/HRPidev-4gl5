@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Entity implementation class for Entity: Skill
  *
@@ -21,15 +23,18 @@ public class Skill implements Serializable {
 	@Column(unique=true)
 	private String skillName;
 	private String skillDesc;
-
+	
 	@Temporal(TemporalType.DATE)
 	private Date skillDate;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
 	private Set<SkillMatrix> skillsMatrix;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
 	private Set<SkillJob> skillsJob;
+	
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	public Skill() {

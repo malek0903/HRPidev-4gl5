@@ -11,10 +11,7 @@ import javax.persistence.TypedQuery;
 import tn.esprit.skill.entities.Job;
 import tn.esprit.skill.entities.Skill;
 import tn.esprit.skill.entities.SkillJob;
-import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.skill.servicesInterfaces.SkillJobServiceRemote;
-import tn.esprit.skill.servicesInterfaces.SkillMatrixServiceRemote;
-import tn.esprit.userCommun.entities.Employee;
 
 @Stateless
 @LocalBean
@@ -37,10 +34,10 @@ public class SkillJobServiceImpl implements SkillJobServiceRemote {
 
 	@Override
 	public List<SkillJob> findAllSkillsJobs() {
-//		TypedQuery<SkillMatrix> query = entityManager.createQuery("SELECT s FROM SkillMatrix s", SkillMatrix.class);
-//		List<SkillMatrix> result = query.getResultList();
-//		return result;
-		return null;
+		TypedQuery<SkillJob> query = entityManager.createQuery("SELECT s FROM SkillJob s", SkillJob.class);
+		List<SkillJob> result = query.getResultList();
+		return result;
+//		return null;
 	}
 
 	@Override
@@ -66,6 +63,11 @@ public class SkillJobServiceImpl implements SkillJobServiceRemote {
 	@Override
 	public void deleteSkillJob(SkillJob skillJob) {
 		entityManager.remove(entityManager.find(SkillJob.class, skillJob.getId()));
+	}
+
+	@Override
+	public void deleteSkillJobById(long skillJobId) {
+		entityManager.remove(entityManager.find(SkillJob.class, skillJobId));
 	}
 
 }

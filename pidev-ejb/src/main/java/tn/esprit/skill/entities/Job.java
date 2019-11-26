@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import tn.esprit.userCommun.entities.Employee;
 
 /**
@@ -25,9 +27,11 @@ public class Job implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date jobDate;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "job", cascade = CascadeType.ALL)
 	private Set<SkillJob> skillsMatrix;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "job")
 	private Set<Employee> employees;
 	private static final long serialVersionUID = 1L;

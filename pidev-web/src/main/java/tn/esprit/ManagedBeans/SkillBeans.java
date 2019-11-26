@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import tn.esprit.skill.entities.Skill;
 import tn.esprit.skill.services.SkillServiceImpl;
 
+//@Path("skill")
 @ManagedBean
 @SessionScoped
 public class SkillBeans {

@@ -43,4 +43,9 @@ public class JobServiceImpl implements JobServiceRemote {
 		entityManager.remove(entityManager.find(Job.class, job.getJobId()));
 	}
 
+	@Override
+	public void deleteJobById(long id) {
+		entityManager.remove(entityManager.find(Job.class, id));
+	}
+
 }

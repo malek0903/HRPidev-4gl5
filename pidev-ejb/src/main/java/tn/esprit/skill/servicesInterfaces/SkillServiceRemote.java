@@ -10,4 +10,5 @@ public interface SkillServiceRemote {
 	void addSkill(Skill skill);
 	void updateSkill(Skill skill);
 	void deleteSkill(Skill skill);
+	void deleteSkillById(long id);
 }

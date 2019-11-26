@@ -14,4 +14,5 @@ public interface SkillMatrixServiceRemote {
 	void addSkillMatrix(SkillMatrix skillMatrix);
 	void updateSkillMatrix(SkillMatrix skillMatrix);
 	void deleteSkillMatrix(SkillMatrix skillMatrix);
+	void deleteSkillMatrixById(long skillMatrixId);
 }

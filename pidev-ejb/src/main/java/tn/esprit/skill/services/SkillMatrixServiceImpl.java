@@ -78,4 +78,9 @@ public class SkillMatrixServiceImpl implements SkillMatrixServiceRemote {
 		entityManager.remove(entityManager.find(SkillMatrix.class, skillMatrix.getId()));
 	}
 
+	@Override
+	public void deleteSkillMatrixById(long skillMatrixId) {
+		entityManager.remove(entityManager.find(SkillMatrix.class, skillMatrixId));
+	}
+
 }
