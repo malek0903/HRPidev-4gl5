@@ -39,26 +39,29 @@ public class SkillJobRessources {
 		return Response.status(Status.OK).entity(skillJobService.findAllSkillsJobs()).build();
 	}
 
-	public SkillJob findSkillJobByJobIdBySkillId(long jobId, long skillId) {
-		return skillJobService.findSkillJobByJobIdBySkillId(jobId, skillId);
+	public Response findSkillJobByJobIdBySkillId(long jobId, long skillId) {
+		return Response.status(Status.OK).entity(skillJobService.findSkillJobByJobIdBySkillId(jobId, skillId)).build();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addSkillJob(SkillJob skillJob) {
+	public Response addSkillJob(SkillJob skillJob) {
 		skillJobService.addSkillJob(skillJob);
+		return Response.status(Status.OK).entity("Added").build();
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateSkillJob(SkillJob skillJob) {
+	public Response updateSkillJob(SkillJob skillJob) {
 		skillJobService.updateSkillJob(skillJob);
+		return Response.status(Status.OK).entity("Updated").build();
 	}
 
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deleteSkillJob(@PathParam("id") long skillJobId) {
+	public Response deleteSkillJob(@PathParam("id") long skillJobId) {
 		skillJobService.deleteSkillJobById(skillJobId);
+		return Response.status(Status.OK).entity("Deleted").build();
 	}
 }

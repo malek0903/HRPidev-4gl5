@@ -26,8 +26,8 @@ public class JobRessource {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Job findByJobById(@PathParam("id") long jobId) {
-		return jobService.findByJobById(jobId);
+	public Response findByJobById(@PathParam("id") long jobId) {
+		return Response.status(Status.OK).entity(jobService.findByJobById(jobId)).build();
 	}
 	
 	@GET
@@ -38,21 +38,24 @@ public class JobRessource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addJob(Job job) {
+	public Response addJob(Job job) {
 		jobService.addJob(job);
+		return Response.status(Status.OK).entity("Added").build();
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateSkill(Job job) {
+	public Response updateSkill(Job job) {
 		jobService.updateJob(job);
+		return Response.status(Status.OK).entity("Updated").build();
 	}
 
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deleteJob(@PathParam("id") long id) {
+	public Response deleteJob(@PathParam("id") long id) {
 		jobService.deleteJobById(id);
+		return Response.status(Status.OK).entity("Deleted").build();
 	}
 
 }

@@ -34,8 +34,8 @@ public class SkillMatrixRessources {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<SkillMatrix> findSkillMatrixByEmployeeId(@PathParam("id") long employeeId) {
-		return skillMatrixService.findSkillMatrixByEmployeeId(employeeId);
+	public Response findSkillMatrixByEmployeeId(@PathParam("id") long employeeId) {
+		return Response.status(Status.OK).entity(skillMatrixService.findSkillMatrixByEmployeeId(employeeId)).build();
 	}
 
 	@GET
@@ -44,26 +44,29 @@ public class SkillMatrixRessources {
 		return Response.status(Status.OK).entity(skillMatrixService.findAllSkillsMatrixs()).build();
 	}
 
-	public SkillMatrix findSkillMatrixByEmployeeIdBySkillId(long employeeId, long skillId) {
-		return skillMatrixService.findSkillMatrixByEmployeeIdBySkillId(employeeId, skillId);
+	public Response findSkillMatrixByEmployeeIdBySkillId(long employeeId, long skillId) {
+		return Response.status(Status.OK).entity(skillMatrixService.findSkillMatrixByEmployeeIdBySkillId(employeeId, skillId)).build();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addSkillMatrix(SkillMatrix skillMatrix) {
+	public Response addSkillMatrix(SkillMatrix skillMatrix) {
 		skillMatrixService.addSkillMatrix(skillMatrix);
+		return Response.status(Status.OK).entity("Added").build();
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateSkillMatrix(SkillMatrix skillMatrix) {
+	public Response updateSkillMatrix(SkillMatrix skillMatrix) {
 		skillMatrixService.updateSkillMatrix(skillMatrix);
+		return Response.status(Status.OK).entity("Updated").build();
 	}
 
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deleteSkillMatrix(@PathParam("id") long skillMatrixId) {
+	public Response deleteSkillMatrix(@PathParam("id") long skillMatrixId) {
 		skillMatrixService.deleteSkillMatrixById(skillMatrixId);
+		return Response.status(Status.OK).entity("Deleted").build();
 	}
 }

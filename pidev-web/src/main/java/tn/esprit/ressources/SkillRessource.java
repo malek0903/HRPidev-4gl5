@@ -2,7 +2,6 @@ package tn.esprit.ressources;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -27,8 +26,8 @@ public class SkillRessource {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Skill findBySkillById(@PathParam("id") long skillId) {
-		return skillService.findBySkillById(skillId);
+	public Response findBySkillById(@PathParam("id") long skillId) {
+		return Response.status(Status.OK).entity(skillService.findBySkillById(skillId)).build();
 	}
 	
 	@GET
@@ -41,20 +40,22 @@ public class SkillRessource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addSkill(Skill skill) {
 		skillService.addSkill(skill);
-		return Response.status(Status.OK).entity("ok").build();
+		return Response.status(Status.OK).entity("Added").build();
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateSkill(Skill skill) {
+	public Response updateSkill(Skill skill) {
 		skillService.updateSkill(skill);
+		return Response.status(Status.OK).entity("Updated").build();
 	}
 
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deleteSkill(@PathParam("id") long id) {
+	public Response deleteSkill(@PathParam("id") long id) {
 		skillService.deleteSkillById(id);
+		return Response.status(Status.OK).entity("Deleted").build();
 	}
 
 }
