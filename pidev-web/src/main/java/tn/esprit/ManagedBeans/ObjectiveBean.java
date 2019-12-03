@@ -2,13 +2,24 @@ package tn.esprit.ManagedBeans;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import tn.esprit.evaluation.entities.Objective;
 import tn.esprit.evaluation.entities.enums.Category;
@@ -16,6 +27,7 @@ import tn.esprit.evaluation.services.ObjectiveService;
 
 @ManagedBean
 @SessionScoped
+@Path("objectives")
 public class ObjectiveBean {
 
 	@EJB
@@ -23,8 +35,8 @@ public class ObjectiveBean {
 	private Long idObjectiveToBeUpdated;
 	private String name;
 	private String description;
-	private LocalDate dateBegin;
-	private LocalDate dateEnd;
+	private Date dateBegin;
+	private Date dateEnd;
 	private Category category;
 
 	private List<Objective> objectives = new ArrayList<Objective>();
@@ -40,12 +52,46 @@ public class ObjectiveBean {
 		return "/pages/updateObjective?faces-redirect=false?id=" + objective.getId();
 	}
 
+	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Objective getObjectiveById(@PathParam(value="id") long id)
+	{
+		return this.objectiveService.getObjectiveById(id);
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Objective> getObjectives() {
+
 		this.resetFields();
 		this.objectives = this.objectiveService.getObjectives();
 		return objectives;
 	}
 
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public Objective ajouterObjective(Objective o) {
+
+			return this.objectiveService.addObjective(o) ;
+	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	public Objective updateObjectivee(Objective o) {
+		return this.objectiveService.updateObj(o);
+	}
+	
+	//Delete : localhost:9080/pidev-web/rest/objectives/id
+	@DELETE
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteObjective(@PathParam("id") long id)
+	{
+		this.objectiveService.deleteObjective(id);
+	}
+	
 	public void setObjectives(List<Objective> objectives) {
 		this.objectives = objectives;
 	}
@@ -71,8 +117,8 @@ public class ObjectiveBean {
 				.getRequest();
 		String beginsAt = req.getParameter("beginsAt");
 		String endsAt = req.getParameter("endsAt");
-		this.dateBegin = LocalDate.parse(beginsAt);
-		this.dateEnd = LocalDate.parse(endsAt);
+		// this.dateBegin = LocalDate.parse(beginsAt);
+		// this.dateEnd = LocalDate.parse(endsAt);
 
 		Objective o = new Objective();
 		o.setName(this.name);
@@ -103,19 +149,19 @@ public class ObjectiveBean {
 		this.description = description;
 	}
 
-	public LocalDate getDateBegin() {
+	public Date getDateBegin() {
 		return dateBegin;
 	}
 
-	public void setDateBegin(LocalDate dateBegin) {
+	public void setDateBegin(Date dateBegin) {
 		this.dateBegin = dateBegin;
 	}
 
-	public LocalDate getDateEnd() {
+	public Date getDateEnd() {
 		return dateEnd;
 	}
 
-	public void setDateEnd(LocalDate dateEnd) {
+	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
 	}
 

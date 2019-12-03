@@ -3,17 +3,24 @@ package tn.esprit.evaluation.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.userCommun.entities.Employee;
@@ -27,19 +34,23 @@ public class Eval360 implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String evalDetails;
+	
+	@JsonIgnore
 	private LocalDate dateBegin;
+	@JsonIgnore
 	private LocalDate dateEnd;
 
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.privatee;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "eval360", cascade = CascadeType.REMOVE)
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
 
 	@ManyToOne
 	private Employee concernedEmployee;
-	
-	private int sommeMark ;
+
+	private int sommeMark;
 
 	public Eval360() {
 		// TODO Auto-generated constructor stub
@@ -104,8 +115,6 @@ public class Eval360 implements Serializable {
 	public void setDateEnd(LocalDate dateEnd) {
 		this.dateEnd = dateEnd;
 	}
-	
-	
 
 	public int getSommeMark() {
 		return sommeMark;
@@ -181,7 +190,5 @@ public class Eval360 implements Serializable {
 			return false;
 		return true;
 	}
-
-	
 
 }

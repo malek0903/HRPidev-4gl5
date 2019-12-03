@@ -2,6 +2,7 @@ package tn.esprit.ManagedBeans;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -24,8 +25,8 @@ public class editObjectiveBean {
 	private Long idObjectiveToBeUpdated;
 	private String name;
 	private String description;
-	private LocalDate dateBegin;
-	private LocalDate dateEnd;
+	private Date dateBegin;
+	private Date dateEnd;
 	private Category category;
 	private Objective objective;
 
@@ -46,10 +47,6 @@ public class editObjectiveBean {
 				.getRequest();
 		String beginsAtid = req.getParameter("beginsAt");
 		String endsAtid = req.getParameter("endsAt");
-		
-		
-		
-
 
 		// convert String to LocalDate
 		LocalDate beginsAt = LocalDate.parse(beginsAtid);
@@ -59,8 +56,8 @@ public class editObjectiveBean {
 		o.setId(this.objective.getId());
 		o.setName(this.objective.getName());
 		o.setDescription(this.objective.getDescription());
-		o.setDateBegin(beginsAt);
-		o.setDateEnd(endsAt);
+		// o.setDateBegin(beginsAt);
+		// o.setDateEnd(endsAt);
 		o.setCategory(this.objective.getCategory());
 
 		objectiveService.updateObj(o);
@@ -68,7 +65,7 @@ public class editObjectiveBean {
 		initialisation();
 
 		return "/pages/objectives?faces-redirect=true";
-		
+
 	}
 
 	public String updateObjective(Objective old) {
@@ -106,19 +103,19 @@ public class editObjectiveBean {
 		this.description = description;
 	}
 
-	public LocalDate getDateBegin() {
+	public Date getDateBegin() {
 		return dateBegin;
 	}
 
-	public void setDateBegin(LocalDate dateBegin) {
+	public void setDateBegin(Date dateBegin) {
 		this.dateBegin = dateBegin;
 	}
 
-	public LocalDate getDateEnd() {
+	public Date getDateEnd() {
 		return dateEnd;
 	}
 
-	public void setDateEnd(LocalDate dateEnd) {
+	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
 	}
 

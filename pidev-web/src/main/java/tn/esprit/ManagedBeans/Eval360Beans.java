@@ -12,6 +12,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Feedback;
@@ -26,6 +30,7 @@ import tn.esprit.userCommun.services.EmployeService;
 
 @ManagedBean
 @SessionScoped
+@Path("evaluation360")
 public class Eval360Beans {
 
 	@EJB
@@ -51,7 +56,7 @@ public class Eval360Beans {
 	private List<Eval360> evalsPublicDate;
 
 	private List<Eval360> evalsSkipthree;
-	
+
 	private List<Eval360> evals;
 
 	private List<Employee> employes;
@@ -61,15 +66,14 @@ public class Eval360Beans {
 	private Eval360 eval360;
 
 	private String ValidDate = "";
-	
-	
 
 	private Eval360 firstOne;
 	private Eval360 secondOne;
 	private Eval360 thirdOne;
 
-	
-	
+	@GET
+	@Path("/ListEvalAfterThree")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Eval360> getEvalsSkipthree() {
 		evalsSkipthree = evalService.getListEval360PublicAndDate().stream().skip(3).collect(Collectors.toList());
 		return evalsSkipthree;
@@ -79,15 +83,21 @@ public class Eval360Beans {
 		this.evalsSkipthree = evalsSkipthree;
 	}
 
+	@GET
+	@Path("/FirstOne")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Eval360 getFirstOne() {
-		firstOne = this.getEvalsPublicDate().get(0);
-		return firstOne;
+		return this.getEvalsPublicDate().get(0);
+		
 	}
 
 	public void setFirstOne(Eval360 firstOne) {
 		this.firstOne = firstOne;
 	}
 
+	@GET
+	@Path("/SecondOne")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Eval360 getSecondOne() {
 		secondOne = this.getEvalsPublicDate().get(1);
 		return secondOne;
@@ -97,6 +107,9 @@ public class Eval360Beans {
 		this.secondOne = secondOne;
 	}
 
+	@GET
+	@Path("/ThirdOne")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Eval360 getThirdOne() {
 		thirdOne = this.getEvalsPublicDate().get(2);
 		return thirdOne;

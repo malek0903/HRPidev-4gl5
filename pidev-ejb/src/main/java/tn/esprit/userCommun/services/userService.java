@@ -39,4 +39,14 @@ public class userService implements userInterfaceRemote {
 				return user ;
 	}
 
+	@Override
+	public User getUserByEmail(String email) {
+		TypedQuery<User> query=
+				em.createQuery("SELECT u FROM User u WHERE u.email=:email ", User.class);
+				query.setParameter("email", email);				
+				User user= new User();
+				try{ user= query.getSingleResult(); }
+				catch(Exception e) { return null; }
+				return user ;
+	}
 }

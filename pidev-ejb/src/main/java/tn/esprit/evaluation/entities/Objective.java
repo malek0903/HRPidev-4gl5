@@ -15,6 +15,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.evaluation.entities.enums.Category;
 
@@ -28,12 +33,18 @@ public class Objective implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
-	private LocalDate dateBegin;
-	private LocalDate dateEnd;
+
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date dateBegin;
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date dateEnd;
 
 	@Enumerated(EnumType.STRING)
 	private Category category;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "objective", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Evaluation> evaluations = new ArrayList<>();
 
@@ -64,19 +75,19 @@ public class Objective implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDate getDateBegin() {
+	public Date getDateBegin() {
 		return dateBegin;
 	}
 
-	public void setDateBegin(LocalDate dateBegin) {
+	public void setDateBegin(Date dateBegin) {
 		this.dateBegin = dateBegin;
 	}
 
-	public LocalDate getDateEnd() {
+	public Date getDateEnd() {
 		return dateEnd;
 	}
 
-	public void setDateEnd(LocalDate dateEnd) {
+	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
 	}
 

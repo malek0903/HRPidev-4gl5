@@ -14,4 +14,6 @@ public interface userInterfaceRemote {
 
 	List<User> getAllUsers();
 
+	User getUserByEmail(String email);
+
 }

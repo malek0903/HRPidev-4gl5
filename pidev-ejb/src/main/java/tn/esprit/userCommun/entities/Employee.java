@@ -8,8 +8,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
@@ -22,6 +25,7 @@ public class Employee extends User {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	private LocalDate dateOfBirth;
 	private String phoneNumber;
 	private String gitLink;
@@ -34,13 +38,16 @@ public class Employee extends User {
 	@Enumerated(EnumType.STRING)
 	private Status statusEval360;
 
-	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 
-	@OneToMany(mappedBy = "employee")
+	@JsonIgnore
+	@OneToMany(mappedBy = "employee" )
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
 
-	@OneToMany(mappedBy = "concernedEmployee")
+	@JsonIgnore
+	@OneToMany(mappedBy = "concernedEmployee" )
 	private List<Eval360> evals360 = new ArrayList<Eval360>();
 
 	public Employee(String userName, String lastName, String firstName, String email, String password,
