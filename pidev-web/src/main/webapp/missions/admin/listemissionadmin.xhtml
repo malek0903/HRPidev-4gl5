@@ -26,9 +26,9 @@
 
 						<h:form>
 							<p:dataTable style="border:none" styleClass="table table-striped"
-								id="datatable1" value="#{managedBeanmission.missions}" var="mission"
-								border="1" emptyMessage="Mission non trouvé" rows="10"
-								paginator="true"
+								id="datatable1" value="#{managedBeanmission.missions}"
+								var="mission" border="1" emptyMessage="Mission non trouvé"
+								rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 								rowsPerPageTemplate="5,10,15">
 
@@ -76,16 +76,42 @@
 								</p:column>
 							</p:dataTable>
 						</h:form>
-						<div class="card-body">
-							<h:form styleClass="form-horizontal">
+						<section class="section-container"> <!-- Page content-->
+						<div class="content-wrapper">
+							<div class="content-heading">
+								<div>
+									Update mission<small>..</small>
+								</div>
+							</div>
+
+							<!-- START card-->
+							<div class="card card-default">
+
+								<div class="card-body">
+									<h:form styleClass="form-horizontal">
+										<fieldset></fieldset>
+									
 
 
 
-								<fieldset>
-									<h:outputText value="Destination" />
-									<h:inputText value="#{managedBeanmission.destination}" />
-								</fieldset>
-								<fieldset></fieldset>
+
+
+
+
+
+
+										<legend>Mission territoire</legend>
+										<select id="missionter" name="missionter"
+											class="custom-select custom-select-sm">
+											<option disabled="disabled" selected="">#{managedBeanmission.territoire}</option>
+											<option value="externe">externe</option>
+											<option value="interne">interne</option>
+
+
+										</select>
+
+
+<fieldset></fieldset>
 								<legend>Etat</legend>
 								<select id="etatm" name="etatm"
 									class="custom-select custom-select-sm">
@@ -98,34 +124,84 @@
 
 
 								</select>
-								<fieldset>
-									<h:outputText value="O" />
-									<h:inputText value="#{managedBeanmission.objectif}" />
-								</fieldset>
-								<fieldset>
-
-									<h:outputText value="Territoire" />
-									<h:inputText value="#{managedBeanmission.territoire}" />
-								</fieldset>
 
 
+										<fieldset></fieldset>
+										<fieldset>
+											<legend>Mission destination</legend>
+											<div class="form-group row">
+												<label class="col-md-2 col-form-label">Mission
+													destination:</label>
+												<div class="col-md-2">
+													<p:inputText styleClass="form-control form-control-rounded"
+														id="dest" required="true"
+														requiredMessage="Entrez votre destination."
+														value="#{managedBeanmission.destination}">
+													</p:inputText>
 
-								<h:commandButton action="#{managedBeanmission.updatedep()}"
-									value="modifier" />
-							</h:form>
+													<p:message for="dest" />
+
+												</div>
+											</div>
+										</fieldset>
+										<fieldset></fieldset>
+
+
+
+
+										<fieldset></fieldset>
+										<fieldset>
+											<legend>Mission Objectif</legend>
+											<div class="form-group row">
+												<label class="col-md-2 col-form-label">Mission
+													objectif:</label>
+												<div class="col-md-2">
+													<p:inputText styleClass="form-control form-control-rounded"
+														id="obj" required="true"
+														requiredMessage="Entrez vos objectifs."
+														value="#{managedBeanmission.objectif}">
+													</p:inputText>
+
+													<p:message for="obj" />
+
+												</div>
+											</div>
+										</fieldset>
+
+
+
+										<h:commandLink styleClass="btn btn-success"
+											action="#{managedBeanmission.updatedep()}">
+											<i class="fa fa-fw fa-plus"></i>
+										</h:commandLink>
+
+
+									</h:form>
+								</div>
+							</div>
+
+
 
 						</div>
 
 
+
+						</section>
+
+
+
 					</div>
+
+
 				</div>
+
 			</center>
 			<div align="center">
-            	 <p:chart type="pie" model="#{chartJsView.pieModel1}"
-				style="width:400px;height:300px"></p:chart>
-            
-            </div>
+				<p:chart type="pie" model="#{chartJsView.pieModel1}"
+					style="width:400px;height:300px"></p:chart>
+
+			</div>
 		</ui:define>
-		
+
 	</body>
 </ui:composition>

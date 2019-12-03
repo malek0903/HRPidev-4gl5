@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
 	template="/template/default/template.xhtml">
 
 
@@ -34,10 +35,15 @@
 							<div class="form-group row">
 								<label class="col-md-2 col-form-label">ID MISSION:</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanfacture.mission.idmission}" required="true" />
+									<p:inputText styleClass="form-control form-control-rounded"
+										id="idm" required="true" requiredMessage="Entrez id mission."
+										value="#{managedBeanfacture.mission.idmission}">
+									</p:inputText>
+
+									<p:message for="idm" />
+
 								</div>
-							</div>
+								</div>
 						</fieldset>
 						<fieldset></fieldset>
 
@@ -110,8 +116,13 @@
 							<div class="form-group row">
 								<label class="col-md-2 col-form-label">Depense:</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanfacture.somme}" />
+									<p:inputText styleClass="form-control form-control-rounded"
+										id="somme" required="true" requiredMessage="Entrez vos depense."
+										value="#{managedBeanfacture.somme}">
+									</p:inputText>
+
+									<p:message for="somme" />
+
 								</div>
 							</div>
 						</fieldset>

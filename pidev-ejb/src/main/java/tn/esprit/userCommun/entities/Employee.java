@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -34,7 +35,7 @@ public class Employee extends User {
 	@Enumerated(EnumType.STRING)
 	private Status statusEval360;
 
-	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 
 	@OneToMany(mappedBy = "employee")
