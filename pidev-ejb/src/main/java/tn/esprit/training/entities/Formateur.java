@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Formateur implements Serializable {
 	
@@ -26,6 +28,7 @@ public class Formateur implements Serializable {
 	private String specialite;
 	private int number;
 	private Boolean disponibilite;
+	@JsonIgnore
 	@OneToMany(mappedBy="formateur")
 	private List<Planification> planification;
 private Formateur formateurs;
@@ -88,9 +91,6 @@ private Formateur formateurs;
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	
 		
 	}
 	

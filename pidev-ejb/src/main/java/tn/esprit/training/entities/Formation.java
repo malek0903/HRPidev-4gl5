@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Formation implements Serializable {
 	
@@ -25,14 +27,14 @@ public class Formation implements Serializable {
 	
 	@Column(unique=true)
 	private String nomFormation;
+	private String type;
 	private String description;
 	private String duration;
 	private int nbPlaceDispo ;	
 	@Enumerated(EnumType.STRING)
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="formateur", cascade = CascadeType.ALL, orphanRemoval = true)
-	
 	private List<Planification> planification;
 	public int getId() {
 		return id;
@@ -44,6 +46,13 @@ public class Formation implements Serializable {
 		this.planification = planification;
 	}
 	
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}

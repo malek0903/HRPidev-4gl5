@@ -46,6 +46,11 @@ public void deleteFormation(Formation formation) {
 	em.remove(em.find(Formation.class, formation.getId()));
 	
 }
+@Override
+public void deleteFormationById(int id) {
+	em.remove(em.find(Formation.class, id));
+	
+}
 
 
 	

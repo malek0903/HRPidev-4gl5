@@ -41,5 +41,12 @@ public class FormateurServices implements FormateurInterface{
 	public void deleteFormateur(Formateur formateur) {
 		entityManager.remove(entityManager.find(Formateur.class, formateur.getId()));
 	}
+	@Override
+	public void deleteFormateurById(int id) {
+		entityManager.remove(entityManager.find(Formateur.class, id));
+	}
 
-}
+
+	}
+
+

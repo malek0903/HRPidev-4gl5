@@ -14,5 +14,6 @@ public interface FormationServiceRemote  {
 	void addFormation(Formation formation);
 	void updateFormation(Formation formation);
 	void deleteFormation(Formation formation);
+	void deleteFormationById(int id);
 
 }

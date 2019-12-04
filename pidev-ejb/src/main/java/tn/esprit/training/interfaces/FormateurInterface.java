@@ -10,4 +10,5 @@ public interface FormateurInterface {
 	void addFormateur(Formateur formateur);
 	void updateFormateur(Formateur formateur);
 	void deleteFormateur(Formateur formateur);
+	void deleteFormateurById(int id);
 }
