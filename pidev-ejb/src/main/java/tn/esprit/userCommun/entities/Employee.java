@@ -1,8 +1,6 @@
 package tn.esprit.userCommun.entities;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.skill.entities.Job;
@@ -27,13 +27,17 @@ public class Employee extends User {
 	private String cvDetails;
 	private float salary;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private Set<SkillMatrix> skillsMatrix;
+	@JsonIgnore
 	@Transient
 	private Set<Skill> Skills;
 
+	@JsonIgnore
 	@ManyToOne
 	private Job job;
+	
 
 	public Employee(String userName, String lastName, String firstName, String email, String password,
 			EmployeeRole role, LocalDate dateOfBirth, String phoneNumber) {
