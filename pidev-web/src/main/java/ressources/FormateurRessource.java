@@ -25,7 +25,6 @@ public class FormateurRessource {
 	FormateurServices formateurServices;
 
 	@POST
-	@Path("/AddFormateur")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addFormateur(Formateur formateur) {
 		formateurServices.addFormateur(formateur);
@@ -46,13 +45,15 @@ public class FormateurRessource {
 		return Response.status(Status.OK).entity(formateurServices.findByFormateurById(id)).build();
 	}
 	
+	
+	
 	@PUT
-	@Path("/Update")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateFormateur(Formateur formateur) {
+	public Response updateFormateur(Formateur formateur ) {
 		formateurServices.updateFormateur(formateur);
 		return Response.status(Status.OK).entity("Updated").build();
 	}
+	
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -60,5 +61,4 @@ public class FormateurRessource {
 		formateurServices.deleteFormateurById(id);
 		return Response.status(Status.OK).entity("Deleted").build();
 	}
-	
 }
