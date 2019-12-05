@@ -104,7 +104,7 @@ public class TicketRessources {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("employe-ticket-affect/{idTicket}/{idEmploye}")
+	@Path("{idTicket}/{idEmploye}/affecter")
 	public Response affecter(@PathParam(value="idTicket")int idTicket,@PathParam(value="idEmploye") Long idEmploye) {
 		
 		Ticket ticket = new Ticket();
@@ -134,7 +134,7 @@ public class TicketRessources {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("employe-ticket-begin/{idTicket}/{idEmploye}")
+	@Path("{idTicket}/{idEmploye}/begin")
 	public Response DoIt(@PathParam(value="idTicket")int idTicket,@PathParam(value="idEmploye") Long idEmploye) {
 		
 		Ticket ticket = new Ticket();
@@ -164,7 +164,7 @@ public class TicketRessources {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("employe-ticket-end/{idTicket}/{idEmploye}")
+	@Path("{idTicket}/{idEmploye}/End")
 	public Response finishIt(@PathParam(value="idTicket")int idTicket,@PathParam(value="idEmploye") Long idEmploye) {
 		
 		Ticket ticket = new Ticket();
@@ -195,7 +195,7 @@ public class TicketRessources {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("employe-ticket-archive/{idTicket}/{idEmploye}")
+	@Path("{idTicket}/{idEmploye}/archive")
 	public Response archiveIt(@PathParam(value="idTicket")int idTicket,@PathParam(value="idEmploye") Long idEmploye) {
 		
 		Ticket ticket = new Ticket();
@@ -212,12 +212,10 @@ public class TicketRessources {
 		ticket.setToDo(false);
 		ticket.setArchive(true);
 		ticket.setEmployesTicket(employee);
-		
-		ticket.setDuration(
-				(ticket.getDateEnd().getHours() + ((double) ticket.getDateEnd().getHours() / 60.0))
+		double dure = (ticket.getDateEnd().getHours() + ((double) ticket.getDateEnd().getHours() / 60.0))
 				-
-				(ticket.getDateBegin().getHours() + ((double) ticket.getDateEnd().getHours() / 60.0))				
-				);
+				(ticket.getDateBegin().getHours() + ((double) ticket.getDateEnd().getHours() / 60.0));
+		ticket.setDuration(dure);
 		
 		ticketService.updateTicket(ticket);
 		return Response.status(Status.RESET_CONTENT).entity("votre Ticket a été finit avec succés").build();
@@ -249,7 +247,7 @@ public class TicketRessources {
 	
 	
 	@GET
-	@Path("ticket-validator/{idTicket}")
+	@Path("{idTicket}/validate")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response disabled(@PathParam(value="idTicket") int id) {
 		Ticket ticket = new Ticket();
@@ -271,7 +269,7 @@ public class TicketRessources {
 	
 
 	@GET
-	@Path("ticket-achievement/{idTicket}")
+	@Path("{idTicket}/achievement-part-one")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response compareDate(@PathParam(value="idTicket") int id) {
 		Ticket ticket = new Ticket();
@@ -304,7 +302,7 @@ public class TicketRessources {
 	
 
 	@GET
-	@Path("ticket-achievement-second-part/{idTicket}")
+	@Path("{idTicket}/achievement-second-part")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response compareDate1(@PathParam(value="idTicket") int id) {
 		Ticket ticket = new Ticket();
@@ -330,7 +328,7 @@ public class TicketRessources {
 	}
 
 	@GET
-	@Path("ticket-achievement-third-part/{idTicket}")
+	@Path("{idTicket}/achievement-third-part")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response compareDate2(@PathParam(value="idTicket") int id) {
 		Ticket ticket = new Ticket();
@@ -358,7 +356,7 @@ public class TicketRessources {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("ticket-color/{idTicket}")
+	@Path("{idTicket}/avancement")
 	public Response changeColor(@PathParam(value="idTicket")int id ) {
 		
 		

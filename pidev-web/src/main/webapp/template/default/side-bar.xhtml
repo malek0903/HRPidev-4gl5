@@ -96,7 +96,7 @@
 						<li class=" "><a href="#timesheet" title="Dashboard"
 							data-toggle="collapse"> <i class="fa fa-fw fa-clock"></i><span
 								data-localize="sidebar.nav.DASHBOARD">TimeSheet</span>
-						</a> <c:if test='#{loginBean.current_user_string.equals("Manager")}'>
+						</a> <c:if test='#{loginBean.current_user_string.equals("Admin")}'>
 
 								<ul class="sidebar-nav sidebar-subnav collapse" id="timesheet">
 									<li class="sidebar-subnav-header">Dashboard</li>
@@ -106,6 +106,10 @@
 
 									<li class=" active"><h:link value="ticket list"
 											outcome="/timesheet/ticketList.xhtml" /></li>
+
+									<li class=""><a href="http://localhost:6526/Report"
+										title="Report"><span>Report</span></a></li>
+
 
 									<li class=" active"><h:link value="TeamList"
 											outcome="/timesheet/TeamList.xhtml" /></li>
@@ -122,9 +126,11 @@
 									<li class=" active"><h:link value="Home"
 											outcome="/pages/dashboard-v1.xhtml" /></li>
 
-									<li class=" active"><h:link value="ScrumBoard"
+									<!-- <li class=" active"><h:link value="ScrumBoard"
 											outcome="/timesheet/ScrumBoard.xhtml" /></li>
-
+ -->
+									<li class=""><a href="http://localhost:6526/ScrumBoard"
+										title="ScrumBoard"><span>ScrumBoard</span></a></li>
 
 
 									<li class=" active"><h:link value="Ticket archive"
@@ -139,7 +145,7 @@
 
 
 						<!-- hachelmm -->
-
+<!-- 
 						<li class=" "><a href="#mission" title="Dashboard"
 							data-toggle="collapse"> <i class="fa fa-fw fa-briefcase"></i><span
 								data-localize="sidebar.nav.DASHBOARD">Mission</span>
@@ -159,7 +165,7 @@
 
 									<li class=" active"><h:link value="liste partenaire admin"
 											outcome="/missions/admin/listepartenaireadmin.xhtml" /></li>
-											
+
 									<li class=" active"><h:link value="Statetat"
 											outcome="/missions/admin/statetat.xhtml" /></li>
 								</ul>
@@ -178,7 +184,7 @@
 
 								</ul>
 
-							</c:if></li>
+							</c:if></li> -->
 						<!-- end hachem -->
 
 
