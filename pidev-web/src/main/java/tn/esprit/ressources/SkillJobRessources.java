@@ -29,8 +29,11 @@ public class SkillJobRessources {
 		return skillJobService.findSkillJobById(id);
 	}
 
-	public List<SkillJob> findSkillJobByJobId(long jobId) {
-		return skillJobService.findSkillJobByJobId(jobId);
+	@GET
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findSkillJobByJobId(@PathParam("id") long jobId) {
+		return Response.status(Status.OK).entity(skillJobService.findSkillJobByJobId(jobId)).build();
 	}
 
 	@GET
