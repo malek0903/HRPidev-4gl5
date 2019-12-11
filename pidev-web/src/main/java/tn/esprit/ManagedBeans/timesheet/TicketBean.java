@@ -239,7 +239,7 @@ public class TicketBean {
 
 	public void finishIt(Ticket ticket, Employee emp) {
 
-		this.status = Status.Doing;
+		this.status = Status.Donne;
 		this.toDoList = false;
 		this.toDo = false;
 		this.doing = false;
@@ -311,7 +311,11 @@ public class TicketBean {
 		tickets.setDateEnd(ticket.getDateEnd());
 		tickets.setArchive(true);
 		
-		
+		ticket.setDuration(
+				(ticket.getDateEnd().getHours() + ((double) ticket.getDateEnd().getHours() / 60.0))
+				-
+				(ticket.getDateBegin().getHours() + ((double) ticket.getDateEnd().getHours() / 60.0))				
+				);
 		
 		
 		ticketService.updateTicket(tickets);

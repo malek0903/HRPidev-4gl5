@@ -2,13 +2,13 @@ package tn.esprit.timesheet.service.Interface;
 
 import java.util.List;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 import tn.esprit.timesheet.entities.Ticket;
 
-@Remote
-public interface ITicketService {
-	
+@Local
+public interface ITecketServiceLocal {
+
 	public void ajouterTicket(Ticket ticket);
 	
 	public void supprimerTicket(int ticketID);
@@ -17,10 +17,7 @@ public interface ITicketService {
 	
 	public void updateTicket(Ticket ticket);
 	
-	public Ticket getTicketById(int idTicket);
+	
 	public List<Ticket> getAllTicketWithoutEmployee();
 	
-	
-	
-
 }

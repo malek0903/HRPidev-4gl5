@@ -50,6 +50,7 @@ public class TeamBean {
 	
 	@EJB
 	TicketService ticketService;
+	
 	@ManagedProperty(value="#{ticketBean}")
 	TicketBean ticketBean;
 	

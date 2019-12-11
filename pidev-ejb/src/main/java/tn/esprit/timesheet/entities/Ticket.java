@@ -3,6 +3,7 @@ package tn.esprit.timesheet.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Null;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.timesheet.entities.enumration.Difficulty;
 import tn.esprit.timesheet.entities.enumration.Status;
@@ -30,8 +35,11 @@ public class Ticket  implements Serializable {
 	private String title;
 	private String description;
 	private double estimatedHours;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateBegin;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateEnd;
+	
 	private double duration;
 	private Boolean archive;
 	private Boolean toDoList;
@@ -43,8 +51,10 @@ public class Ticket  implements Serializable {
 	private Difficulty difficulty;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	
 	@ManyToOne
 	private Employee employesTicket;
+
 	@ManyToOne
 	private Team team;
 	@ManyToOne
@@ -55,6 +65,7 @@ public class Ticket  implements Serializable {
 	public void setIdTicket(int idTicket) {
 		this.idTicket = idTicket;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -328,7 +339,7 @@ public class Ticket  implements Serializable {
 		return done;
 	}
 	public void setDone(Boolean done) {
-		done = done;
+		this.done = done;
 	}
 	public Projet getProjet() {
 		return projet;

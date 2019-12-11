@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 public class Admin extends User {
 
 	private static final long serialVersionUID = 1L;
-	private LocalDate birthday;
+	
 	private String phoneNumber;
 
 	public Admin() {
@@ -16,13 +16,7 @@ public class Admin extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LocalDate getBirthday() {
-		return birthday;
-	}
 
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
-	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;

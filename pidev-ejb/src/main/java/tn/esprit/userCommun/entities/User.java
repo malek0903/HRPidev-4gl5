@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @Entity
@@ -32,11 +34,13 @@ public class User implements Serializable {
 	private String firstName;
 	private String email;
 	private String password;
+	@JsonIgnore
 	private LocalDateTime creationDate;
 	
 	@Column(name = "user_role", insertable = false, updatable = false)
 	@Enumerated(EnumType.STRING)
 	private EmployeeRole role;
+	@JsonIgnore
 	private LocalDateTime lastLogin;
 
 	public User(String userName, String lastName, String firstName, String email, String password, EmployeeRole role) {

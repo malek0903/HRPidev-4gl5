@@ -16,6 +16,8 @@ public interface ITeamsService {
 	
 	public List<Team> getAllTeams();
 	
+	
+	public Team getTeamByName(String teamName);
 
 	public void updateTeam(Team team);
 	

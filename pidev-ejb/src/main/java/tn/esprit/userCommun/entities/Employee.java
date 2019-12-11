@@ -9,8 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
@@ -25,51 +28,39 @@ public class Employee extends User {
 
 	private static final long serialVersionUID = 1L;
 
-	private LocalDate dateOfBirth;
-	private String phoneNumber;
-	private String gitLink;
-	private String cvDetails;
-	private float salary;
-	private Boolean chefEquipe ;
-
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Team team;
 	
+	private String phoneNumber;
+	
+	private String gitLink;
+	@JsonIgnore
+	private String cvDetails;
+	@JsonIgnore
+	private float salary;
+	@JsonIgnore
+	private Boolean chefEquipe ;
+	//@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Team team;
+	@JsonIgnore
 	@Enumerated(EnumType.STRING)
 	private Status statusEval360;
 
 	
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "employee")
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "concernedEmployee")
 	private List<Eval360> evals360 = new ArrayList<Eval360>();
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="employesTicket")
 	private List<Ticket> tickets = new ArrayList<Ticket>();
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Team employeesTeam;
-	
-	public Employee(String userName, String lastName, String firstName, String email, String password,
-			EmployeeRole role, LocalDate dateOfBirth, String phoneNumber) {
-		super(userName, lastName, firstName, email, password, role);
-		this.dateOfBirth = dateOfBirth;
-		this.phoneNumber = phoneNumber;
-	}
 
-	public Employee(String userName, String lastName, String firstName, String email, String password,
-			EmployeeRole role, LocalDate dateOfBirth, String phoneNumber, String gitLink, String cvDetails) {
-		super(userName, lastName, firstName, email, password, role);
-		this.dateOfBirth = dateOfBirth;
-		this.phoneNumber = phoneNumber;
-		this.gitLink = gitLink;
-		this.cvDetails = cvDetails;
-	}
+	
+	
 
 	public Employee(String userName, String lastName, String firstName, String email, String password,
 			EmployeeRole role) {
@@ -81,13 +72,7 @@ public class Employee extends User {
 
 	}
 
-	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+	
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -143,14 +128,7 @@ public class Employee extends User {
 		this.tickets = tickets;
 	}
 
-	public Team getEmployeesTeam() {
-		return employeesTeam;
-	}
-
-	public void setEmployeesTeam(Team employeesTeam) {
-		this.employeesTeam = employeesTeam;
-	}
-
+	
 	public List<Evaluation> getEvaluations() {
 		return evaluations;
 	}
@@ -183,9 +161,14 @@ public class Employee extends User {
 		this.statusEval360 = statusEval360;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
+		return "Employee [phoneNumber=" + phoneNumber + ", gitLink=" + gitLink + ", cvDetails=" + cvDetails
+				+ ", salary=" + salary + ", chefEquipe=" + chefEquipe + ", team=" + team + ", statusEval360="
+				+ statusEval360 + ", evaluations=" + evaluations + ", feedbacks=" + feedbacks + ", evals360=" + evals360
+				+ ", tickets=" + tickets + "]";
 	}
 
 	@Override
@@ -193,7 +176,7 @@ public class Employee extends User {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((cvDetails == null) ? 0 : cvDetails.hashCode());
-		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		
 		result = prime * result + ((evals360 == null) ? 0 : evals360.hashCode());
 		result = prime * result + ((evaluations == null) ? 0 : evaluations.hashCode());
 		result = prime * result + ((feedbacks == null) ? 0 : feedbacks.hashCode());
@@ -218,11 +201,7 @@ public class Employee extends User {
 				return false;
 		} else if (!cvDetails.equals(other.cvDetails))
 			return false;
-		if (dateOfBirth == null) {
-			if (other.dateOfBirth != null)
-				return false;
-		} else if (!dateOfBirth.equals(other.dateOfBirth))
-			return false;
+		
 		if (evals360 == null) {
 			if (other.evals360 != null)
 				return false;

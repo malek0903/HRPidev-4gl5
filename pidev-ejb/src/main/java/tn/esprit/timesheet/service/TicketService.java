@@ -1,5 +1,6 @@
 package tn.esprit.timesheet.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,11 +11,12 @@ import javax.persistence.TypedQuery;
 
 import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.timesheet.entities.Ticket;
+import tn.esprit.timesheet.service.Interface.ITecketServiceLocal;
 import tn.esprit.timesheet.service.Interface.ITicketService;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 @Stateless
 @LocalBean
-public class TicketService implements ITicketService {
+public class TicketService implements ITicketService,ITecketServiceLocal {
   
 	@PersistenceContext(unitName = "pidev-ejb")
 	EntityManager em;
@@ -51,6 +53,13 @@ public class TicketService implements ITicketService {
 		TypedQuery<Ticket> query = em.createQuery("Select o from Ticket o where o.employesTicket IS NULL", Ticket.class);
 		List<Ticket> result = query.getResultList();
 		return result;
+	}
+
+	@Override
+	public Ticket getTicketById(int idTicket) {
+		
+	return em.find(Ticket.class, idTicket);
+		
 	}
 
 

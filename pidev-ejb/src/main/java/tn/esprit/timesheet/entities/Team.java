@@ -7,12 +7,17 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.entities.Manager;
@@ -28,19 +33,23 @@ public class Team implements Serializable{
 	private int id;
 
 	private String nameTeam;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateCreation;
 	private String departement;
-	
-	@OneToMany(mappedBy="employeesTeam",cascade=CascadeType.ALL)
+	//@JsonIgnore
+	@OneToMany(mappedBy="team",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonBackReference(value="employeesTeam")
 	private List<Employee> employeesTeam = new ArrayList<Employee>();
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="team")
 	private List<Ticket> tickets =new ArrayList<Ticket>();
 	
 	
-
+	@JsonIgnore
 	@OneToOne
 	private Manager manager;
+	
 	public int getId() {
 		return id;
 	}

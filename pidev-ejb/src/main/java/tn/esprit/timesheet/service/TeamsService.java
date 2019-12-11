@@ -50,7 +50,7 @@ public class TeamsService implements ITeamsService {
 	public void mettreAjourEmployeByTeamId(Long employeId, int teamId) {
 		Employee employe = em.find(Employee.class, employeId);
 		Team team = em.find(Team.class, teamId);
-		employe.setEmployeesTeam(team);
+		employe.setTeam(team);
 
 	}
 
@@ -60,6 +60,14 @@ public class TeamsService implements ITeamsService {
 		Team team = em.find(Team.class, teamId);
 		ticket.setTeam(team);
 
+	}
+
+	@Override
+	public Team getTeamByName(String teamName) {
+		// TODO Auto-generated method stub
+		TypedQuery<Team> query = em.createQuery("Select o from Team o where o.nameTeam=:teamName", Team.class)
+									.setParameter("teamName", teamName);
+		return query.getSingleResult();
 	}
 
 }

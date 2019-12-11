@@ -9,9 +9,9 @@ import tn.esprit.userCommun.entities.User;
 @Remote
 public interface userInterfaceRemote {
 
+   public User getUserByEmail(String username);
+	public User getUserByEmailPassword(String login, String password);
 
-	User getUserByEmailPassword(String login, String password);
-
-	List<User> getAllUsers();
+	public List<User> getAllUsers();
 
 }

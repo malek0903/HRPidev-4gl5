@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import tn.esprit.timesheet.entities.Team;
 
 @Entity
@@ -12,9 +14,9 @@ public class Manager extends User{
 	
 	private static final long serialVersionUID = 1L;
 
-	private LocalDate birthday;
+
 	private String phoneNumber;
-	
+	@JsonIgnore
 	@OneToOne(mappedBy="manager")
 	private Team team;
 	
@@ -26,12 +28,6 @@ public class Manager extends User{
 	}
 
 
-	public LocalDate getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
-	}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
