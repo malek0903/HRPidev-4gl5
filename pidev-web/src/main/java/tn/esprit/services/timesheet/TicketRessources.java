@@ -60,24 +60,6 @@ public class TicketRessources {
 	
 	
 	
-	@GET
-	@Path("without-employee")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllTicketWithoutEmployee() {
-		if(ticketService.getAllTicket() == null) {
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
-		else if(ticketService.getAllTicket().size() == 0) {
-			return Response.status(Response.Status.NO_CONTENT).entity("Pas de contenu").build();
-		}
-		
-		return Response.status(Status.OK).entity(ticketService.getAllTicket()).build();
-		
-		
-	}
-	
-	
-	
 	
 	
 	
@@ -375,6 +357,24 @@ public class TicketRessources {
 
 
 
+	
+	@GET
+	@Path("without-employee")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllTicketWithoutEmployee() {
+		if(ticketService.getAllTicket() == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		else if(ticketService.getAllTicket().size() == 0) {
+			return Response.status(Response.Status.NO_CONTENT).entity("Pas de contenu").build();
+		}
+		
+		return Response.status(Status.OK).entity(ticketService.getAllTicket()).build();
+		
+		
+	}
+	
+	
 
 	
 	
