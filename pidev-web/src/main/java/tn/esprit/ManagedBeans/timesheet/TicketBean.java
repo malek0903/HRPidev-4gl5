@@ -484,7 +484,7 @@ public class TicketBean {
 	}
 
 	public void setDone(Boolean done) {
-		done = done;
+		this.done = done;
 	}
 
 	public Status getStatus() {
