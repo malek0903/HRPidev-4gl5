@@ -1,4 +1,4 @@
-package  test.servlet;
+package  servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,11 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import servlet.*;
 import tn.esprit.timesheet.entities.Employe;
 import tn.esprit.timesheet.entities.Message;
 import tn.esprit.timesheet.services.*;
 import tn.esprit.timesheet.services.impl.EmployeService;
-import test.servlet.*;
 
 public class ChatServlet extends HttpServlet {
 	ArrayList<Message> msgs = new ArrayList<Message>();

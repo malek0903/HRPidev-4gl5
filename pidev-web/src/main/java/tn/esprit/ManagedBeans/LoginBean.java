@@ -19,7 +19,7 @@ import tn.esprit.timesheet.services.impl.EmployeService;
 	employe = employeService.getEmployeByEmailAndPassword(login, password); 
 	if (employe != null && employe.getRole() == tn.esprit.timesheet.entities.Role.ADMINISTRATEUR) 
 	
-	{ navigateTo = "/pages/admin/welcome?faces-redirect=true";
+	{ navigateTo = "/pages/welcome?faces-redirect=true";
 	loggedIn = true; }
 	else 
 	{ FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));

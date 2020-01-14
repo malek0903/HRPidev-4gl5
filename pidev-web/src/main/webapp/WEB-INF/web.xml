@@ -3,7 +3,7 @@
   <display-name>Chat</display-name>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>test.servlet.LoginServlet</servlet-class>
+    <servlet-class>servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -11,7 +11,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ChatServlet</servlet-name>
-    <servlet-class>test.servlet.ChatServlet</servlet-class>
+    <servlet-class>servlet.ChatServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ChatServlet</servlet-name>
