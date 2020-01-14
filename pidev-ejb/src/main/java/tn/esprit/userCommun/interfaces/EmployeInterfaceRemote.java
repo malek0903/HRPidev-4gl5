@@ -15,6 +15,8 @@ public interface EmployeInterfaceRemote {
 	void deleteEmployeeById(Long id);
 
 	Employee findEmployebyId(Long idEmp);
+	
+	Employee findEmployebyCIN(String cin);
 
 	List<Employee> getAllEmployesPublicEval360();
 

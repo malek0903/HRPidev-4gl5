@@ -69,6 +69,31 @@
 								<li class=" active"><h:link value="ListEval"
 										outcome="/pages/ListEval360Started.xhtml" /></li>
 							</ul>
+							data-toggle="collapse">
+								<div class="float-right badge badge-success"></div> <i
+								class="fa fa-fw fa-dashboard"></i><span
+								data-localize="sidebar.nav.DASHBOARD">Skills Management</span>
+						</a>
+							<ul class="sidebar-nav sidebar-subnav collapse" id="dashboard">
+								<li class="sidebar-subnav-header">Skills Management</li>
+								<li class=" active"><h:link value="Skill"
+										outcome="/pages/SkillList.xhtml" /></li>
+								<li class=" active"><h:link value="Job"
+										outcome="/pages/JobList.xhtml" /></li>
+								<li class=" active"><h:link value="Skill Matrix"
+										outcome="/pages/SearchEmployee.xhtml" /></li>
+								<li class=" active"><h:link value="Skill Job"
+										outcome="/pages/SearchJob.xhtml" /></li>
+								<li class=" active"><h:link value="Job Fitting"
+										outcome="/pages/JobFitting.xhtml" /></li>
+							</ul></li>
+							
+
+						<li class="nav-heading "><span
+							data-localize="sidebar.heading.COMPONENTS">Components</span></li>
+						<li class=" "><a href="#extras" title="Extras"
+							data-toggle="collapse"><em class="fa fa-fw fa-info"></em><span
+								data-localize="sidebar.nav.extra.EXTRA">Extras</span></a></li>
 
 						</c:if>
 						<c:if test='#{loginBean.current_user_string.equals("Employee")}'>

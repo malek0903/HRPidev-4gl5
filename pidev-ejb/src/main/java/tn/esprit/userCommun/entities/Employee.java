@@ -1,8 +1,7 @@
 package tn.esprit.userCommun.entities;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,6 +21,9 @@ import tn.esprit.evaluation.entities.Feedback;
 import tn.esprit.timesheet.entities.Team;
 import tn.esprit.timesheet.entities.Ticket;
 import tn.esprit.evaluation.entities.enums.Status;
+import tn.esprit.skill.entities.SkillMatrix;
+import tn.esprit.skill.entities.Job;
+import tn.esprit.skill.entities.Skill;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @Entity
@@ -59,6 +62,18 @@ public class Employee extends User {
 	@JsonIgnore
 	@OneToMany(mappedBy="employesTicket")
 	private List<Ticket> tickets = new ArrayList<Ticket>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	private Set<SkillMatrix> skillsMatrix;
+	@JsonIgnore
+	@Transient
+	private Set<Skill> Skills;
+
+	@JsonIgnore
+	@ManyToOne
+	private Job job;
+	
 
 	
 	
@@ -132,26 +147,29 @@ public class Employee extends User {
 	
 	public List<Evaluation> getEvaluations() {
 		return evaluations;
+	@Override
+	public String toString() {
+		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
 	}
 
-	public void setEvaluations(List<Evaluation> evaluations) {
-		this.evaluations = evaluations;
+	public Set<SkillMatrix> getSkillsMatrix() {
+		return skillsMatrix;
 	}
 
-	public List<Feedback> getFeedbacks() {
-		return feedbacks;
+	public void setSkillsMatrix(Set<SkillMatrix> skillsMatrix) {
+		this.skillsMatrix = skillsMatrix;
 	}
 
-	public void setFeedbacks(List<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
+	public Job getJob() {
+		return job;
 	}
 
-	public List<Eval360> getEvals360() {
-		return evals360;
+	public void setJob(Job job) {
+		this.job = job;
 	}
 
-	public void setEvals360(List<Eval360> evals360) {
-		this.evals360 = evals360;
+	public Set<Skill> getSkills() {
+		return Skills;
 	}
 
 	public Status getStatusEval360() {
@@ -164,12 +182,9 @@ public class Employee extends User {
 
 	
 
-	@Override
-	public String toString() {
-		return "Employee [phoneNumber=" + phoneNumber + ", gitLink=" + gitLink + ", cvDetails=" + cvDetails
-				+ ", salary=" + salary + ", chefEquipe=" + chefEquipe + ", team=" + team + ", statusEval360="
-				+ statusEval360 + ", evaluations=" + evaluations + ", feedbacks=" + feedbacks + ", evals360=" + evals360
-				+ ", tickets=" + tickets + "]";
+	
+	public void setSkills(Set<Skill> skills) {
+		Skills = skills;
 	}
 
 	@Override
