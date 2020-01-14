@@ -4,8 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
@@ -14,9 +19,9 @@ import tn.esprit.timesheet.service.TeamsService;
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.services.EmployeService;
 import tn.esprit.userCommun.services.userService;
-
+@ApplicationScoped
 @ManagedBean
-@SessionScoped
+@Path("employees")
 public class EmployeeBeans {
 
 	@EJB
@@ -38,12 +43,12 @@ public class EmployeeBeans {
 	private List<Feedback> feedbacks;
 	private List<Eval360> evals360;
 
-	public int nbUsers;
-	public int nbTeam;
-	public int nbEmployees;
+	private int nbUsers;
+	private int nbTeam;
+	private int nbEmployees;
 	
 	
-
+	
 	public int getNbEmployees() {
 		nbEmployees = employeService.getAllEmployes().size();
 		return nbEmployees;
@@ -71,6 +76,9 @@ public class EmployeeBeans {
 		this.teamService = teamService;
 	}
 
+	@GET
+	@Path("/numberTeams")
+	@Produces(MediaType.APPLICATION_JSON)
 	public int getNbTeam() {
 		nbTeam = teamService.getAllTeams().size();
 		return nbTeam;
@@ -80,6 +88,9 @@ public class EmployeeBeans {
 		this.nbTeam = nbTeam;
 	}
 
+	@GET
+	@Path("/numberUser")
+	@Produces(MediaType.APPLICATION_JSON)
 	public int getNbUsers() {
 		nbUsers = userSevice.getAllUsers().size();
 		return nbUsers;

@@ -39,9 +39,9 @@ public class ObjectiveService implements IObjectiveRemoteService{
 	}
 	
 	@Override
-	public void updateObj(Objective obj)
+	public Objective updateObj(Objective obj)
 	{
-		em.merge(obj);
+		return em.merge(obj);
 	}
 
 	@Override

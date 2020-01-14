@@ -28,7 +28,8 @@ public class Employee extends User {
 
 	private static final long serialVersionUID = 1L;
 
-	
+	@JsonIgnore
+	private LocalDate dateOfBirth;
 	private String phoneNumber;
 	
 	private String gitLink;

@@ -14,5 +14,5 @@ public interface IObjectiveRemoteService {
 	public void deleteObjective(Long id);
 	public List<Objective> getObjectives();
 	public Objective getObjectiveById(Long id);
-	void updateObj(Objective obj);
+	Objective updateObj(Objective obj);
 }

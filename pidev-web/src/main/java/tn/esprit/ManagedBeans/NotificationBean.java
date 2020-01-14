@@ -9,6 +9,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import tn.esprit.evaluation.entities.Notification;
 import tn.esprit.evaluation.entities.enums.NotificationType;
@@ -20,6 +24,7 @@ import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @ApplicationScoped
 @ManagedBean
+@Path("notifications")
 public class NotificationBean {
 
 	@EJB
@@ -57,6 +62,21 @@ public class NotificationBean {
 	
 	private int nbNotifications;
 
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Notification> getAllNotif(){
+		this.notifications = notificationService.getNotifications();
+		return notifications ;
+	}
+	
+	@GET
+	@Path("NBnotif")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getNbNotificationsWebService() {
+		nbNotifications = this.getAllNotif().size();
+		return nbNotifications;
+	}
+	
 	public NotificationService getNotificationService() {
 		return notificationService;
 	}
@@ -65,6 +85,7 @@ public class NotificationBean {
 		this.notificationService = notificationService;
 	}
 
+	
 	public List<Notification> getNotifications() {
 		User user = this.loginBean.getCurrent_user();
 		this.notifications = notificationService.getNotificationForRole(user.getRole());
@@ -83,11 +104,13 @@ public class NotificationBean {
 		this.loginBean = loginBean;
 	}
 
+	
+	
 	public List<Notification> getEvalCreatedByManager() {
 		this.evalCreatedByManager = this.getNotifications().stream()
 				.filter(notif -> notif.getNotifType() == NotificationType.CREATED_EVALUATION_FROM_MANAGER)
 				.collect(Collectors.toList());
-		System.out.println("dasqw41" + evalCreatedByManager.size());
+		
 		return evalCreatedByManager;
 	}
 
@@ -117,11 +140,22 @@ public class NotificationBean {
 		this.subjectOf360Eval = subjectOf360Eval;
 	}
 
+	
 	public List<Notification> getGiveFeedbackon360Eval() {
 		this.giveFeedbackon360Eval = this.getNotifications().stream()
 				.filter(notif -> notif.getNotifType() == NotificationType.GIVE_FEEDBACK_ON360EVAL)
 				.collect(Collectors.toList());
 		return giveFeedbackon360Eval;
+	}
+	
+	@GET
+	@Path("/FeedBack")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Notification> getGiveFeedbackon360EvalWebService() {
+		return this.getAllNotif().stream()
+				.filter(notif -> notif.getNotifType() == NotificationType.GIVE_FEEDBACK_ON360EVAL)
+				.collect(Collectors.toList());
+		
 	}
 
 	public void setGiveFeedbackon360Eval(List<Notification> giveFeedbackon360Eval) {
@@ -150,11 +184,22 @@ public class NotificationBean {
 		this.objectiveCreatedByAdmin = objectiveCreatedByadmin;
 	}
 
+	
 	public List<Notification> getEvalStartedByManager() {
 		this.evalStartedByManager = this.getNotifications().stream()
 				.filter(notif -> notif.getNotifType() == NotificationType.STARTED_EVALUATION360_FROM_MANAGER)
 				.collect(Collectors.toList());
 		return evalStartedByManager;
+	}
+	
+	@GET
+	@Path("/Type/Manager")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Notification> getEvalStartedByManagerWebService() {
+		return this.getAllNotif().stream()
+				.filter(notif -> notif.getNotifType() == NotificationType.STARTED_EVALUATION360_FROM_MANAGER)
+				.collect(Collectors.toList());
+		
 	}
 
 	public void setEvalStartedByManager(List<Notification> evalStartedByManager) {

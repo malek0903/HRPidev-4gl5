@@ -3,16 +3,24 @@ package tn.esprit.evaluation.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.evaluation.entities.enums.Status;
 import tn.esprit.userCommun.entities.Employee;
@@ -26,17 +34,23 @@ public class Eval360 implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String evalDetails;
+	
+	@JsonIgnore
 	private LocalDate dateBegin;
+	@JsonIgnore
 	private LocalDate dateEnd;
 
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.privatee;
 
-	@OneToMany(mappedBy = "eval360")
+	@JsonIgnore
+	@OneToMany(mappedBy = "eval360", cascade = CascadeType.REMOVE)
 	private List<Feedback> feedbacks = new ArrayList<Feedback>();
 
 	@ManyToOne
 	private Employee concernedEmployee;
+
+	private int sommeMark;
 
 	public Eval360() {
 		// TODO Auto-generated constructor stub
@@ -102,11 +116,18 @@ public class Eval360 implements Serializable {
 		this.dateEnd = dateEnd;
 	}
 
+	public int getSommeMark() {
+		return sommeMark;
+	}
+
+	public void setSommeMark(int sommeMark) {
+		this.sommeMark = sommeMark;
+	}
+
 	@Override
 	public String toString() {
 		return "Eval360 [id=" + id + ", evalDetails=" + evalDetails + ", dateBegin=" + dateBegin + ", dateEnd="
-				+ dateEnd + ", status=" + status + ", feedbacks=" +  ", concernedEmployee="
-				+ concernedEmployee + "]";
+				+ dateEnd + ", status=" + status + ", feedbacks=" + ", concernedEmployee=" + concernedEmployee + "]";
 	}
 
 	@Override
@@ -119,6 +140,7 @@ public class Eval360 implements Serializable {
 		result = prime * result + ((evalDetails == null) ? 0 : evalDetails.hashCode());
 		result = prime * result + ((feedbacks == null) ? 0 : feedbacks.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + sommeMark;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -161,6 +183,8 @@ public class Eval360 implements Serializable {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (sommeMark != other.sommeMark)
 			return false;
 		if (status != other.status)
 			return false;
