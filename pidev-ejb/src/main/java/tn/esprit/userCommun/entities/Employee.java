@@ -1,14 +1,14 @@
 package tn.esprit.userCommun.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -18,12 +18,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import tn.esprit.evaluation.entities.Eval360;
 import tn.esprit.evaluation.entities.Evaluation;
 import tn.esprit.evaluation.entities.Feedback;
-import tn.esprit.timesheet.entities.Team;
-import tn.esprit.timesheet.entities.Ticket;
 import tn.esprit.evaluation.entities.enums.Status;
-import tn.esprit.skill.entities.SkillMatrix;
 import tn.esprit.skill.entities.Job;
 import tn.esprit.skill.entities.Skill;
+import tn.esprit.skill.entities.SkillMatrix;
+import tn.esprit.timesheet.entities.Team;
+import tn.esprit.timesheet.entities.Ticket;
 import tn.esprit.userCommun.entities.enumration.EmployeeRole;
 
 @Entity
@@ -147,6 +147,7 @@ public class Employee extends User {
 	
 	public List<Evaluation> getEvaluations() {
 		return evaluations;
+	}
 	@Override
 	public String toString() {
 		return super.toString() + " Employee [dateOfBirth=" + dateOfBirth + ", phoneNumber=" + phoneNumber + "]";
