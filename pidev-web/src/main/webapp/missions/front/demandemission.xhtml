@@ -7,7 +7,7 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui"
 	template="/template/default/template.xhtml">
-	
+
 	<ui:param name="page_name" value="Index" />
 	<ui:define name="content">
 
@@ -29,16 +29,22 @@
 						<fieldset>
 							<legend>ID Employé</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Votre id SVP:</label>
+								<label class="col-md-2 col-form-label">ID Emp:</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanmission.emp.id}" required="true"/>
+										<p:inputText  styleClass="form-control form-control-rounded" id="emp" required="true"  
+										requiredMessage="Please enter your email address."
+										
+										value="#{managedBeanmission.emp.id}" >
+									</p:inputText>
+									
+							<p:message for="emp" />
+									
 								</div>
 							</div>
 						</fieldset>
-						
-						
-						
+
+
+
 						<fieldset>
 							<div class="form-group row">
 								<label class="col-md-2 col-form-label">Begins At:</label>
@@ -50,9 +56,9 @@
 								</div>
 							</div>
 						</fieldset>
-						
-						
-							
+
+
+
 						<fieldset>
 							<div class="form-group row">
 								<label class="col-md-2 col-form-label">Ends At:</label>
@@ -64,22 +70,22 @@
 								</div>
 							</div>
 						</fieldset>
-						
-						
-						
-							<legend>Mission territoire</legend>
-							<select id="missionter" name="missionter"
-										class="custom-select custom-select-sm">
-										<option disabled="disabled" selected="">#{managedBeanmission.territoire}</option>
-										<option value="externe">externe</option>
-										<option value="interne">interne</option>
-										
 
-									</select>
-							
-							
-						
-							
+
+
+						<legend>Mission territoire</legend>
+						<select id="missionter" name="missionter"
+							class="custom-select custom-select-sm">
+							<option disabled="disabled" selected="">#{managedBeanmission.territoire}</option>
+							<option value="externe">externe</option>
+							<option value="interne">interne</option>
+
+
+						</select>
+
+
+
+
 
 						<fieldset></fieldset>
 						<fieldset>
@@ -88,29 +94,40 @@
 								<label class="col-md-2 col-form-label">Mission
 									destination:</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanmission.destination}" required="true" />
+										<p:inputText  styleClass="form-control form-control-rounded" id="dest" required="true"  
+										requiredMessage="Entrez votre destination."
+										
+										value="#{managedBeanmission.destination}" >
+									</p:inputText>
+									
+							<p:message for="dest" />
+									
 								</div>
 							</div>
 						</fieldset>
 						<fieldset></fieldset>
-						
-						
-						
-						
-							<fieldset></fieldset>
+
+
+
+
+						<fieldset></fieldset>
 						<fieldset>
 							<legend>Mission Objectif</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Mission
-									objectif:</label>
+								<label class="col-md-2 col-form-label">Mission objectif:</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanmission.objectif}" required="true" />
+										<p:inputText  styleClass="form-control form-control-rounded" id="obj" required="true"  
+										requiredMessage="Entrez vos objectifs."
+										
+										value="#{managedBeanmission.objectif}" >
+									</p:inputText>
+									
+							<p:message for="obj" />
+									
 								</div>
 							</div>
 						</fieldset>
-						
+
 
 
 						<h:commandLink styleClass="btn btn-success"
@@ -130,7 +147,7 @@
 		</div>
 
 
-		
+
 		</section>
 
 	</ui:define>

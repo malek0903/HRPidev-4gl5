@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/template/default/admin/template.xhtml">
 	<head>
-	
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"></link>
@@ -27,9 +27,9 @@
 
 						<h:form>
 							<p:dataTable style="border:none" styleClass="table table-striped"
-								id="table" value="#{managedBeanpartenaire.partenaires}" var="partenariat"
-								border="1" emptyMessage="Oartenaire non trouvé" rows="10"
-								paginator="true"
+								id="table" value="#{managedBeanpartenaire.partenaires}"
+								var="partenariat" border="1"
+								emptyMessage="Oartenaire non trouvé" rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 								rowsPerPageTemplate="5,10,15">
 
@@ -48,7 +48,7 @@
 								<p:column headerText="Num tel">
 									<h:outputText value="#{partenariat.numtelpartenaire}" />
 								</p:column>
-								<p:column  headerText="Email">
+								<p:column headerText="Email">
 									<h:outputText value="#{partenariat.emailpartenaire}" />
 								</p:column>
 								<p:column headerText="Pourcentage de reduction">
@@ -60,7 +60,8 @@
 								<p:column>
 									<h:commandButton
 										styleClass="btn btn-sm btn-warning mr-2 command-edit "
-										value="edit" action="#{managedBeanpartenaire.modifier(partenariat)}">
+										value="edit"
+										action="#{managedBeanpartenaire.modifier(partenariat)}">
 									</h:commandButton>
 
 									<h:commandButton
@@ -70,55 +71,152 @@
 									</h:commandButton>
 								</p:column>
 							</p:dataTable>
-						
+
 						</h:form>
-						
-						
-						<div class="card-body">
-							<h:form styleClass="form-horizontal">
-								
-								
-									
-									<fieldset>
-									<h:outputText value="Nom partenaire" />
-									<h:inputText value="#{managedBeanpartenaire.nompartenaire}" />
-									</fieldset>
-									<fieldset>
-									<h:outputText value="Adresse partenaire" />
-									<h:inputText value="#{managedBeanpartenaire.adressepartenaire}" />
-									</fieldset>
-									<fieldset>
-									<h:outputText value="Domaine partenaire" />
-									<h:inputText value="#{managedBeanpartenaire.domainepartenaire}" />
-									</fieldset>
-									<fieldset>
-
-									<h:outputText value="Email partenaire" />
-									<h:inputText value="#{managedBeanpartenaire.emailpartenaire}" />
-									</fieldset>
-									<fieldset>
-
-									<h:outputText value="Num tel" />
-									<h:inputText value="#{managedBeanpartenaire.numtelpartenaire}" />
-									</fieldset>
-									<fieldset>
-
-									<h:outputText value="Pourcentage de reduction" />
-									<h:inputText value="#{managedBeanpartenaire.pourcentagereduction}" />
-									</fieldset>
 
 
+						<section class="section-container"> <!-- Page content-->
+						<div class="content-wrapper">
+							<div class="content-heading">
+								<div>
+									UPDATE PARTENAIRE<small>..</small>
+								</div>
+							</div>
 
-									<h:commandButton action="#{managedBeanpartenaire.updatedep()}"
-										value="modifier" />
-							</h:form>
+							<!-- START card-->
+							<div class="card card-default">
 
-						</div>
+								<div class="card-body">
+									<h:form styleClass="form-horizontal">
+										<fieldset></fieldset>
+										<fieldset>
+											<legend>Nom partenaire</legend>
+											<div class="form-group row">
+												<label class="col-md-2 col-form-label">Nom
+													partrnaire:</label>
+												<div class="col-md-2">
+													<p:inputText styleClass="form-control form-control-rounded"
+														id="np" required="true" requiredMessage="Nom partenaire."
+														value="#{managedBeanpartenaire.nompartenaire}">
+													</p:inputText>
+
+													<p:message for="np" />
+												</div>
+											</div>
+										</fieldset>
+										<fieldset></fieldset>
+
+										<fieldset></fieldset>
+										<legend>Domaine partenaire</legend>
+										<select id="dompart" name="dompart"
+											class="custom-select custom-select-sm">
+											<option disabled="disabled" selected="">#{managedBeanpartenaire.domainepartenaire}</option>
+											<option value="Hotelerie">Hotelerie</option>
+											<option value="Voyage">Voyage</option>
+											<option value="Restauration">Restauration</option>
+											<option value="Kisoque">Kiosque</option>
+											<option value="Autre">Autre</option>
 
 
-					</div>
-				</div>
+
+										</select>
+										<fieldset></fieldset>
+
+
+										<fieldset></fieldset>
+										<fieldset>
+											<legend>Adresse partenaire</legend>
+											<div class="form-group row">
+												<label class="col-md-2 col-form-label">Adresse :</label>
+												<div class="col-md-2">
+													<p:inputText styleClass="form-control form-control-rounded"
+														id="ap" required="true" requiredMessage="Nom partenaire."
+														value="#{managedBeanpartenaire.adressepartenaire}">
+													</p:inputText>
+
+													<p:message for="ap" />
+												</div>
+											</div>
+
+										</fieldset>
+										<fieldset></fieldset>
+
+										<fieldset></fieldset>
+										<fieldset>
+											<legend>Num tel partenaire</legend>
+											<div class="form-group row">
+												<label class="col-md-2 col-form-label">Num tel</label>
+												<div class="col-md-2">
+													<p:inputText styleClass="form-control form-control-rounded"
+														id="nt" required="true"
+														requiredMessage=" Entrez Numtel partenaire."
+														value="#{managedBeanpartenaire.numtelpartenaire}">
+													</p:inputText>
+
+													<p:message for="nt" />
+												</div>
+											</div>
+										</fieldset>
+										<fieldset></fieldset>
+
+										<fieldset></fieldset>
+										<fieldset>
+											<legend>Email partenaire</legend>
+											<div class="form-group row">
+												<label class="col-md-2 col-form-label">Email :</label>
+												<p:inputText id="email" required="true" label="email"
+													size="40"
+													requiredMessage="Please enter your email address."
+													validatorMessage="Invalid email format"
+													value="#{managedBeanpartenaire.emailpartenaire}">
+
+													<f:validateRegex
+														pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+												</p:inputText>
+												<p:watermark for="email" value="Email Address *" />
+												<p:message for="email" />
+											</div>
+										</fieldset>
+										<fieldset></fieldset>
+
+
+										<fieldset></fieldset>
+										<fieldset>
+											<legend>Pourcentage de reduction</legend>
+											<div class="form-group row">
+												<label class="col-md-2 col-form-label">Pourcentage
+													de reduction:</label>
+												<div class="col-md-2">
+													<p:inputText styleClass="form-control form-control-rounded"
+														id="pr" required="true"
+														requiredMessage="Entrez le pourcentage de reduciton"
+														value="#{managedBeanpartenaire.pourcentagereduction}">
+													</p:inputText>
+
+													<p:message for="pr" />
+
+												</div>
+											</div>
+											
+										</fieldset>
+										
+										<h:commandButton action="#{managedBeanpartenaire.updatedep()}"
+									value="modifier" />
+										</h:form>
+										<fieldset></fieldset>
+								</div>
+				
+			
+							</div>
+							</div>
+							</section>
+							</div>
+							</div>
+							
 			</center>
+			
+			
 		</ui:define>
 	</body>
 </ui:composition>

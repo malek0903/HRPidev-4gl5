@@ -29,10 +29,14 @@
 						<fieldset>
 							<legend>Nom partenaire</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Nom partenaire:</label>
+								<label class="col-md-2 col-form-label">Nom partrnaire:</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.nompartenaire}" required="true" />
+									<p:inputText styleClass="form-control form-control-rounded"
+										id="np" required="true" requiredMessage="Nom partenaire."
+										value="#{managedBeanpartenaire.nompartenaire}">
+									</p:inputText>
+
+									<p:message for="np" />
 								</div>
 							</div>
 						</fieldset>
@@ -59,13 +63,17 @@
 						<fieldset>
 							<legend>Adresse partenaire</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Adresse
-									partenaire:</label>
+								<label class="col-md-2 col-form-label">Adresse :</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.adressepartenaire} " required="true" />
+									<p:inputText styleClass="form-control form-control-rounded"
+										id="ap" required="true" requiredMessage="Nom partenaire."
+										value="#{managedBeanpartenaire.adressepartenaire}">
+									</p:inputText>
+
+									<p:message for="ap" />
 								</div>
 							</div>
+
 						</fieldset>
 						<fieldset></fieldset>
 
@@ -73,11 +81,15 @@
 						<fieldset>
 							<legend>Num tel partenaire</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Num tel
-									partenaire:</label>
+								<label class="col-md-2 col-form-label">Num tel</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.numtelpartenaire} " required="true"/>
+									<p:inputText styleClass="form-control form-control-rounded"
+										id="nt" required="true"
+										requiredMessage=" Entrez Numtel partenaire."
+										value="#{managedBeanpartenaire.numtelpartenaire}">
+									</p:inputText>
+
+									<p:message for="nt" />
 								</div>
 							</div>
 						</fieldset>
@@ -87,20 +99,19 @@
 						<fieldset>
 							<legend>Email partenaire</legend>
 							<div class="form-group row">
-								<label class="col-md-2 col-form-label">Email
-									:</label>
-							<p:inputText id="email" required="true" label="email" size="40"
-								requiredMessage="Please enter your email address."
-								validatorMessage="Invalid email format"
-								value="#{managedBeanpartenaire.emailpartenaire}" required="true">
+								<label class="col-md-2 col-form-label">Email :</label>
+								<p:inputText id="email" required="true" label="email" size="40"
+									requiredMessage="Please enter your email address."
+									validatorMessage="Invalid email format"
+									value="#{managedBeanpartenaire.emailpartenaire}">
 
-								<f:validateRegex
-									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 
-							</p:inputText>
-							<p:watermark for="email" value="Email Address *" />
-							<p:message for="email" />
-</div>
+								</p:inputText>
+								<p:watermark for="email" value="Email Address *" />
+								<p:message for="email" />
+							</div>
 						</fieldset>
 						<fieldset></fieldset>
 
@@ -112,8 +123,14 @@
 								<label class="col-md-2 col-form-label">Pourcentage de
 									reduction:</label>
 								<div class="col-md-2">
-									<h:inputText styleClass="form-control form-control-rounded"
-										value="#{managedBeanpartenaire.pourcentagereduction}" required="true" />
+									<p:inputText styleClass="form-control form-control-rounded"
+										id="pr" required="true"
+										requiredMessage="Entrez le pourcentage de reduciton"
+										value="#{managedBeanpartenaire.pourcentagereduction}">
+									</p:inputText>
+
+									<p:message for="pr" />
+
 								</div>
 							</div>
 						</fieldset>

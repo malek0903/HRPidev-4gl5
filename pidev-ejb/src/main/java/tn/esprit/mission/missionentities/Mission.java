@@ -1,6 +1,8 @@
 package tn.esprit.mission.missionentities;
 
 import java.io.Serializable;
+
+
 import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -10,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tn.esprit.userCommun.entities.Employee;
 import tn.esprit.userCommun.entities.User;
@@ -26,14 +31,16 @@ public class Mission implements Serializable {
 
 	private String territoire;
 
-	
+
+   @JsonIgnore
 	@ManyToOne
+	
 	private Employee emp;
 
 	private LocalDate datedebut;
 
-	public Mission(String destination, String objectif, String etat, String territoire, User user,
-			LocalDate datedebut, LocalDate datefin) {
+	public Mission(String destination, String objectif, String etat, String territoire, User user, LocalDate datedebut,
+			LocalDate datefin) {
 		super();
 		this.destination = destination;
 		this.objectif = objectif;
@@ -102,11 +109,6 @@ public class Mission implements Serializable {
 		this.datefin = datefin;
 	}
 
-
-	
-
-	
-
 	public Employee getEmp() {
 		return emp;
 	}
@@ -120,9 +122,9 @@ public class Mission implements Serializable {
 	public Mission() {
 	}
 
-	public Mission(Employee emp,String etat, String objectif, LocalDate datedebut, LocalDate datefin, String territoire,
-			String destination, Integer idmission) {
-		this.emp=emp;
+	public Mission(Employee emp, String etat, String objectif, LocalDate datedebut, LocalDate datefin,
+			String territoire, String destination, Integer idmission) {
+		this.emp = emp;
 		this.etat = etat;
 		this.objectif = objectif;
 		this.datedebut = datedebut;
@@ -131,10 +133,5 @@ public class Mission implements Serializable {
 		this.destination = destination;
 		this.idmission = idmission;
 	}
-
-	
-
-	
-	
 
 }

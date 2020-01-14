@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import tn.esprit.mission.missionentities.Partenariat;
+
 @Remote
 public interface ServicepartenariatRemote {
 
